@@ -13,7 +13,7 @@ const ENV = process.env.NODE_ENV && process.env.NODE_ENV.toLowerCase() || 'devel
 let config;
 
 // basic configuration:
-const title = 'Tipsy Ryde';
+const title = 'Our Hands & Feet';
 const baseUrl = '/';
 const rootDir = path.resolve();
 const srcDir = path.resolve('src');

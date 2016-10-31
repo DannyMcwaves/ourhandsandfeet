@@ -1,9 +1,9 @@
 {
-  "name": "Tipsy-Ryde",
+  "name": "ourhandsandfeet",
   "version": "1.0.0",
-  "description": "A taxi service",
+  "description": "A charity service",
   "main": "dist/electron.js",
-  "productName": "Tipsy Ryde",
+  "productName": "ourhandsandfeet",
   "engines": {
     "node": "6.7.0",
     "npm": "3.10.3"
@@ -43,7 +43,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/UltimatePromotions/tipsylift.git"
+    "url": "git+ssh://git@github.com/UltimatePromotions/ourhandsandfeet.git"
   },
   "keywords": [
     "aurelia",
@@ -93,7 +93,8 @@
     "bootstrap": "^3.3.7",
     "font-awesome": "^4.6.3",
     "isomorphic-fetch": "^2.2.1",
-    "jquery": "^3.1.0"
+    "jquery": "^3.1.0",
+    "yarn": "^0.16.1"
   },
   "devDependencies": {
     "@easy-webpack/config-aurelia": "^2.0.1",
