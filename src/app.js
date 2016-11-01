@@ -35,7 +35,7 @@ export class App {
   }
 
   configureRouter(config, router) {
-    config.title = 'Tipsy Ryde';
+    config.title = 'Our Hands and Feet';
     config.map([
       { route: ['', 'home'], name: 'home',      moduleId: './home',      nav: true, title: 'Home' },
       { route: 'services',         name: 'services',        moduleId: './services',        nav: true, title: 'Services' },
