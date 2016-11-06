@@ -1,6 +1,30 @@
 var configForDevelopment = {
+    httpInterceptor: true,
+    loginOnSignup: true,
+    baseUrl: 'http://localhost:7000',
+    // loginRedirect: '#/',
+    // logoutRedirect: '#/',
+    // signupRedirect: '#/login',
+    // loginUrl: '/auth/login',
+    // signupUrl: '/auth/signup',
+    // profileUrl: '/auth/me',
+    // loginRoute: '/login',
+    // signupRoute: '/signup',
+    tokenRoot: false,
+    tokenName: 'token',
+    tokenPrefix: 'aurelia',
+    responseTokenProp: 'access_token',
+    unlinkUrl: '/auth/unlink/',
+    unlinkMethod: 'get',
+    authHeader: 'Authorization',
+    authToken: 'Bearer',
+    withCredentials: true,
+    platform: 'browser',
+    storage: 'sessionStorage',
     providers: {
         google: {
+          name:"google",
+            url: '/auth/google',
             clientId: '486001374115-omu1ss1g192abgti64ecl90h8fal57r1.apps.googleusercontent.com'
         }
         // ,
@@ -11,11 +35,10 @@ var configForDevelopment = {
         //     clientId:'1452782111708498'
         // }
       },
-    baseUrl: 'http://localhost:9000',
     // The API specifies that new users register at the POST /users enpoint.
-    signupUrl: 'users',
+    //signupUrl: 'users',
     // Logins happen at the POST /sessions/create endpoint.
-    loginUrl: 'sessions/create',
+    //loginUrl: 'sessions/create',
     // The API serves its tokens with a key of id_token which differs from
     // aureliauth's standard.
     tokenName: 'id_token',

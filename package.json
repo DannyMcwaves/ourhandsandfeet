@@ -115,6 +115,7 @@
     "@easy-webpack/config-test-coverage-istanbul": "^2.0.2",
     "@easy-webpack/config-uglify": "^2.1.0",
     "@easy-webpack/core": "^1.3.2",
+    "aurelia-auth": "^3.0.2",
     "aurelia-polymer": "^1.0.0",
     "aurelia-tools": "^0.2.4",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
