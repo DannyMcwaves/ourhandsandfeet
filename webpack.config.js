@@ -27,7 +27,8 @@ const coreBundles = {
     'aurelia-pal-browser',
     'regenerator-runtime',
     'bluebird',
-    'aurelia-polymer'
+    'aurelia-polymer',
+    'aurelia-auth'
 
   ],
   // these will be included in the 'aurelia' bundle (except for the above bootstrap packages)

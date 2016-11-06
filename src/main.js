@@ -14,8 +14,9 @@ export async function configure(aurelia) {
     .standardConfiguration()
     .developmentLogging();
     aurelia.use.plugin('aurelia-polymer');
-    aurelia.use.plugin('aurelia-auth');
-
+    aurelia.use.plugin('aurelia-auth', (baseConfig)=>{
+         baseConfig.configure(config);
+          });
   // Uncomment the line below to enable animation.
   // aurelia.use.plugin('aurelia-animator-css');
   // if the css animator is enabled, add swap-order="after" to all router-view elements
