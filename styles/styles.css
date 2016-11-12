@@ -258,3 +258,10 @@ div.au-stagger {
 .material-header-h3{
   color:white;
 }
+
+.slideshowimage
+{
+  width: 100%;
+  height: 0px;
+  padding-bottom: 32%;
+}

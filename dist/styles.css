@@ -258,6 +258,13 @@ div.au-stagger {
 .material-header-h3{
   color:white;
 }
+
+.slideshowimage
+{
+  width: 100%;
+  height: 0px;
+  padding-bottom: 32%;
+}
 /*!
  *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
@@ -9353,4 +9360,4 @@ button.close {
 }
 /*# sourceMappingURL=bootstrap.css.map */
 
-/*# sourceMappingURL=app.19906652180a585c1167.bundle.map*/
+/*# sourceMappingURL=app.56dca28508794d27e388.bundle.map*/
