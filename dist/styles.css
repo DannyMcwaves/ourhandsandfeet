@@ -225,6 +225,7 @@ div.au-stagger {
   margin-right:10px;
   margin-bottom:10px;
   font-size:16px;
+  text-align:center;
 }
 .material-content-p-bigger{
   font-size:24px;
@@ -257,6 +258,18 @@ div.au-stagger {
 
 .material-header-h3{
   color:white;
+}
+
+.slideshowimage
+{
+  width: 100%;
+  height: 0px;
+  padding-bottom: 32%;
+}
+
+.paper-card-img
+{
+  text-align: center;
 }
 /*!
  *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
@@ -9353,4 +9366,4 @@ button.close {
 }
 /*# sourceMappingURL=bootstrap.css.map */
 
-/*# sourceMappingURL=app.19906652180a585c1167.bundle.map*/
+/*# sourceMappingURL=app.872808e8946cf7207971.bundle.map*/

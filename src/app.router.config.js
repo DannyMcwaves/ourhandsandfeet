@@ -14,7 +14,7 @@ export default class{
       config.addPipelineStep('authorize', AuthorizeStep);
       config.map([
         { route: ['', 'home'], name: 'home',      moduleId: './home',      nav: true, title: 'About' },
-        { route: 'services',         name: 'services',        moduleId: './services',        nav: true, title: 'News' },
+        { route: 'news',         name: 'news',        moduleId: './news',        nav: true, title: 'News' },
         // { route: 'jobs',  name: 'jobs', moduleId: './jobs', nav: true, title: 'Jobs' }
       ]);
     };
