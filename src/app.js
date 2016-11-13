@@ -12,10 +12,11 @@ export class App {
     this.appRouterConfig = appRouterConfig;
     this.fetchConfig = fetchConfig;
     this.auth=auth;
+
       }
   email='';
   password='';
-
+  authenticated = false;
     login(){
           return this.auth.login(this.email, this.password)
           .then(response=>{
@@ -26,19 +27,26 @@ export class App {
           });
       };
 
-    authenticate(name){
-      console.log(name);
-      console.log(this.auth.isAuthenticated());
-      //console.log(this.getTokens());
-          return this.auth.authenticate(name, false, null)
-          .then((response)=>{
-              console.log("auth response " + response);
-              console.log(response);
-              this.auth.setToken(response);
+    // authenticate(name){
+    //   console.log(name);
+    //   console.log(this.auth.isAuthenticated());
+    //   //console.log(this.getTokens());
+    //       return this.auth.authenticate(name, false, null)
+    //       .then((response)=>{
+    //           console.log("auth response " + response);
+    //           console.log(response);
+    //           this.auth.setToken(response);
+    //           this.authenticated = this.auth.isAuthenticated();
+    //
+    //           //this.getUser();
+    //           //this.getTokens();
+    //       });
+    //   }
 
-              //this.getUser();
-              //this.getTokens();
-          });
+      logout(){
+        this.auth.setToken("");
+        this.authenticated = false;
+        this.auth.logout("#/").then(response=>{console.log("ok logged out");});
       }
 
       getUser(){
@@ -52,6 +60,7 @@ export class App {
       }
   activate(){
     console.log(this.auth.isAuthenticated());
+    this.authenticated = this.auth.isAuthenticated();
     this.appRouterConfig.configure();
     this.fetchConfig.configure();
     //this.getUser();

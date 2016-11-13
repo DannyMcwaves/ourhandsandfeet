@@ -43,7 +43,7 @@ var configForDevelopment = {
     // aureliauth's standard.
     tokenName: 'id_token',
     // Once logged in, we want to redirect the user to the welcome view.
-    loginRedirect: '#/welcome',
+    loginRedirect: '#/dashboard',
 };
 
 var configForProduction = {
