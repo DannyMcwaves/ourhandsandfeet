@@ -60,7 +60,7 @@ var configForProduction = {
         // }
 
     },
-    baseUrl: 'http://ourhandsandfeet.org',
+    baseUrl: 'https://ourhandsandfeetbackend.herokuapp.com',
     // The API specifies that new users register at the POST /users enpoint.
     signupUrl: 'users',
     // Logins happen at the POST /sessions/create endpoint.
