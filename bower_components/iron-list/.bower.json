@@ -51,7 +51,7 @@
     "tag": "v1.3.14",
     "commit": "995f97476992bf38b4354b6d2fa992b2cb06dace"
   },
-  "_source": "git://github.com/PolymerElements/iron-list.git",
+  "_source": "https://github.com/PolymerElements/iron-list.git",
   "_target": "^1.0.0",
   "_originalSource": "PolymerElements/iron-list"
 }

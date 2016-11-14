@@ -5,8 +5,8 @@
   "main": "dist/electron.js",
   "productName": "ourhandsandfeet",
   "engines": {
-    "node": "6.7.0",
-    "npm": "3.10.3"
+    "node": "7.1.0",
+    "npm": "3.10.9"
   },
   "scripts": {
     "test": "cross-env NODE_ENV=test ./node_modules/karma/bin/karma start test/karma.conf.js",
