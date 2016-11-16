@@ -73,7 +73,7 @@ export class App {
     this.httpClient.configure(httpConfig => {
       httpConfig
         .withDefaults({
-          mode: 'cors',
+          mode: 'no-cors',
           headers: {
             'Accept': 'application/json'
           }
