@@ -5,13 +5,16 @@ import AppRouterConfig from "./app.router.config";
 import {FetchConfig} from 'aurelia-auth';
 import {AuthService} from "aurelia-auth";
 import {AuthorizeStep} from 'aurelia-router';
-@inject(Router,FetchConfig, AuthService, AppRouterConfig)
+import {HttpClient} from 'aurelia-fetch-client';
+
+@inject(Router,FetchConfig, AuthService, AppRouterConfig, HttpClient)
 export class App {
-  constructor(router, fetchConfig, auth, appRouterConfig){
+  constructor(router, fetchConfig, auth, appRouterConfig, httpClient){
     this.router = router;
     this.appRouterConfig = appRouterConfig;
     this.fetchConfig = fetchConfig;
     this.auth=auth;
+    this.httpClient = httpClient;
 
       }
   email='';
@@ -62,8 +65,21 @@ export class App {
     console.log(this.auth.isAuthenticated());
     this.authenticated = this.auth.isAuthenticated();
     this.appRouterConfig.configure();
-    this.fetchConfig.configure();
+    this.configHttpClient();
     //this.getUser();
+  }
+
+  configHttpClient(){
+    this.httpClient.configure(httpConfig => {
+      httpConfig
+        .withDefaults({
+          mode: 'cors',
+          headers: {
+            'Accept': 'application/json'
+          }
+        })
+        .withInterceptor(this.auth.tokenInterceptor);
+    });
   }
 
   // configureRouter(config, router) {
