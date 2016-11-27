@@ -6,9 +6,9 @@
 </script> -->
 <html>
   <head>
-    <title><%- webpackConfig.metadata.title %></title>
+    <title><%- htmlWebpackPlugin.options.metadata.title %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <base href="<%- webpackConfig.metadata.baseUrl %>">
+      <base href="<%- htmlWebpackPlugin.options.metadata.baseUrl %>">
     <!-- <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script> -->
     <!-- <link rel="import" href="bower_components/polymer/polymer.html">
     <link rel="import" href="bower_components/iron-image/iron-image.html">
@@ -19,10 +19,10 @@
   </head>
   <body aurelia-app="main">
     <div class="splash">
-      <div class="message"><%- webpackConfig.metadata.title %></div>
+      <div class="message"><%- htmlWebpackPlugin.options.metadata.title %></div>
       <i class="fa fa-spinner fa-spin"></i>
     </div>
-    <% if (webpackConfig.metadata.ENV === 'development') { %>
+    <% if (htmlWebpackPlugin.options.metadata.ENV === 'development') { %>
     <!-- Webpack Dev Server reload -->
     <script src="/webpack-dev-server.js"></script>
     <% } %>
