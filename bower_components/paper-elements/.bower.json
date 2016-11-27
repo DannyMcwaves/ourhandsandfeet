@@ -64,7 +64,7 @@
     "tag": "v1.0.7",
     "commit": "718dc9fb0c1ba6bd8baeb38d2bcb96d35cd350db"
   },
-  "_source": "https://github.com/polymerelements/paper-elements.git",
+  "_source": "git://github.com/polymerelements/paper-elements.git",
   "_target": "^1.0.7",
   "_originalSource": "polymerelements/paper-elements"
 }
