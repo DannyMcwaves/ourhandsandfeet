@@ -1,5 +1,5 @@
 import {App} from '../../src/app';
-
+//import {router} from '../../src/app.router.config';
 class RouterStub {
   configure(handler) {
     handler(this);
@@ -10,14 +10,14 @@ class RouterStub {
   }
 }
 
-describe('the App module', () => {
+describe('the app.router.config module', () => {
   var sut;
   var mockedRouter;
 
   beforeEach(() => {
     mockedRouter = new RouterStub();
     sut = new App();
-    sut.configureRouter(mockedRouter, mockedRouter);
+    sut.appRouterConfig.configure(mockedRouter, mockedRouter);
   });
 
   it('contains a router property', () => {
@@ -25,18 +25,23 @@ describe('the App module', () => {
   });
 
   it('configures the router title', () => {
-    expect(sut.router.title).toEqual('Aurelia');
+    expect(sut.router.title).toEqual('Our Hands and Feet');
   });
 
-  it('should have a welcome route', () => {
-    expect(sut.router.routes).toContain({ route: ['', 'welcome'], name: 'welcome',  moduleId: './welcome', nav: true, title: 'Welcome' });
+  it('should have an About route', () => {
+    expect(sut.router.routes).toContain({ route: ['', 'home'], name: 'home',  moduleId: './home', nav: true, title: 'About' });
   });
 
-  it('should have a users route', () => {
-    expect(sut.router.routes).toContain({ route: 'users', name: 'users', moduleId: './users', nav: true, title: 'Github Users' });
+  it('should have a news route', () => {
+    expect(sut.router.routes).toContain({ route: 'news', name: 'news', moduleId: './news', nav: true, title: 'News' });
   });
 
-  it('should have a child router route', () => {
-    expect(sut.router.routes).toContain({ route: 'child-router', name: 'child-router', moduleId: './child-router', nav: true, title: 'Child Router' });
+  it('should have a login route', () => {
+    expect(sut.router.routes).toContain({ route: 'login', name: 'login', moduleId: './login', nav: true, title: 'Login' });
   });
+
+  it('should have a login route', () => {
+    expect(sut.router.routes).toContain({ route: 'dashboard', name: 'dashboard', moduleId: './dashboard', nav: false, title: 'Dashboard', auth:true });
+  });
+
 });
