@@ -20,28 +20,28 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">12.5% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>1/8</span>
+        <span class='fraction'>10/10</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/0</span>
+        <span class='fraction'>2/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/2</span>
+        <span class='fraction'>4/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">14.29% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>1/7</span>
+        <span class='fraction'>9/9</span>
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -72,31 +72,33 @@
 27
 28
 29
-30</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+30
+31</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -106,16 +108,17 @@ import {inject} from 'aurelia-framework';
 import {Router} from 'aurelia-router';
 &nbsp;
 @inject(Router)
-export default class{
+export class AppRouterConfig{
 &nbsp;
-<span class="fstat-no" title="function not covered" >	constructor(router)<span class="cstat-no" title="statement not covered" >{</span></span>
-<span class="cstat-no" title="statement not covered" >		this.router = router;</span>
+	constructor(router){
+		this.router = router;
 	}
-	configure(){
-<span class="cstat-no" title="statement not covered" >		var appRouterConfig = <span class="fstat-no" title="function not covered" >function(config){</span></span>
-<span class="cstat-no" title="statement not covered" >      config.title = 'Our Hands and Feet';</span>
-<span class="cstat-no" title="statement not covered" >      config.addPipelineStep('authorize', AuthorizeStep);</span>
-<span class="cstat-no" title="statement not covered" >      config.map([</span>
+	configure(config,router){
+		var theAppRouterConfig = function(config){
+			console.log(config);
+      config.title = 'Our Hands and Feet';
+      config.addPipelineStep('authorize', AuthorizeStep);//Is the actually Authorization. Prevents users from certain sites when not authorized.
+      config.map([
         { route: ['', 'home'], name: 'home',      moduleId: './home',      nav: true, title: 'About' },
         { route: 'news',         name: 'news',        moduleId: './news',        nav: true, title: 'News' },
 				{ route: 'login',         name: 'login',        moduleId: './login',        nav: false, title: 'Login'},
@@ -125,7 +128,7 @@ export default class{
       ]);
     };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >		this.router.configure(appRouterConfig);</span>
+		this.router.configure(theAppRouterConfig);
 	}
 &nbsp;
 }
@@ -136,7 +139,7 @@ export default class{
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Nov 30 2016 12:09:22 GMT-0500 (EST)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Dec 04 2016 16:01:07 GMT-0500 (EST)
 </div>
 </div>
 <script src="../prettify.js"></script>

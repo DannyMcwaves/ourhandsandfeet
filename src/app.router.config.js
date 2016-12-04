@@ -3,15 +3,16 @@ import {inject} from 'aurelia-framework';
 import {Router} from 'aurelia-router';
 
 @inject(Router)
-export default class{
+export class AppRouterConfig{
 
 	constructor(router){
 		this.router = router;
 	}
-	configure(){
-		var appRouterConfig = function(config){
+	configure(config,router){
+		var theAppRouterConfig = function(config){
+			console.log(config);
       config.title = 'Our Hands and Feet';
-      config.addPipelineStep('authorize', AuthorizeStep);
+      config.addPipelineStep('authorize', AuthorizeStep);//Is the actually Authorization. Prevents users from certain sites when not authorized.
       config.map([
         { route: ['', 'home'], name: 'home',      moduleId: './home',      nav: true, title: 'About' },
         { route: 'news',         name: 'news',        moduleId: './news',        nav: true, title: 'News' },
@@ -22,7 +23,7 @@ export default class{
       ]);
     };
 
-		this.router.configure(appRouterConfig);
+		this.router.configure(theAppRouterConfig);
 	}
 
 }

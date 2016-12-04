@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for src/users.js</title>
+    <title>Code coverage report for src/news.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -16,28 +16,28 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../index.html">all files</a> / <a href="index.html">src/</a> users.js
+      <a href="../index.html">all files</a> / <a href="index.html">src/</a> news.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">90% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>9/10</span>
+        <span class='fraction'>1/1</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">90% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>9/10</span>
+        <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">66.67% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/3</span>
+        <span class='fraction'>0/1</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">88.89% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>8/9</span>
+        <span class='fraction'>1/1</span>
       </div>
     </div>
   </div>
@@ -72,68 +72,62 @@
 27
 28
 29
-30
-31
-32</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+30</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">24×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3×</span>
-<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {inject, Lazy} from 'aurelia-framework';
-import {HttpClient} from 'aurelia-fetch-client';
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">//import {computedFrom} from 'aurelia-framework';
 &nbsp;
-// polyfill fetch client conditionally
-const fetch = !</span>self.fetch ? <span class="branch-0 cbranch-no" title="branch not covered" >System.import('isomorphic-fetch') : Promise.resolve(self.fetch);
+<span class="fstat-no" title="function not covered" >export class News {</span>
+  // heading = 'Welcome to the Aurelia Navigation App!';
+  // firstName = 'John';
+  // lastName = 'Doe';
+  // previousValue = this.fullName;
 &nbsp;
-@inject(Lazy.of(HttpClient))
-export class Users {
-  heading = 'Github Users';
-  users = [];
-&nbsp;
-  constructor(getHttpClient) {
-    this.getHttpClient = getHttpClient;
-  }
-&nbsp;
-  async activate() {
-    // ensure fetch is polyfilled before we create the http client
-    await fetch;
-    const http = this.http = this.getHttpClient();
-&nbsp;
-    http.configure(<span class="fstat-no" title="function not covered" >config =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      config</span>
-        .useStandardConfiguration()
-        .withBaseUrl('https://api.github.com/');
-    });
-&nbsp;
-    const response = await http.fetch('users');
-    this.users = await response.json();
-  }
+  //Getters can't be directly observed, so they must be dirty checked.
+  //However, if you tell Aurelia the dependencies, it no longer needs to dirty check the property.
+  //To optimize by declaring the properties that this getter is computed from, uncomment the line below
+  //as well as the corresponding import above.
+  //@computedFrom('firstName', 'lastName')
+  // get fullName() {
+  //   return `${this.firstName} ${this.lastName}`;
+  // }
+  //
+  // submit() {
+  //   this.previousValue = this.fullName;
+  //   alert(`Welcome, ${this.fullName}!`);
+  // }
+  //
+  // canDeactivate() {
+  //   if (this.fullName !== this.previousValue) {
+  //     return confirm('Are you sure you want to leave?');
+  //   }
+  // }
 }
 &nbsp;
 &nbsp;</pre></td></tr>
@@ -142,7 +136,7 @@ export class Users {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Nov 30 2016 12:09:22 GMT-0500 (EST)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Dec 04 2016 16:01:07 GMT-0500 (EST)
 </div>
 </div>
 <script src="../prettify.js"></script>
