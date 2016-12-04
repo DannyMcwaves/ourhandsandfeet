@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for src/child-router.js</title>
+    <title>Code coverage report for src/dashboard.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -16,13 +16,13 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../index.html">all files</a> / <a href="index.html">src/</a> child-router.js
+      <a href="../index.html">all files</a> / <a href="index.html">src/</a> dashboard.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>3/3</span>
+        <span class='fraction'>1/1</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/2</span>
+        <span class='fraction'>0/1</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>3/3</span>
+        <span class='fraction'>1/1</span>
       </div>
     </div>
   </div>
@@ -56,33 +56,30 @@
 11
 12
 13
-14
-15</td><td class="line-coverage quiet"><span class="cline-any cline-yes">14×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5×</span>
+14</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export class ChildRouter {
-  heading = 'Child Router';
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// import 'bootstrap';
+// import {inject} from 'aurelia-framework';
+// import {Router} from 'aurelia-router';
+// import AppRouterConfig from "./app.router.config";
+// import {FetchConfig} from 'aurelia-auth';
+// import {AuthService} from "aurelia-auth";
+// import {AuthorizeStep} from 'aurelia-router';
+// @inject(Router,FetchConfig, AuthService, AppRouterConfig)
 &nbsp;
-  configureRouter(config, router) {
-    config.map([
-      { route: ['', 'welcome'], name: 'welcome',       moduleId: './welcome',       nav: true, title: 'Welcome' },
-      { route: 'users',         name: 'users',         moduleId: './users',         nav: true, title: 'Github Users' },
-      { route: 'child-router',  name: 'child-router',  moduleId: './child-router',  nav: true, title: 'Child Router' }
-    ]);
+<span class="fstat-no" title="function not covered" >export class Dashboard {</span>
 &nbsp;
-    this.router = router;
-  }
 }
 &nbsp;
 &nbsp;</pre></td></tr>

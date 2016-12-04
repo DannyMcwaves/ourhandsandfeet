@@ -23,8 +23,11 @@ module.exports = function (config) {
      *
      * we are building the test environment in ./spec-bundle.js
      */
-    files: [
-      { pattern: 'spec-bundle.js', watched: false }
+    // files: [
+    //
+    // ],
+    files:[
+      { pattern: 'spec-bundle.js', watched: false },
     ],
 
     /*

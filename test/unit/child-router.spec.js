@@ -17,6 +17,7 @@ describe('the Child Router module', () => {
   beforeEach(() => {
     mockedRouter = new RouterStub();
     sut = new ChildRouter();
+    //console.log(sut);
     sut.configureRouter(mockedRouter, mockedRouter);
   });
 
