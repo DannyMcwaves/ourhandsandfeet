@@ -20,6 +20,7 @@ export class App {
   email='';
   password='';
   authenticated = false;
+  token="";
     // login(){
     //       return this.auth.login(this.email, this.password)
     //       .then(response=>{
@@ -54,16 +55,20 @@ export class App {
 
     getUser(){
 
-      console.log(this.auth);
+      //console.log(this.auth);
       return this.auth.getMe().then((response)=>{console.log("get me:" + response);return response;});
     }
 
     getTokens(){
-      return this.auth.getTokenPayload().then((response)=>{console.log("token payload:"+response);return response;});
+      return this.auth.getTokenPayload();
     }
   activate(){
     console.log(this.auth.isAuthenticated());
     this.authenticated = this.auth.isAuthenticated();
+    if(this.authenticated){
+      this.getUser();
+      console.log(this.getTokens());
+    }
     this.appRouterConfig.configure();
     this.configHttpClient();
     //this.getUser();

@@ -40,7 +40,8 @@ export class Login {
         .then((response)=>{
             console.log("auth response " + response);
             console.log(response);
-            this.auth.setToken(response);
+            this.auth.setToken(response.token);
+            console.log(this.auth.getTokenPayload());
             this.app.authenticated = this.auth.isAuthenticated();
 
             //this.getUser();
