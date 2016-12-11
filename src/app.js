@@ -20,15 +20,15 @@ export class App {
   email='';
   password='';
   authenticated = false;
-    login(){
-          return this.auth.login(this.email, this.password)
-          .then(response=>{
-              console.log("success logged " + response);
-          })
-          .catch(err=>{
-              console.log("login failure");
-          });
-      };
+    // login(){
+    //       return this.auth.login(this.email, this.password)
+    //       .then(response=>{
+    //           console.log("success logged " + response);
+    //       })
+    //       .catch(err=>{
+    //           console.log("login failure");
+    //       });
+    //   };
 
     // authenticate(name){
     //   console.log(name);
@@ -46,21 +46,21 @@ export class App {
     //       });
     //   }
 
-      logout(){
-        this.auth.setToken("");
-        this.authenticated = false;
-        this.auth.logout("#/").then(response=>{console.log("ok logged out");});
-      }
+    logout(){
+      this.auth.setToken("");
+      this.authenticated = false;
+      this.auth.logout("#/").then(response=>{console.log("ok logged out");});
+    }
 
-      getUser(){
+    getUser(){
 
-        console.log(this.auth);
-        return this.auth.getMe().then((response)=>{console.log("get me:" + response)});
-      }
+      console.log(this.auth);
+      return this.auth.getMe().then((response)=>{console.log("get me:" + response);return response;});
+    }
 
-      getTokens(){
-        return this.auth.getTokenPayload().then((response)=>{console.log("token payload:"+response)});
-      }
+    getTokens(){
+      return this.auth.getTokenPayload().then((response)=>{console.log("token payload:"+response);return response;});
+    }
   activate(){
     console.log(this.auth.isAuthenticated());
     this.authenticated = this.auth.isAuthenticated();
