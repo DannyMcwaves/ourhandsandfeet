@@ -1,22 +1,6 @@
 import {App} from '../../src/app';
 
-// class HttpStub {
-//   fetch(url) {
-//     var response = this.itemStub;
-//     this.url = url;
-//     return new Promise((resolve) => {
-//       resolve({ json: () => response });
-//     });
-//   }
-//
-//   login(param1, param2){
-//     var response = this.itemStub;
-//     this.user = this.itemStub;
-//     return new Promise((resolve) => {
-//       resolve({ json: () => response });
-//     });
-//   }
-// }
+
 class AppStub{
   constructor(){
     var authenticated=true;
@@ -88,26 +72,20 @@ var app1;
 
    it('tests activate', () => {
       app1.activate();
-      console.log("App Activate: " + app1.authenticated);
+      //console.log("App Activate: " + app1.authenticated);
      expect(app1.authenticated).toBe(true);
-
      });
 
 
   it('tests logout', () => {
-    console.log(app1);
+    //console.log(app1);
      app1.activate();
      app1.logout();
     expect(app1.authenticated).toBe(false);
     });
-//  });
-  // it('contains a router property', () => {
-  //   expect(sut.router).toBeDefined();
-  // });
-  //
-  // it('contains a router property', () => {
-  //   expect(sut.router).toBeDefined();
-  // });
 
-
+  it('tests configHttpClient', () => {
+    app1.activate();
+    expect(app1.authenticated).toBe(false);
+  });
 });

@@ -7,26 +7,26 @@ class HttpStub {
       resolve({ json: () => response });
     });
   }
-  authenticate(param1, param2, param3){
+  authenticate(param1, param2, param3) {
     var response = this.itemStub;
     this.user = this.itemStub;
     return new Promise((resolve) => {
       resolve({ json: () => response });
     });
   }
-  setToken(token){
+  setToken(token) {
     this.user = token;
   }
-  isAuthenticated(){
-    return "Yes";
+  isAuthenticated() {
+    return 'Yes';
   }
   configure(func) {
   }
 }
 
-class AppStub{
-  constructor(){
-    var authenticated;
+class AppStub {
+  constructor() {
+    const authenticated = false;
   }
 }
 
@@ -36,31 +36,24 @@ describe('the Login module', () => {
 
   beforeEach(() => {
     sut = new Login();
-    //console.log(sut);
-
   });
 
-
-  // it('sets fetch response to login', (done) => {
-  //     var itemStubs = [1];
-  //     var itemFake = [2];
-  //
-  //     var getHttp = () => {
-  //       var http = new HttpStub();
-  //       http.itemStub = itemStubs;
-  //       return http;
-  //     };
-  //     var app = new AppStub();
-  //     // console.log(getHttp);
-  //     var sut = new Login(getHttp(), app);
-  //     // console.log(sut.auth.isAuthenticated());
-  //     // console.log(sut);
-  //     sut.authenticate("google").then(() => {
-  //       //console.log(sut.user);
-  //       //expect(sut.user).toBe(itemStubs);
-  //       expect(sut.user).not.toBe(itemFake);
-  //       done();
-  //     });
-  //   });
-
+  it('tests authenticate', (done) => {
+    let itemStubs = [1];
+    let itemFake = [2];
+    let getHttp = () => {
+      http = new HttpStub();
+      http.itemStub = itemStubs;
+      return http;
+    };
+    var app = new AppStub();
+      // console.log(getHttp);
+    sut = new Login(getHttp(), app);
+      // console.log(sut.auth.isAuthenticated());
+      // console.log(sut);
+    sut.authenticate('google');
+    //expect is authenticated to be called
+    expect(sut.app.authenticated).toBe(true);
+    done();
+  });
 });
