@@ -27,6 +27,7 @@ build/Release
 # Dependency directories
 node_modules
 jspm_packages
+bower_components
 
 # Optional npm cache directory
 .npm
@@ -44,6 +45,6 @@ npm-debug.log*
 /electron.js*
 /release
 
-#test/coverage
+test/coverage
 
-#yarn.lock
+yarn.lock
