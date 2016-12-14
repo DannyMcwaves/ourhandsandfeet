@@ -9,4 +9,7 @@
 
 export class Dashboard {
 
+//function getName
+
+//function updateUser
 }
