@@ -102,7 +102,7 @@ let config = generateConfig(
 
   aurelia({root: rootDir, src: srcDir, title: title, baseUrl: baseUrl}),
 
-  babel(),
+  babel({ options: { /* uses settings from .babelrc */ } }),
   html(),
   css({ filename: 'styles.css', allChunks: true, sourceMap: false }),
   fontAndImages(),
