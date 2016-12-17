@@ -1,9 +1,9 @@
 // import 'bootstrap';
 import {inject} from 'aurelia-framework';
 import {Router} from 'aurelia-router';
-import {AppRouterConfig} from "./app.router.config";
+import {AppRouterConfig} from './app.router.config';
 import {FetchConfig} from 'aurelia-auth';
-import {AuthService} from "aurelia-auth";
+import {AuthService} from 'aurelia-auth';
 import {AuthorizeStep} from 'aurelia-router';
 import {HttpClient} from 'aurelia-fetch-client';
 
@@ -55,7 +55,7 @@ export class App {
 
     getUser(){
 
-      //console.log(this.auth);
+      console.log(this.auth);
       return this.auth.getMe().then((response)=>{console.log("get me:" + response);return response;});
     }
 
