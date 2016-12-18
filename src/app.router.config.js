@@ -17,7 +17,7 @@ export class AppRouterConfig{
         { route: ['', 'home'], name: 'home',      moduleId: './home',      nav: true, title: 'About' },
         { route: 'news',         name: 'news',        moduleId: './news',        nav: true, title: 'News' },
 				{ route: 'login',         name: 'login',        moduleId: './login',        nav: false, title: 'Login'},
-				{ route: 'dashboard',         name: 'dashboard',        moduleId: './dashboard',        nav: false, title: 'Dashboard', auth:true}
+				{ route: 'dashboard',         name: 'dashboard-router',        moduleId: './dashboard-router', nav: false, title: 'Dashboard', auth:true}
 
         // { route: 'jobs',  name: 'jobs', moduleId: './jobs', nav: true, title: 'Jobs' }
       ]);
