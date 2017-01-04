@@ -46,7 +46,6 @@ class RouterStub {
 
 class HttpStub {
   configure() {
-
   }
 }
 
