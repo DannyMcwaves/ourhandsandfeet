@@ -72,6 +72,10 @@
         "aurelia-polymer/au-select-custom-attribute",
         "aurelia-auth",
         "aurelia-auth/auth-filter"
+      ],
+      "includeDependencies": [
+        "!http-server",
+        "!dotenv"
       ]
     }
   },
@@ -93,10 +97,11 @@
     "babel-polyfill": "^6.20.0",
     "bluebird": "^3.4.6",
     "bootstrap": "^3.3.7",
+    "dotenv": "^2.0.0",
     "font-awesome": "^4.7.0",
+    "http-server": "^0.9.0",
     "isomorphic-fetch": "^2.2.1",
-    "jquery": "^3.1.1",
-    "yarn": "^0.16.1"
+    "jquery": "^3.1.1"
   },
   "devDependencies": {
     "@easy-webpack/config-aurelia": "^2.2.2",

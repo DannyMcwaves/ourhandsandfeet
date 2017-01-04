@@ -17,8 +17,9 @@
           <!-- Charity or Volunteer -->
                     <!-- <paper-item  repeat.for="type of types" value.bind="type">${type}</paper-item> -->
         </paper-listbox>
-      </paper-dropdown-menu><br>
-      selected product: ${user.type}
+      </paper-dropdown-menu>
+      <!-- <br>
+      selected product: ${user.type} -->
        <paper-input style="margin-left: 0.5cm; width:180px" label="City" value.two-way="user.userCity" required></paper-input>
         <paper-input style="margin-left: 0.5cm; width:180px" label="Zip Code" value.two-way="user.userZip" required></paper-input>
        <paper-button style="margin:20px 3.5cm 0" raised click.trigger="updateUser()">Update</paper-button>
