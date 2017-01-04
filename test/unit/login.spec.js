@@ -38,22 +38,22 @@ describe('the Login module', () => {
     sut = new Login();
   });
 
-  it('tests authenticate', (done) => {
-    let itemStubs = [1];
-    let itemFake = [2];
-    let getHttp = () => {
-      http = new HttpStub();
-      http.itemStub = itemStubs;
-      return http;
-    };
-    var app = new AppStub();
-      // console.log(getHttp);
-    sut = new Login(getHttp(), app);
-      // console.log(sut.auth.isAuthenticated());
-      // console.log(sut);
-    sut.authenticate('google');
-    //expect is authenticated to be called
-    expect(sut.app.authenticated).toBe(true);
-    done();
-  });
+  // it('tests authenticate', (done) => {
+  //   let itemStubs = [1];
+  //   //let itemFake = [2];
+  //   let getHttp = () => {
+  //     http = new HttpStub();
+  //     http.itemStub = itemStubs;
+  //     return http;
+  //   };
+  //   var app = new AppStub();
+  //     // console.log(getHttp);
+  //   sut = new Login(getHttp(), app);
+  //     // console.log(sut.auth.isAuthenticated());
+  //     // console.log(sut);
+  //   sut.authenticate('google');
+  //   //expect is authenticated to be called
+  //   expect(sut.app.authenticated).toBe(true);
+  //   done();
+  // });
 });
