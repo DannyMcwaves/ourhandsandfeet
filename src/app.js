@@ -67,14 +67,14 @@ export class App {
       if (this.authenticated) {
         var uid = this.getTokens().sub;
         console.log("In get user - uid:"+uid);
-        this.httpClient.fetch('http://localhost:7000/user/'+uid)
-          .then(response => response.json())
-          .then(data => {
-            console.log('app.getUser()');
-              console.log(data);
-              return data;
-          });
-        }else{
+        // this.httpClient.fetch('http://localhost:7000/user/'+uid)
+        //   .then(response => response.json())
+        //   .then(data => {
+        //     console.log('app.getUser()');
+        //       console.log(data);
+        //       return data;
+          //});
+      } else {
           return "";
         }
     }
