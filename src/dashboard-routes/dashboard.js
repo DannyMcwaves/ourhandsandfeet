@@ -25,14 +25,15 @@ export class Dashboard {
   // types["Charity"]="Charity";
   // types["Volunteer"]="Volunteer";
   getUser(){
-    console.log('dashboard.getUser()');
-    console.log(this.app.user);
-
-    if(this.app.user !== undefined ){
-      console.log('User already exists!');
-      console.log(this.app.user);
-      return;
-    }
+  //{
+  //   console.log('dashboard.getUser()');
+  //   console.log(this.app.user);
+  //
+  //   if(this.app.user !== undefined ){
+  //     console.log('User already exists!');
+  //     console.log(this.app.user);
+  //     return;
+  //   }
     // console.log(this.auth);
     // return this.auth.getMe().then((response)=>{console.log("get me:" + response);return response;});
     this.authenticated = this.auth.isAuthenticated();
@@ -54,7 +55,7 @@ export class Dashboard {
             console.log(this.user);
             console.log("First time info:");
             console.log(this.first_time_info);
-        })
+        });
   }
 
   updateUser(){
