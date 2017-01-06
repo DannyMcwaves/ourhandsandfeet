@@ -1,6 +1,6 @@
 //import 'bootstrap';
 import {inject} from 'aurelia-framework';
-//import {App} from "../app";
+import {App} from '../app';
 //import {Router} from 'aurelia-router';
 //import DashboardRouterConfig from "./dashboard-router";
 //import {FetchConfig} from 'aurelia-auth';
@@ -8,22 +8,31 @@ import {AuthService} from "aurelia-auth";
 import {HttpClient, json} from 'aurelia-fetch-client';
 //import {AuthorizeStep} from 'aurelia-router';
 //@inject(Router,FetchConfig, AuthService, AppRouterConfig)
-@inject(AuthService, HttpClient)
+@inject(AuthService, HttpClient, App)
 export class Dashboard {
-  constructor(auth, httpClient){
+  constructor(auth, httpClient, app){
+    this.app = app;
     this.auth = auth;
     this.httpClient = httpClient;
 
       }
   //
   authenticated=false;
-  user="";
+  //user={};
   first_time_info = false;
   types=["Charity", "Volunteer"];
   // types=[];
   // types["Charity"]="Charity";
   // types["Volunteer"]="Volunteer";
   getUser(){
+    console.log('dashboard.getUser()');
+    console.log(this.app.user);
+
+    if(this.app.user !== undefined ){
+      console.log('User already exists!');
+      console.log(this.app.user);
+      return;
+    }
     // console.log(this.auth);
     // return this.auth.getMe().then((response)=>{console.log("get me:" + response);return response;});
     this.authenticated = this.auth.isAuthenticated();
@@ -31,8 +40,10 @@ export class Dashboard {
       this.httpClient.fetch('http://localhost:7000/user/'+uid)
         .then(response => response.json())
         .then(data => {
+          console.log('dashboard.getUser()');
+          console.log(this);
             this.user = data;
-            //console.log(this.user);
+            console.log("foo"+this.user);
             this.first_time_info = this.configured();
             if(this.user.userType == "Charity"){
               this.user.userType = 1;
@@ -78,6 +89,7 @@ export class Dashboard {
 
 
   activate(){
+
     this.getUser();
     //this.first_time_info = this.configured();
   }
