@@ -76,12 +76,12 @@ describe('the App module', () => {
   // });
 
 
-  // it('tests logout', () => {
-  //   //console.log(app1);
-  //   app1.activate();
-  //   app1.logout();
-  //   expect(app1.authenticated).toBe(false);
-  // });
+  it('tests logout', () => {
+    //console.log(app1);
+    app1.activate();
+    app1.logout();
+    expect(app1.authenticated).toBe(false);
+  });
 
   // it('tests configHttpClient', () => {
   //   app1.activate();
