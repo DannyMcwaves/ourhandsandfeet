@@ -21705,11 +21705,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 --><script>
   (function() {
     'use strict';
-    /**
-     * Used to calculate the scroll direction during touch events.
-     * @type {!Object}
-     */
-    var lastTouchPosition = {
+    // Used to calculate the scroll direction during touch events.
+    var LAST_TOUCH_POSITION = {
       pageX: 0,
       pageY: 0
     };
@@ -21717,11 +21714,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      * Used to avoid computing event.path and filter scrollable nodes (better perf).
      * @type {?EventTarget}
      */
-    var lastRootTarget = null;
-    /**
-     * @type {!Array<Node>}
-     */
-    var lastScrollableNodes = [];
+    var ROOT_TARGET = null;
+    var SCROLLABLE_NODES = [];
 
     /**
      * The IronDropdownScrollManager is intended to provide a central source
@@ -21883,8 +21877,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         // If event has targetTouches (touch event), update last touch position.
         if (event.targetTouches) {
           var touch = event.targetTouches[0];
-          lastTouchPosition.pageX = touch.pageX;
-          lastTouchPosition.pageY = touch.pageY;
+          LAST_TOUCH_POSITION.pageX = touch.pageX;
+          LAST_TOUCH_POSITION.pageY = touch.pageY;
         }
       },
 
@@ -21897,7 +21891,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         document.addEventListener('mousewheel', this._boundScrollHandler, true);
         // IE:
         document.addEventListener('DOMMouseScroll', this._boundScrollHandler, true);
-        // Save the lastScrollableNodes on touchstart, to be used on touchmove.
+        // Save the SCROLLABLE_NODES on touchstart, to be used on touchmove.
         document.addEventListener('touchstart', this._boundScrollHandler, true);
         // Mobile devices can scroll on touch move:
         document.addEventListener('touchmove', this._boundScrollHandler, true);
@@ -21924,13 +21918,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         // Update if root target changed. For touch events, ensure we don't
         // update during touchmove.
         var target = Polymer.dom(event).rootTarget;
-        if (event.type !== 'touchmove' && lastRootTarget !== target) {
-          lastRootTarget = target;
-          lastScrollableNodes = this._getScrollableNodes(Polymer.dom(event).path);
+        if (event.type !== 'touchmove' && ROOT_TARGET !== target) {
+          ROOT_TARGET = target;
+          SCROLLABLE_NODES = this._getScrollableNodes(Polymer.dom(event).path);
         }
 
         // Prevent event if no scrollable nodes.
-        if (!lastScrollableNodes.length) {
+        if (!SCROLLABLE_NODES.length) {
           return true;
         }
         // Don't prevent touchstart event inside the locking element when it has
@@ -21941,7 +21935,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         // Get deltaX/Y.
         var info = this._getScrollInfo(event);
         // Prevent if there is no child that can scroll.
-        return !this._getScrollingNode(lastScrollableNodes, info.deltaX, info.deltaY);
+        return !this._getScrollingNode(SCROLLABLE_NODES, info.deltaX, info.deltaY);
       },
 
       /**
@@ -22040,9 +22034,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         else if (event.targetTouches) {
           var touch = event.targetTouches[0];
           // Touch moves from right to left => scrolling goes right.
-          info.deltaX = lastTouchPosition.pageX - touch.pageX;
+          info.deltaX = LAST_TOUCH_POSITION.pageX - touch.pageX;
           // Touch moves from down to up => scrolling goes down.
-          info.deltaY = lastTouchPosition.pageY - touch.pageY;
+          info.deltaY = LAST_TOUCH_POSITION.pageY - touch.pageY;
         }
         return info;
       }
@@ -22200,7 +22194,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         attached: function () {
           if (!this.sizingTarget || this.sizingTarget === this) {
-            this.sizingTarget = this.containedElement || this;
+            this.sizingTarget = this.containedElement;
           }
         },
 
