@@ -11,7 +11,7 @@
   "scripts": {
     "pretest": "del-cli \"test/coverage\"",
     "test": "cross-env BABEL_ENV=node NODE_ENV=test ./node_modules/karma/bin/karma start test/karma.conf.js",
-    "test:debug": "npm test -- --single-run=false --debug",
+    "test:debug": "npm test -- --single-run=false --auto-watch=true --debug",
     "webdriver:update": "cross-env ./node_modules/.bin/webdriver-manager update",
     "webdriver:start": "cross-env ./node_modules/.bin/webdriver-manager start",
     "pree2e": "npm run webdriver:update -- --standalone",
