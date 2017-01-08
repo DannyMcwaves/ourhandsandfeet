@@ -38,7 +38,7 @@ export class Dashboard {
     // return this.auth.getMe().then((response)=>{console.log("get me:" + response);return response;});
     this.authenticated = this.auth.isAuthenticated();
       var uid = this.auth.getTokenPayload().sub;
-      this.httpClient.fetch('http://localhost:7000/user/'+uid)
+      this.httpClient.fetch(process.env.BackendUrl+'/user/'+uid)
         .then(response => response.json())
         .then(data => {
           console.log('dashboard.getUser()');
@@ -65,7 +65,7 @@ export class Dashboard {
     console.log(tempUserType);
     this.user.userType=this.types[this.user.userType-1];
     console.log(this.user.userType);
-    this.httpClient.fetch("http://localhost:7000/user/"+uid, {
+    this.httpClient.fetch(process.env.BackendUrl+"/user/"+uid, {
       method:"put",
       body:json(this.user)
     })
