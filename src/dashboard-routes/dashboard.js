@@ -38,7 +38,8 @@ export class Dashboard {
     // return this.auth.getMe().then((response)=>{console.log("get me:" + response);return response;});
     this.authenticated = this.auth.isAuthenticated();
       var uid = this.auth.getTokenPayload().sub;
-      this.httpClient.fetch(process.env.BackendUrl+'/user/'+uid)
+      //this.httpClient.fetch(process.env.BackendUrl+'/user/'+uid)
+      this.httpClient.fetch('http://localhost:7000/user/'+uid)
         .then(response => response.json())
         .then(data => {
           console.log('dashboard.getUser()');
