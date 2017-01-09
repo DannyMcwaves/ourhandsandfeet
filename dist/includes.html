@@ -13543,7 +13543,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         @apply(--paper-drawer-panel-drawer-container);
       }
 
-      .transition-drawer {
+      .transition > #drawer {
         transition: -webkit-transform ease-in-out 0.3s, width ease-in-out 0.3s, visibility 0.3s;
         transition: transform ease-in-out 0.3s, width ease-in-out 0.3s, visibility 0.3s;
       }
@@ -13951,11 +13951,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          * @method openDrawer
          */
         openDrawer: function() {
-          requestAnimationFrame(function() {
-            this.toggleClass("transition-drawer", true, this.$.drawer);
-            this.selected = 'drawer';
-          }.bind(this));
-          
+          this.selected = 'drawer';
         },
 
         /**
@@ -13964,10 +13960,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          * @method closeDrawer
          */
         closeDrawer: function() {
-          requestAnimationFrame(function() {
-            this.toggleClass("transition-drawer", true, this.$.drawer);
-            this.selected = 'main';
-          }.bind(this));
+          this.selected = 'main';
         },
 
         _onTransitionEnd: function (e) {
@@ -13979,14 +13972,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           if (e.propertyName === 'left' || e.propertyName === 'right') {
             this.notifyResize();
           }
-          if (e.propertyName === 'transform') {
-            requestAnimationFrame(function() {
-              this.toggleClass("transition-drawer", false, this.$.drawer);
-            }.bind(this));
-            if (this.selected === 'drawer') {
-              var focusedChild = this._getAutoFocusedNode();
-              focusedChild && focusedChild.focus();
-            }
+          if (e.propertyName === 'transform' && this.selected === 'drawer') {
+            var focusedChild = this._getAutoFocusedNode();
+            focusedChild && focusedChild.focus();
           }
         },
 
@@ -20664,9 +20652,51 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   })();
 </script><script>
 (function() {
-  'use strict';
+'use strict';
 
-  /** @polymerBehavior */
+/**
+Use `Polymer.IronOverlayBehavior` to implement an element that can be hidden or shown, and displays
+on top of other content. It includes an optional backdrop, and can be used to implement a variety
+of UI controls including dialogs and drop downs. Multiple overlays may be displayed at once.
+
+See the [demo source code](https://github.com/PolymerElements/iron-overlay-behavior/blob/master/demo/simple-overlay.html)
+for an example.
+
+### Closing and canceling
+
+An overlay may be hidden by closing or canceling. The difference between close and cancel is user
+intent. Closing generally implies that the user acknowledged the content on the overlay. By default,
+it will cancel whenever the user taps outside it or presses the escape key. This behavior is
+configurable with the `no-cancel-on-esc-key` and the `no-cancel-on-outside-click` properties.
+`close()` should be called explicitly by the implementer when the user interacts with a control
+in the overlay element. When the dialog is canceled, the overlay fires an 'iron-overlay-canceled'
+event. Call `preventDefault` on this event to prevent the overlay from closing.
+
+### Positioning
+
+By default the element is sized and positioned to fit and centered inside the window. You can
+position and size it manually using CSS. See `Polymer.IronFitBehavior`.
+
+### Backdrop
+
+Set the `with-backdrop` attribute to display a backdrop behind the overlay. The backdrop is
+appended to `<body>` and is of type `<iron-overlay-backdrop>`. See its doc page for styling
+options.
+
+In addition, `with-backdrop` will wrap the focus within the content in the light DOM.
+Override the [`_focusableNodes` getter](#Polymer.IronOverlayBehavior:property-_focusableNodes)
+to achieve a different behavior.
+
+### Limitations
+
+The element is styled to appear on top of other content by setting its `z-index` property. You
+must ensure no element has a stacking context with a higher `z-index` than its parent stacking
+context. You should place this element as a child of `<body>` whenever possible.
+
+@demo demo/index.html
+@polymerBehavior Polymer.IronOverlayBehavior
+*/
+
   Polymer.IronOverlayBehaviorImpl = {
 
     properties: {
@@ -21217,48 +21247,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   };
 
-  /**
-  Use `Polymer.IronOverlayBehavior` to implement an element that can be hidden or shown, and displays
-  on top of other content. It includes an optional backdrop, and can be used to implement a variety
-  of UI controls including dialogs and drop downs. Multiple overlays may be displayed at once.
-
-  See the [demo source code](https://github.com/PolymerElements/iron-overlay-behavior/blob/master/demo/simple-overlay.html)
-  for an example.
-
-  ### Closing and canceling
-
-  An overlay may be hidden by closing or canceling. The difference between close and cancel is user
-  intent. Closing generally implies that the user acknowledged the content on the overlay. By default,
-  it will cancel whenever the user taps outside it or presses the escape key. This behavior is
-  configurable with the `no-cancel-on-esc-key` and the `no-cancel-on-outside-click` properties.
-  `close()` should be called explicitly by the implementer when the user interacts with a control
-  in the overlay element. When the dialog is canceled, the overlay fires an 'iron-overlay-canceled'
-  event. Call `preventDefault` on this event to prevent the overlay from closing.
-
-  ### Positioning
-
-  By default the element is sized and positioned to fit and centered inside the window. You can
-  position and size it manually using CSS. See `Polymer.IronFitBehavior`.
-
-  ### Backdrop
-
-  Set the `with-backdrop` attribute to display a backdrop behind the overlay. The backdrop is
-  appended to `<body>` and is of type `<iron-overlay-backdrop>`. See its doc page for styling
-  options.
-
-  In addition, `with-backdrop` will wrap the focus within the content in the light DOM.
-  Override the [`_focusableNodes` getter](#Polymer.IronOverlayBehavior:property-_focusableNodes)
-  to achieve a different behavior.
-
-  ### Limitations
-
-  The element is styled to appear on top of other content by setting its `z-index` property. You
-  must ensure no element has a stacking context with a higher `z-index` than its parent stacking
-  context. You should place this element as a child of `<body>` whenever possible.
-
-  @demo demo/index.html
-  @polymerBehavior
-  */
+  /** @polymerBehavior */
   Polymer.IronOverlayBehavior = [Polymer.IronFitBehavior, Polymer.IronResizableBehavior, Polymer.IronOverlayBehaviorImpl];
 
   /**
