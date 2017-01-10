@@ -39,7 +39,11 @@ export class Dashboard {
     this.authenticated = this.auth.isAuthenticated();
       var uid = this.auth.getTokenPayload().sub;
       //this.httpClient.fetch(process.env.BackendUrl+'/user/'+uid)
-      this.httpClient.fetch(window.env.BackendUrl + '/user/' + uid)
+      var fetchURL;
+    if (process.env.NODE_ENV === 'production') {
+      fetchURL = process.env.BackendUrl;
+    } else {fetchURL = window.env.BackendUrl; }
+    this.httpClient.fetch(fetchURL + '/user/' + uid)
         .then(response => response.json())
         .then(data => {
           console.log('dashboard.getUser()');
