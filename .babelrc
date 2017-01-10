@@ -58,7 +58,7 @@
           "env",
           {
             "targets": {
-              "node": 4
+              "node": 7
             },
             "loose": true,
             "modules": "commonjs"
