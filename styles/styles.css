@@ -207,6 +207,16 @@ div.au-stagger {
   padding-top:5px;
 }
 
+.material-content-faq{
+  /*max-width:1000px;
+  margin-left:auto;
+  margin-right:auto;*/
+  padding-bottom:10px;
+  padding-top:5px;
+  padding-left:10px;
+  padding-right:10px;
+}
+
 .material-content-h1, .material-content-h2{
   text-align: center;
 }
