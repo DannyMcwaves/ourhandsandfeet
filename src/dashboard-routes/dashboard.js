@@ -41,8 +41,8 @@ export class Dashboard {
       //this.httpClient.fetch(process.env.BackendUrl+'/user/'+uid)
       var fetchURL;
     if (process.env.NODE_ENV === 'production') {
-      fetchURL = process.env.BackendUrl;
-    } else {fetchURL = window.env.BackendUrl; }
+      fetchURL = window.env.HostedBackendUrl;
+    } else {fetchURL = window.env.LocalBackendUrl; }
     this.httpClient.fetch(fetchURL + '/user/' + uid)
         .then(response => response.json())
         .then(data => {
