@@ -6,7 +6,6 @@ import {FetchConfig} from 'aurelia-auth';
 import {AuthService} from 'aurelia-auth';
 import {AuthorizeStep} from 'aurelia-router';
 import {HttpClient} from 'aurelia-fetch-client';
-import {load} from 'aurelia-environment';
 
 @inject(Router, FetchConfig, AuthService, AppRouterConfig, HttpClient)
 export class App {
@@ -17,10 +16,6 @@ export class App {
     this.auth = auth;
     this.httpClient = httpClient;
     this.user = this.getUser();
-    //TODO: this.getUser() needs to return a promise object.
-    //Dashboard should see the promise object, wait for it to be fulfilled. After it has been, then it will bind the user to all the polymer objects
-    //this.user.then(function(){
-    //});
   }
 
 
