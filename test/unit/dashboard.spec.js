@@ -1,1 +1,1 @@
-import {Dashboard} from '../../src/dashboard';
+//import {Dashboard} from '../../src/dashboard-routes/dashboard';

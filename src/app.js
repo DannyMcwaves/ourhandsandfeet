@@ -7,16 +7,18 @@ import {AuthService} from 'aurelia-auth';
 import {AuthorizeStep} from 'aurelia-router';
 import {HttpClient} from 'aurelia-fetch-client';
 
-@inject(Router,FetchConfig, AuthService, AppRouterConfig, HttpClient)
+@inject(Router, FetchConfig, AuthService, AppRouterConfig, HttpClient)
 export class App {
   constructor(router, fetchConfig, auth, appRouterConfig, httpClient){
     this.router = router;
     this.appRouterConfig = appRouterConfig;
     this.fetchConfig = fetchConfig;
-    this.auth=auth;
+    this.auth = auth;
     this.httpClient = httpClient;
     this.user = this.getUser();
-      }
+  }
+
+
   email='';
   password='';
   authenticated = false;
@@ -58,17 +60,17 @@ export class App {
       // console.log(this.auth);
       // return this.auth.getMe().then((response)=>{console.log("get me:" + response);return response;});
       this.authenticated = this.auth.isAuthenticated();
-      if(this.authenticated){
+      if (this.authenticated) {
         var uid = this.getTokens().sub;
         console.log("In get user - uid:"+uid);
-        this.httpClient.fetch('http://localhost:7000/user/'+uid)
-          .then(response => response.json())
-          .then(data => {
-              console.log(data);
-              return data;
-              //console.log(this.user);
-          })
-        }else{
+        // this.httpClient.fetch('http://localhost:7000/user/'+uid)
+        //   .then(response => response.json())
+        //   .then(data => {
+        //     console.log('app.getUser()');
+        //       console.log(data);
+        //       return data;
+          //});
+      } else {
           return "";
         }
     }

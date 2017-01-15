@@ -1,8 +1,6 @@
-'use strict'
-const path = require('path')
-require('babel-register')({ only: "*.babel.js" });
-
-module.exports = function (config) {
+const path = require('path');
+require('babel-register')({ only: '*.babel.js' });
+module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (e.g. files, exclude)
@@ -26,8 +24,8 @@ module.exports = function (config) {
     // files: [
     //
     // ],
-    files:[
-      { pattern: 'spec-bundle.js', watched: false },
+    files: [
+      { pattern: 'spec-bundle.js', watched: false }
     ],
 
     /*
@@ -88,7 +86,7 @@ module.exports = function (config) {
      * available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
      */
     browsers: [
-      'Chrome',
+      'Chrome'
     // TODO: https://www.npmjs.com/package/karma-electron
     ],
 
@@ -97,5 +95,5 @@ module.exports = function (config) {
      * if true, Karma captures browsers, runs the tests and exits
      */
     singleRun: true
-  })
-}
+  });
+};

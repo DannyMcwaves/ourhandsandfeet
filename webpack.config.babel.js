@@ -26,7 +26,7 @@ process.env.BABEL_ENV = 'webpack'
 const ENV = process.env.NODE_ENV && process.env.NODE_ENV.toLowerCase() || (process.env.NODE_ENV = 'development')
 
 // basic configuration:
-const title = 'Aurelia Navigation Skeleton'
+const title = 'Our Hands and Feet'
 const baseUrl = '/'
 const rootDir = path.resolve()
 const srcDir = path.resolve('src')
@@ -41,7 +41,8 @@ const coreBundles = {
     'regenerator-runtime',
     'bluebird',
     'aurelia-polymer',
-    'aurelia-auth'
+    'aurelia-auth',
+    'aurelia-environment'
   ],
   // these will be included in the 'aurelia' bundle (except for the above bootstrap packages)
   aurelia: [
@@ -69,7 +70,8 @@ const coreBundles = {
     'aurelia-templating-router',
     'aurelia-templating-resources',
     'aurelia-polymer',
-    'aurelia-auth'
+    'aurelia-auth',
+    'aurelia-environment'
   ]
 }
 
@@ -97,7 +99,7 @@ let config = generateConfig(
    */
 
   ENV === 'test' || ENV === 'development' ?
-    envDev(ENV !== 'test' ? {} : {devtool: 'inline-source-map'}) :
+    envDev(ENV !== 'test' ? {} : {devtool: 'inline-source-map'}, {devtool: 'dotenv'} ) :
     envProd({ /* devtool: '...' */ }),
 
   aurelia({root: rootDir, src: srcDir, title: title, baseUrl: baseUrl}),
@@ -113,7 +115,8 @@ let config = generateConfig(
 
   ...(ENV === 'production' || ENV === 'development' ? [
     commonChunksOptimize({appChunkName: 'app', firstChunk: 'aurelia-bootstrap'}),
-    copyFiles({patterns: [{ from: 'favicon.ico', to: 'favicon.ico' }]})
+    copyFiles({patterns: [{ from: 'favicon.ico', to: 'favicon.ico' },
+    { from: 'aurelia.env', to: 'aurelia.env'}]})
   ] : [
     /* ENV === 'test' */
     generateCoverage({ options: { 'force-sourcemap': true, esModules: true }})
