@@ -12,6 +12,7 @@ Install bower globally with the command <b>npm install bower -g</b><br>
 Run <b>bower install</b>
 
 Run <b>npm start</b>
+Install the <b>Aurelia Inspector</b> Chrome extension to allow debugging of the font end code.
 
 Now, open your browser and go to <b>localhost:9000</b>
 
@@ -21,3 +22,8 @@ Note that you will not be able to use the "Login" feature of the website unless 
 
 When working on unit tests, use the command <b>npm run test:debug</b><br>
 This will run the tests in continous mode and launch a Chrome browser with Karma debugging enabled.
+
+Use the command, <b>npm run build:prod</b><br>
+and then <b>npm run:server prod</b><br>
+This builds the <b>dist</b> folder, and must be done prior to pushing new code into GitHub.<br>
+Open a browser at <b>localhost:8080</b> to view the production server and dist folder.
