@@ -7,3 +7,6 @@ dependencies:
     - npm install -g bower
     - npm install
     - bower install
+general:
+  artifacts:
+    - ./coverage

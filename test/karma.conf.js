@@ -47,9 +47,9 @@ module.exports = function(config) {
     },
 
     remapIstanbulReporter: {
-      src: path.join(__dirname, 'coverage/coverage-final.json'),
+      src: path.join(__dirname, '../coverage/coverage-final.json'),
       reports: {
-        html: path.join(__dirname, 'coverage/')
+        html: path.join(__dirname, '../coverage/')
       },
       timeoutNotCreated: 1000,
       timeoutNoMoreFiles: 1000
