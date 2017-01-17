@@ -41,6 +41,7 @@ module.exports = function(config) {
     coverageReporter: {
       reporters: [{
         type: 'json',
+        dir: '../coverage',
         subdir: '.',
         file: 'coverage-final.json'
       }]
