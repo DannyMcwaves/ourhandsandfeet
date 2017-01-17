@@ -50,19 +50,19 @@ export class App {
     //       });
     //   }
 
-    logout(){
-      this.auth.setToken("");
-      this.authenticated = false;
-      this.auth.logout("#/").then(response=>{console.log("ok logged out");});
-    }
+  logout(){
+    this.auth.setToken('');
+    this.authenticated = false;
+    this.auth.logout('#/');
+  }
 
-    getUser(){
+  getUser(){
       // console.log(this.auth);
       // return this.auth.getMe().then((response)=>{console.log("get me:" + response);return response;});
-      this.authenticated = this.auth.isAuthenticated();
-      if (this.authenticated) {
-        var uid = this.getTokens().sub;
-        console.log("In get user - uid:"+uid);
+    this.authenticated = this.auth.isAuthenticated();
+    if (this.authenticated) {
+      const uid = this.getTokens().sub;
+      //console.log("In get user - uid:"+uid);
         // this.httpClient.fetch('http://localhost:7000/user/'+uid)
         //   .then(response => response.json())
         //   .then(data => {
