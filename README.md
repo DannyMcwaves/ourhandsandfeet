@@ -9,7 +9,7 @@ Clone this repository into a directory of your choice from the terminal using "g
 Install and use the version of nodejs currently listing in our package.json<br>
 From the same directory, run <b>npm install</b><br>
 Install bower globally with the command <b>npm install bower -g</b><br>
-Run <b>bower install</b>
+Run <b>bower install</b><br>
 
 Run <b>npm start</b>
 Install the <b>Aurelia Inspector</b> Chrome extension to allow debugging of the font end code.
