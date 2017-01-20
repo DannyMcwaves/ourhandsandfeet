@@ -14,6 +14,9 @@ export class Dashboard {
     this.app = app;
     this.auth = auth;
     this.httpClient = httpClient;
+    if (process.env.NODE_ENV === 'production') {
+      this.fetchURL = window.env.HostedBackendUrl;
+    } else {this.fetchURL = window.env.LocalBackendUrl; }
 
       }
   //
@@ -39,11 +42,7 @@ export class Dashboard {
     this.authenticated = this.auth.isAuthenticated();
       var uid = this.auth.getTokenPayload().sub;
       //this.httpClient.fetch(process.env.BackendUrl+'/user/'+uid)
-      var fetchURL;
-    if (process.env.NODE_ENV === 'production') {
-      fetchURL = window.env.HostedBackendUrl;
-    } else {fetchURL = window.env.LocalBackendUrl; }
-    this.httpClient.fetch(fetchURL + '/user/' + uid)
+    this.httpClient.fetch(this.fetchURL + '/user/' + uid)
         .then(response => response.json())
         .then(data => {
           console.log('dashboard.getUser()');
@@ -70,7 +69,7 @@ export class Dashboard {
     console.log(tempUserType);
     this.user.userType=this.types[this.user.userType-1];
     console.log(this.user.userType);
-    this.httpClient.fetch(process.env.BackendUrl+"/user/"+uid, {
+    this.httpClient.fetch(this.fetchURL + "/user/"+uid, {
       method:"put",
       body:json(this.user)
     })
