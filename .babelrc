@@ -2,6 +2,7 @@
   "env": {
     "webpack": {
       "plugins": [
+        "istanbul", // TODO: include only when testing
         "transform-decorators-legacy",
         "transform-class-properties"
       ],

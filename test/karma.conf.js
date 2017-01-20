@@ -33,7 +33,7 @@ module.exports = function(config) {
      * available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
      */
     preprocessors: {
-      'spec-bundle.js': ['coverage', 'webpack', 'sourcemap']
+      'spec-bundle.js': ['webpack', 'sourcemap']
     },
 
     webpack: require('../webpack.config.babel'),
