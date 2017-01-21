@@ -15,7 +15,7 @@ export class Dashboard {
     this.auth = auth;
     this.httpClient = httpClient;
     if (process.env.NODE_ENV === 'production') {
-      this.fetchURL = window.env.HostedBackendUrl;
+      this.fetchURL = 'http://ourhandsandfeetbackend.herokuapp.com';
     } else {this.fetchURL = window.env.LocalBackendUrl; }
 
       }
