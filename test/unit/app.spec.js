@@ -1,3 +1,4 @@
+import Counter from 'assertions-counter'
 import {App} from '../../src/app';
 
 //
@@ -73,12 +74,15 @@ class RouterStub {
 }
 
 class HttpStub {
-
-  configure(){
-    this.httpConfig = {};
-    return this.httpConfig;
+  configure(fn) {
+    this.__configureCallback = fn
+    return this.__configureReturns;
   }
+  fetch(fn) {
+    this.__fetchCallback = fn
+    return Promise.resolve(this.__fetchResolves);
   }
+}
 
 describe('the App module', () => {
   var app1;
@@ -101,6 +105,25 @@ describe('the App module', () => {
   //     expect(response.json()).toBe('abcdefg');
   //   });
   // });
+
+  it('tests configHttpClient', (done) => {
+    const { add: ok } = new Counter(2, done);
+    app1.auth.tokenInterceptor = 'tokenInterceptor'
+    app1.configHttpClient();
+    app1.httpClient.__configureCallback(new(class {
+      withDefaults(opts) {
+        expect(opts.mode).toBe('cors')
+        ok()
+        return this
+       }
+      withInterceptor(token) {
+        expect(token).toBe(app1.auth.tokenInterceptor)
+        ok()
+        return this
+       }
+    })())
+  });
+
 
   // it('tests activate', () => {
   //   app1.activate();
