@@ -31,7 +31,6 @@ describe('The Polymer module', () => {
         var components = []
 
         it ("Should load includes.html", () => {
-            for (i = 0; i < components.length; i++) {
                 xhr.onreadystatechange = function () {
                     if (this.readyState == 4) {
                         expect(this.status).toBe(200);
@@ -39,10 +38,24 @@ describe('The Polymer module', () => {
                         // Parse the HTML
                         var doc = document.implementation.createHTMLDocument("includes");
                         doc.documentElement.innerHTML = xhr.responseText;
-                        
+                        var tags = doc.getElementsByTagName("link")
+                        for (j = 0; j < tags.length; j++) {
+                            components[i] = tags[i].getAttribute("href");
+                        }
                     }
                 };
                 xhr.open('GET', 'http://localhost:9000/includes.html');
+                xhr.send();
+        });
+
+        it ("Should load all components in includes.html", () => {
+            for (i = 0; i < components.length; i++) {
+                xhr.onreadystatechange = function () {
+                    if (this.readyState == 4) {
+                        expect(this.status).toBe(200);
+                    }
+                }
+                xhr.open('GET', 'http://localhost:9000/' + components[i]);
                 xhr.send();
             }
         });
