@@ -1,19 +1,20 @@
 //import 'bootstrap';
 import {inject} from 'aurelia-framework';
 import {App} from '../app';
-//import {Router} from 'aurelia-router';
+import {Router} from 'aurelia-router';
 //import DashboardRouterConfig from "./dashboard-router";
 //import {FetchConfig} from 'aurelia-auth';
 import {AuthService} from "aurelia-auth";
 import {HttpClient, json} from 'aurelia-fetch-client';
 //import {AuthorizeStep} from 'aurelia-router';
 //@inject(Router,FetchConfig, AuthService, AppRouterConfig)
-@inject(AuthService, HttpClient, App)
+@inject(AuthService, HttpClient, App, Router)
 export class Dashboard {
-  constructor(auth, httpClient, app){
+  constructor(auth, httpClient, app, router){
     this.app = app;
     this.auth = auth;
     this.httpClient = httpClient;
+    this.router = router;
     if (process.env.NODE_ENV === 'production') {
       this.fetchURL = 'http://ourhandsandfeetbackend.herokuapp.com';
     } else {this.fetchURL = window.env.LocalBackendUrl; }
@@ -52,13 +53,16 @@ export class Dashboard {
             this.first_time_info = this.configured();
             if(this.user.userType == "Charity"){
               this.user.userType = 1;
+              this.router.navigate("charity");
             }else if(this.user.userType == "Volunteer"){
               this.user.userType = 2;
+              this.router.navigate("volunteer");
             }
             console.log("Dashboard user data");
             console.log(this.user);
             console.log("First time info:");
             console.log(this.first_time_info);
+
         });
   }
 
