@@ -1,0 +1,33 @@
+<template>
+  <form>
+    <p>Add a book</p>
+    <!-- input validation, must be 10 digits -->
+       <paper-input style="margin-left: 0.5cm; width:180px" label="Title" value.two-way="newBook.title" required></paper-input>
+
+       <!-- <paper-dropdown-menu style="margin-left: 0.5cm; width:180px" label="Account Type" (iron-select)="genreChange($event.detail.item.value, 0)"> -->
+       <paper-dropdown-menu style="margin-left: 0.5cm; width:180px" label="Book Type">
+          <paper-listbox  required  selected.two-way="newBook.type" class="dropdown-content">
+            <paper-item value=""></paper-item>
+            <template is="dom-repeat" items.two-way="types">
+              <paper-item model="{{item}}">{{item}}</paper-item>
+            </template>
+          </paper-listbox>
+        </paper-dropdown-menu>
+        <!-- <br>
+        selected product: ${user.type} -->
+        <paper-input style="margin-left: 0.5cm; width:180px" value.two-way="newBook.author" label="Author" ></paper-input>
+        <paper-input type='number' style="margin-left: 0.5cm; width:180px" value.two-way="newBook.pages" label="Pages" ></paper-input>
+        <paper-input type='number' style="margin-left: 0.5cm; width:180px" value.two-way="newBook.year" label="Year" ></paper-input>
+        <paper-input style="margin-left: 0.5cm; width:180px" value.two-way="newBook.url" label="URL" ></paper-input>
+        <paper-input style="margin-left: 0.5cm; width:180px" value.two-way="newBook.catalogNumba" label="Catalog Number" ></paper-input>
+
+
+         <paper-button style="margin:20px 3.5cm 0" raised click.trigger="createBook()">Create</paper-button>
+
+      </form>
+
+      <form>
+        <p>Add a lot of books</p>
+        <paper-input style="margin-left: 0.5cm; width:180px" value.two-way="CSVurl" label="URL to CSV" ></paper-input>
+         <paper-button style="margin:20px 3.5cm 0" raised click.trigger="createBooksFromCSV()">Create</paper-button>
+</template>
