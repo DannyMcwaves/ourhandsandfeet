@@ -24,7 +24,7 @@ export class Dashboard {
   authenticated=false;
   //user={};
   first_time_info = false;
-  types=["Charity", "Volunteer"];
+  types=["Charity", "Volunteer", "Store Manager"];
   // types=[];
   // types["Charity"]="Charity";
   // types["Volunteer"]="Volunteer";
@@ -57,6 +57,9 @@ export class Dashboard {
             }else if(this.user.userType == "Volunteer"){
               this.user.userType = 2;
               this.router.navigate("volunteer");
+            }else if(this.user.userType == "Store Manager"){
+              this.user.userType =3;
+              this.router.navigate("store");
             }
             console.log("Dashboard user data");
             console.log(this.user);
@@ -87,7 +90,7 @@ export class Dashboard {
 
   configured(){
     var return_val = false;
-      if(!('phone' in this.user) && !("level" in this.user)){
+      if(!("userType" in this.user)){
         console.log("Not valid configured user");
       }else{
         console.log("Valid configured user");
