@@ -77,7 +77,8 @@
         "aurelia-environment"
       ],
       "includeDependencies": [
-        "!http-server"
+        "!http-server",
+        "!bower"
       ]
     }
   },
