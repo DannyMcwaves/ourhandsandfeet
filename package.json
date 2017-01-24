@@ -10,7 +10,8 @@
   },
   "scripts": {
     "pretest": "del-cli \"coverage/*\"",
-    "postinstall": "bower install && npm run build:prod",
+    "postinstall": "bower install",
+    "_postinstall": "bower install && npm run build:prod",
     "test": "cross-env BABEL_ENV=node NODE_ENV=test ./node_modules/karma/bin/karma start test/karma.conf.js",
     "test:debug": "npm test -- --single-run=false --auto-watch=true --debug",
     "test:bs": "cd coverage && browser-sync start --server -f ./**/*.html",
