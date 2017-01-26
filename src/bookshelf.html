@@ -1,0 +1,61 @@
+<template>
+<h2>This Is Our Bookshelf</h2>
+<paper-material elevation="1">
+                <!-- <vaadin-grid aurelia-table="data.bind: books; display-data.bind: $displayData"> -->
+                <vue-scrollbar classes="my-scrollbar" v-bind:speed=100 >
+                <table class="table table-striped" aurelia-table="data.bind: books; display-data.bind: $displayData">
+                  <colgroup>
+                    <col>
+                    <col>
+                    <col>
+                    <col>
+                    <col>
+                    <col>
+                    <col>
+                    <col>
+                    <col>
+                        <col>
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th>Title</th>
+                        <th>Type</th>
+                          <th>Author</th>
+                      <th>Number of Pages</th>
+                      <th>Date of Publication</th>
+                      <th>URL</th>
+                      <th>ISBN</th>
+                      <th>Site Location</th>
+                      <th>Number of Copies</th>
+                      <th>Comments</th>
+
+
+                      <!-- <th>Second Genre</th>
+                      <th>Third Genre</th> -->
+                      <!-- <th>Band Manager</th>
+                      <th>Manager's Email</th>
+                      <th>Manager's Phone #</th> -->
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    <tr repeat.for="book of $displayData">
+
+                        <td>${book.title}</td>
+                        <td>${book.type}</td>
+                            <td>${book.author}</td>
+                        <td>${book.numberPages}</td>
+                        <td>${book.dateOfPub}</td>
+                        <td>${book.url}</td>
+                        <td>${book.isbn}</td>
+                        <td>${book.siteLocation}</td>
+                        <td>${book.numberOfCopies}</td>
+                        <td>${book.comments}</td>
+
+                    </tr>
+                  </tbody>
+                </table>
+              </vue-scrollbar>
+          <!-- </vaadin-grid> -->
+              </paper-material>
+</template>
