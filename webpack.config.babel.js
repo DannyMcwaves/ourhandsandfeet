@@ -42,7 +42,8 @@ const coreBundles = {
     'bluebird',
     'aurelia-polymer',
     'aurelia-auth',
-    'aurelia-environment'
+    'aurelia-environment',
+    'au-table'
   ],
   // these will be included in the 'aurelia' bundle (except for the above bootstrap packages)
   aurelia: [
@@ -71,7 +72,8 @@ const coreBundles = {
     'aurelia-templating-resources',
     'aurelia-polymer',
     'aurelia-auth',
-    'aurelia-environment'
+    'aurelia-environment',
+    'au-table'
   ]
 }
 

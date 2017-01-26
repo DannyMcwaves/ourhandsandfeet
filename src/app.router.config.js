@@ -16,6 +16,7 @@ export class AppRouterConfig{
       config.map([
         { route: ['', 'home'], name: 'home',      moduleId: './home',      nav: true, title: 'About' },
         { route: 'news',         name: 'news',        moduleId: './news',        nav: true, title: 'News' },
+          { route: 'bookshelf',         name: 'bookshelf',        moduleId: './bookshelf',        nav: true, title: 'Book Shelf'},
 				{ route: 'login',         name: 'login',        moduleId: './login',        nav: false, title: 'Login'},
 				{ route: 'dashboard',         name: 'dashboard-router',        moduleId: './dashboard-router', nav: false, title: 'Dashboard', auth:true}
 
