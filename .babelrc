@@ -63,7 +63,7 @@
             },
             "loose": true,
             "modules": "commonjs"
-          }
+                    }
         ]
       ]
     }

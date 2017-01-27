@@ -1,9 +1,13 @@
 <template>
-<h2>This Is Our Bookshelf</h2>
-<paper-material elevation="1">
-                <!-- <vaadin-grid aurelia-table="data.bind: books; display-data.bind: $displayData"> -->
+<h2 class="material-content-h2">This Is Our Bookshelf</h2>
+<!-- <paper-material elevation="1"> -->
+                <!-- <vaadin-grid aurelia-table="data.bind: books; display-data.bind: $displayData">
                 <vue-scrollbar classes="my-scrollbar" v-bind:speed=100 >
-                <table class="table table-striped" aurelia-table="data.bind: books; display-data.bind: $displayData">
+                  <div class="should-have-a-children scroll-me"> -->
+                <div class="search-table-outter wrapper">
+                  <table class="search-table inner" aurelia-table="data.bind: books; display-data.bind: $displayData">
+                <!-- <table class="table table-striped" aurelia-table="data.bind: books; display-data.bind: $displayData"> -->
+                    <!-- <table class="table table-striped"> -->
                   <colgroup>
                     <col>
                     <col>
@@ -55,7 +59,8 @@
                     </tr>
                   </tbody>
                 </table>
-              </vue-scrollbar>
-          <!-- </vaadin-grid> -->
-              </paper-material>
+            </div>
+
+
+                         <!-- </paper-material> -->
 </template>
