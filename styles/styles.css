@@ -292,6 +292,9 @@ div.au-stagger {
   padding-bottom: 32%;
 }
 
+tbody tr:nth-child(odd) {
+   background-color: #d8ecf3;
+}
 
 
 .paper-card-img
