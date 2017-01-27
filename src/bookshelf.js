@@ -9,9 +9,9 @@ export class Bookshelf {
     this.httpClient = httpClient;
     if (process.env.NODE_ENV === 'production') {
       this.fetchURL = 'http://ourhandsandfeetbackend.herokuapp.com';
-    } else {this.fetchURL = window.env.LocalBackendUrl; }
+    } else {this.fetchURL = 'http://localhost:7000'; }
   }
-  
+
   //books=[];
   books=null;
   getBooks(){

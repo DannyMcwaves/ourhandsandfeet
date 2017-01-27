@@ -288,7 +288,7 @@ div.au-stagger {
 .slideshowimage
 {
   width: 100%;
-  height: 0px;
+  height: 0;
   padding-bottom: 32%;
 }
 
@@ -298,5 +298,11 @@ div.au-stagger {
 {
   text-align: center;
 }
-.search-table-outter {overflow-x: scroll; }
-.search-table{table-layout: fixed; margin:40px auto 0px auto;}
+.search-table-outter {overflow-x: scroll; margin-top: 10px; text-align: center;}
+/*.search-table{table-layout: fixed; margin:40px auto;}*/
+
+table.au-target {
+  font-size:10pt;
+  text-align: center;
+  margin-left: 15px;
+}
