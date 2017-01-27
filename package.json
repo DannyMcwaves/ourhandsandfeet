@@ -170,6 +170,7 @@
     "http-server": "^0.9.0",
     "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.1.1",
+    "vue-scrollbar": "^1.0.4",
     "vulcanize": "^1.14.8",
     "webpack": "2.1.0-beta.27"
   },

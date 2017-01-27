@@ -1,5 +1,6 @@
 import {inject} from 'aurelia-framework';
 import {HttpClient, json} from 'aurelia-fetch-client';
+
 //import { bindable } from 'aurelia-framework';
 @inject(HttpClient)
 
@@ -10,6 +11,7 @@ export class Bookshelf {
       this.fetchURL = 'http://ourhandsandfeetbackend.herokuapp.com';
     } else {this.fetchURL = window.env.LocalBackendUrl; }
   }
+  
   //books=[];
   books=null;
   getBooks(){
