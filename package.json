@@ -76,7 +76,8 @@
         "aurelia-auth",
         "aurelia-auth/auth-filter",
         "aurelia-environment",
-        "au-table/dist/amd"
+        "au-table/dist/amd",
+        "au-table/dist/amd/au-table-pagination"
       ],
       "includeDependencies": [
         "!http-server",
