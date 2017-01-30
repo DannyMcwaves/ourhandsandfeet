@@ -44,12 +44,22 @@ export class CreateBookDashboard {
   }
   createBooksFromCSV(){
     if(this.CSVurl!=""){
-      var data = {"url":this.CSVurl};
-      console.log(JSON.stringify(this.CSVurl));
-      this.httpClient.fetch(this.fetchURL + "/book/csv", {
-        method:"post",
-        body: json(data)
-      });
+//         const csvFilePath=this.CSVurl
+//         const csv=require('csvtojson')
+//         csv()
+//         .fromFile(csvFilePath)
+//         .on('json',(jsonObj)=>{
+//     // combine csv header row and csv line to a json object
+//     // jsonObj.a ==> 1 or 4
+// })
+// .on('done',(error)=>{
+//     console.log('end')
+//     console.log(jsonObj)
+//     this.httpClient.fetch(this.fetchURL + "/book/", {
+//       method:"post",
+//       body: json(jsonObj)
+//         })
+//       });
     }
   }
 }

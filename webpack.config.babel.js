@@ -90,8 +90,15 @@ let config = generateConfig(
     },
     output: {
       path: outDir
+    // },
+    // resolve: {
+    //   modules: [
+    //   "node_modules",
+    //   path.resolve(__dirname, "csvtojson")
+    //   ]
     }
   },
+
 
   /**
    * Don't be afraid, you can put bits of standard Webpack configuration here
@@ -100,6 +107,8 @@ let config = generateConfig(
    *
    * For Webpack docs, see: https://webpack.js.org/configuration/
    */
+
+
 
   ENV === 'test' || ENV === 'development' ?
     envDev(ENV !== 'test' ? {} : {devtool: 'inline-source-map'} /*, {devtool: 'dotenv'}*/ ) :
