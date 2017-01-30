@@ -16,7 +16,11 @@ Now, open your browser and go to <b>localhost:9000</b>
 
 If all goes well, the webpage should be running correctly.
 
-Note that you will not be able to use the "Login" feature of the website unless you also run the backend server.
+<b><i>Note</b></i>  you will not be able to use the "Login" feature of the website unless you also run the back end server.
 
 When working on unit tests, use the command <b>npm run test:debug</b><br>
-This will run the tests in continous mode and launch a Chrome browser with Karma debugging enabled.
+This will run the tests in continuous mode and launch a Chrome browser with Karma debugging enabled.
+
+Since we are running some alpha and beta node packages, there will be times when the developer will need to reinstall all dependencies.
+We have found that is can be necessary to delete the entire Node_Modules folder and then clean the cache. Run this command:<br>
+<b>rm -rf node_modules && npm cache clean</b><br>Then <b>npm install</b>

@@ -2,7 +2,11 @@ body {
   margin: 0;
 }
 
-
+form {
+    width: 300px;
+    margin: 0 auto;
+    margin-top:0;
+}
 
   th, td {
   border-collapse:collapse;
@@ -284,7 +288,11 @@ div.au-stagger {
 .material-header-h3{
   color:white;
 }
-
+.material-header-h4{
+  text-align: center;
+  color:black;
+  margin-top:5px;
+}
 .slideshowimage
 {
   width: 100%;

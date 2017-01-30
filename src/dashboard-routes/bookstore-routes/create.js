@@ -7,19 +7,22 @@ export class CreateBookDashboard {
     this.httpClient = httpClient;
     if (process.env.NODE_ENV === 'production') {
       this.fetchURL = 'http://ourhandsandfeetbackend.herokuapp.com';
-    } else {this.fetchURL = window.env.LocalBackendUrl; }
+    } else {this.fetchURL = 'http://localhost:7000'; }
     this.newBook = {
       "title":"",
-      "type":0,
+      "type":"",
       "author":"",
-      "pages":0,
-      "year":0,
+      "numberPages":0,
+      "dateOfPub":0,
       "url":"",
-      "catalogNumba":""
+      "isbn":"",
+      "siteLocation":"",
+      "numberOfCopies":0,
+      "comments":""
     };
     console.log(this.newBook);
   }
-  types=["Paperback", "PDF"];
+  types=["Book", "PDF", "Webpage"];
   newBook = null;
   CSVurl="";
   createBook(){
