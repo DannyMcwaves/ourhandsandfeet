@@ -44,18 +44,63 @@ export class CreateBookDashboard {
       console.log(data);
     });
   }
+
   createBooksFromCSV(){
-    if(CSVFilePath.value!=""){
-      console.log ('selectedFiles ' + CSVFilePath.value);
-      var binaryData = [];
-      binaryData.push(CSVFilePath.value);
-      var pathToFile = URL.createObjectURL(new Blob (binaryData));
-      console.log ('path to file ' + pathToFile);
-      //
+    if(CSVFilePath.files!=""){
+      //let filestring = "";
+      console.log (CSVFilePath.files[0]);
+
+      function loaded (evt) {
+      // Obtain the read file data
+      var fileString = evt.target.result;
+      console.log (fileString);
       const csvjson = require('csvjson');
-      //   //var data = fs.readFileSync(path.join(_dirname, CSVFilePath), { encoding : 'utf8'});
-      var jsonObj = csvjson.toObject(CSVFilePath.value);
-      console.log ('json created ' + jsonObj);
+      var jsonObj = csvjson.toObject(fileString);
+      console.log ('json created ' + JSON.stringify(jsonObj));
+    }
+    function errorHandler(evt) {
+  if(evt.target.error.name == "NotReadableError") {
+    alert('The file could not be read');
       }
     }
+  var reader = new FileReader();
+
+      reader.readAsText(CSVFilePath.files[0]);
+      // console.log (reader.result);
+      // var csvText = reader.result;
+      //
+      // console.log (csvText);
+      reader.onload = loaded;
+      reader.onerror = errorHandler;
+    }
+  }
+
+
+ // function loadHandler(event) {
+ //             var csv = event.target.result;
+ //         console.log (csv);
+ //          }
+
+    // function errorHandler(event) {
+    //      if(event.target.error.name == "NotReadableError") {
+    //           alert("Cannot read file !");
+    //      }
+    //   }
+
+
+
+
+
+      // console.log ('selectedFiles ' + CSVFilePath.value);
+      // var binaryData = [];
+      // binaryData.push(CSVFilePath.value);
+      // var pathToFile = URL.createObjectURL(new Blob (binaryData));
+      // console.log ('path to file ' + pathToFile);
+      // //
+      // const csvjson = require('csvjson');
+      // //   //var data = fs.readFileSync(path.join(_dirname, CSVFilePath), { encoding : 'utf8'});
+      // var jsonObj = csvjson.toObject(CSVFilePath.value);
+      // console.log ('json created ' + jsonObj);
+      // }
+
 }
