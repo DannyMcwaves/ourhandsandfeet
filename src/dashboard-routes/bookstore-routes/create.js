@@ -24,7 +24,9 @@ export class CreateBookDashboard {
   }
   types=["Book", "PDF", "Webpage"];
   newBook = null;
-  CSVurl="";
+  CSVFilePath="";
+  fileList="";
+
   createBook(){
     console.log(this.newBook);
     if(this.newBook.type != 0){
@@ -43,23 +45,17 @@ export class CreateBookDashboard {
     });
   }
   createBooksFromCSV(){
-    if(this.CSVurl!=""){
-//         const csvFilePath=this.CSVurl
-//         const csv=require('csvtojson')
-//         csv()
-//         .fromFile(csvFilePath)
-//         .on('json',(jsonObj)=>{
-//     // combine csv header row and csv line to a json object
-//     // jsonObj.a ==> 1 or 4
-// })
-// .on('done',(error)=>{
-//     console.log('end')
-//     console.log(jsonObj)
-//     this.httpClient.fetch(this.fetchURL + "/book/", {
-//       method:"post",
-//       body: json(jsonObj)
-//         })
-//       });
+    if(CSVFilePath.value!=""){
+      console.log ('selectedFiles ' + CSVFilePath.value);
+      var binaryData = [];
+      binaryData.push(CSVFilePath.value);
+      var pathToFile = URL.createObjectURL(new Blob (binaryData));
+      console.log ('path to file ' + pathToFile);
+      //
+      const csvjson = require('csvjson');
+      //   //var data = fs.readFileSync(path.join(_dirname, CSVFilePath), { encoding : 'utf8'});
+      var jsonObj = csvjson.toObject(CSVFilePath.value);
+      console.log ('json created ' + jsonObj);
+      }
     }
-  }
 }

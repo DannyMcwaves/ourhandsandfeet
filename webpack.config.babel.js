@@ -45,6 +45,7 @@ const coreBundles = {
     'aurelia-auth',
     'aurelia-environment',
     'au-table'
+    //'aurelia-files'
   ],
   // these will be included in the 'aurelia' bundle (except for the above bootstrap packages)
   aurelia: [
@@ -75,6 +76,7 @@ const coreBundles = {
     'aurelia-auth',
     'aurelia-environment',
     'au-table'
+    // 'aurelia-files'
   ]
 }
 
@@ -90,12 +92,6 @@ let config = generateConfig(
     },
     output: {
       path: outDir
-    // },
-    // resolve: {
-    //   modules: [
-    //   "node_modules",
-    //   path.resolve(__dirname, "csvtojson")
-    //   ]
     }
   },
 
