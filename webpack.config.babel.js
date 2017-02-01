@@ -124,7 +124,9 @@ let config = generateConfig(
   {
     plugins: [
       new webpack.ProvidePlugin({
-        "Tether": 'tether' //NOTE: Including tether variable so we don't actually have to install tether.
+        //TODO: After boostrap has been updated from 4.0.0-alpha6, check if this is fixed. Or new version of bootstrap.
+        //NOTE: Including tether variable so we don't actually have to install tether.
+        "Tether": 'tether'
       })
     ]
   },
