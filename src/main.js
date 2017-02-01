@@ -13,24 +13,24 @@ Bluebird.config({ warnings: false });
 
 export async function configure(aurelia) {
   load().then(() => {
-  aurelia.use
+    aurelia.use
     .standardConfiguration()
     .developmentLogging();
     aurelia.use.plugin('aurelia-polymer');
     aurelia.use.plugin('aurelia-auth', (baseConfig)=>{
-         baseConfig.configure(config);
-          });
+      baseConfig.configure(config);
+    });
     aurelia.use.plugin('aurelia-environment');
     aurelia.use.plugin('au-table');
     //aurelia.use.plugin('aurelia-files');
-  // Uncomment the line below to enable animation.
-  // aurelia.use.plugin('aurelia-animator-css');
-  // if the css animator is enabled, add swap-order="after" to all router-view elements
+    // Uncomment the line below to enable animation.
+    // aurelia.use.plugin('aurelia-animator-css');
+    // if the css animator is enabled, add swap-order="after" to all router-view elements
 
-  // Anyone wanting to use HTMLImports to load views, will need to install the following plugin.
-  // aurelia.use.plugin('aurelia-html-import-template-loader')
+    // Anyone wanting to use HTMLImports to load views, will need to install the following plugin.
+    // aurelia.use.plugin('aurelia-html-import-template-loader')
 
-  aurelia.start().then(() => aurelia.setRoot());
+    aurelia.start().then(() => aurelia.setRoot());
 
   });
   // if you would like your website to work offline (Service Worker),
