@@ -47,7 +47,8 @@ export class CreateBookDashboard {
 
   createBooksFromCSV(){
     if(CSVFilePath.files!=""){
-      //let filestring = "";
+      //let filestring = "";\
+      //TODO: Parse all csv files
       console.log (CSVFilePath.files[0]);
 
       function loaded (evt) {

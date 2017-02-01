@@ -21,6 +21,7 @@ import commonChunksOptimize from '@easy-webpack/config-common-chunks-simple'
 import copyFiles from '@easy-webpack/config-copy-files'
 import uglify from '@easy-webpack/config-uglify'
 import generateCoverage from '@easy-webpack/config-test-coverage-istanbul'
+import webpack from 'webpack'
 
 
 process.env.BABEL_ENV = 'webpack'
@@ -120,6 +121,13 @@ let config = generateConfig(
   globalJquery(),
   globalRegenerator(),
   generateIndexHtml({minify: ENV === 'production'}),
+  {
+    plugins: [
+      new webpack.ProvidePlugin({
+        "Tether": 'tether' //NOTE: Including tether variable so we don't actually have to install tether.
+      })
+    ]
+  },
 
   ...(ENV === 'production' || ENV === 'development' ? [
     commonChunksOptimize({appChunkName: 'app', firstChunk: 'aurelia-bootstrap'}),
