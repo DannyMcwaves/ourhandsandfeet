@@ -8,12 +8,19 @@ form {
     margin-top:0;
 }
 
-  th, td {
+table {
+  margin: auto;
+
+}
+tbody tr:nth-child(odd) {
+   background-color: #d8ecf3;
+}
+
+th, td {
   border-collapse:collapse;
   border:1px solid #777;
   padding:8px;
   text-align: left;
-
 }
 
 
@@ -306,20 +313,11 @@ div.au-stagger {
   padding-bottom: 32%;
 }
 
-tbody tr:nth-child(odd) {
-   background-color: #d8ecf3;
-}
-
-
 .paper-card-img
 {
   text-align: center;
 }
-.search-table-outter {overflow-x: scroll; margin-top: 10px; text-align: center;}
-/*.search-table{table-layout: fixed; margin:40px auto;}*/
-
-table.au-target {
-  font-size:10pt;
-  text-align: center;
-  margin-left: 15px;
+.search-table-outer {
+  overflow-x: auto;
 }
+/*.search-table{table-layout: fixed; margin:40px auto;}*/
