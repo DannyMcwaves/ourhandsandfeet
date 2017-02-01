@@ -46,62 +46,49 @@ export class CreateBookDashboard {
   }
 
   createBooksFromCSV(){
+const httpClient = this.httpClient;
+const fetchURL = this.fetchURL;
+
     if(CSVFilePath.files!=""){
-      //let filestring = "";\
+      var jsonObj;
       //TODO: Parse all csv files
-      console.log (CSVFilePath.files[0]);
 
       function loaded (evt) {
-      // Obtain the read file data
-      var fileString = evt.target.result;
-      console.log (fileString);
-      const csvjson = require('csvjson');
-      var jsonObj = csvjson.toObject(fileString);
-      console.log ('json created ' + JSON.stringify(jsonObj));
-    }
-    function errorHandler(evt) {
-  if(evt.target.error.name == "NotReadableError") {
-    alert('The file could not be read');
-      }
-    }
-  var reader = new FileReader();
+        var fileString = evt.target.result;
+        console.log (fileString);
+        const csvjson = require('csvjson');
+        jsonObj = csvjson.toObject(fileString);
+        console.log ('json created ' + JSON.stringify(jsonObj));
+        makeLotaBooks(jsonObj);
 
+      }
+
+      function errorHandler(evt) {
+        if(evt.target.error.name == "NotReadableError") {
+          alert('The file could not be read');
+        }
+      }
+// TODO: add check for browser support of FileReader
+      var reader = new FileReader();
       reader.readAsText(CSVFilePath.files[0]);
-      // console.log (reader.result);
-      // var csvText = reader.result;
-      //
-      // console.log (csvText);
       reader.onload = loaded;
       reader.onerror = errorHandler;
+
+      //var jsonString =
+      function makeLotaBooks (jsonObject) {
+        console.log('about to make lotta books' + JSON.stringify(jsonObject));
+        var jstring = JSON.stringify(jsonObject);
+        var jsonobj = JSON.parse(jstring);
+      httpClient.fetch(fetchURL + "/book/", {
+        method:"post",
+        body:json(jsonobj)
+      })
+      .then(response=>response.json())
+      .then(data=>{
+        console.log("Posted data");
+        console.log(data);
+      });
     }
   }
-
-
- // function loadHandler(event) {
- //             var csv = event.target.result;
- //         console.log (csv);
- //          }
-
-    // function errorHandler(event) {
-    //      if(event.target.error.name == "NotReadableError") {
-    //           alert("Cannot read file !");
-    //      }
-    //   }
-
-
-
-
-
-      // console.log ('selectedFiles ' + CSVFilePath.value);
-      // var binaryData = [];
-      // binaryData.push(CSVFilePath.value);
-      // var pathToFile = URL.createObjectURL(new Blob (binaryData));
-      // console.log ('path to file ' + pathToFile);
-      // //
-      // const csvjson = require('csvjson');
-      // //   //var data = fs.readFileSync(path.join(_dirname, CSVFilePath), { encoding : 'utf8'});
-      // var jsonObj = csvjson.toObject(CSVFilePath.value);
-      // console.log ('json created ' + jsonObj);
-      // }
-
+}
 }

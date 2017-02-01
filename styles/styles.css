@@ -38,17 +38,14 @@ th, td {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.paper-drawer-panel-0{
-  /*top:165px;
-  border-left:1px solid black;*/
-}
 .splash .fa-spinner {
   text-align: center;
   display: inline-block;
   font-size: 72px;
   margin-top: 50px;
 }
-#page-content{
+
+.page-content{
   border-right:1px solid black;
 }
 
@@ -93,7 +90,7 @@ section.au-enter-active {
   animation: fadeInRight 1s;
 }
 
-div.au-stagger {
+.au-stagger {
   /* 50ms will be applied between each successive enter operation */
   -webkit-animation-delay: 50ms;
   animation-delay: 50ms;
@@ -230,25 +227,16 @@ div.au-stagger {
 }
 
 .material-content-faq{
-  /*max-width:1000px;
-  margin-left:auto;
-  margin-right:auto;*/
-  padding-bottom:10px;
-  padding-top:5px;
-  padding-left:10px;
-  padding-right:10px;
+  padding :10px;
 }
 
 .material-content-h1, .material-content-h2{
   text-align: center;
+  margin-top:15px;
 }
 
 .material-content-h2{
   font-size:30px;
-
-}
-.material-content-button{
-
 }
 
 .material-content-h1{
