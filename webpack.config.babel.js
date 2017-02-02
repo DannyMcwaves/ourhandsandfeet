@@ -22,8 +22,9 @@ import copyFiles from '@easy-webpack/config-copy-files'
 import uglify from '@easy-webpack/config-uglify'
 import generateCoverage from '@easy-webpack/config-test-coverage-istanbul'
 import webpack from 'webpack'
+import dotenv from 'dotenv'
 
-
+dotenv.config({path:'.env'})
 process.env.BABEL_ENV = 'webpack'
 const ENV = process.env.NODE_ENV && process.env.NODE_ENV.toLowerCase() || (process.env.NODE_ENV = 'development')
 
@@ -134,7 +135,7 @@ let config = generateConfig(
   ...(ENV === 'production' || ENV === 'development' ? [
     commonChunksOptimize({appChunkName: 'app', firstChunk: 'aurelia-bootstrap'}),
     copyFiles({patterns: [{ from: 'favicon.ico', to: 'favicon.ico' },
-    { from: 'aurelia.env', to: 'aurelia.env'}]})
+    { from: '.env', to: './'}]})
   ] : [
     /* ENV === 'test' */
     generateCoverage({ options: { 'force-sourcemap': true, esModules: true }})
@@ -142,6 +143,14 @@ let config = generateConfig(
 
   ENV === 'production' ?
     uglify({debug: false, mangle: { except: ['cb', '__webpack_require__'] }}) : {}
+
+    ,{plugins: [new webpack.EnvironmentPlugin(['NODE_ENV', 'IP', 'PORT', 'LocalBackendUrl', 'HostedBackendUrl'])]}
+    ,{plugins: [new webpack.DefinePlugin({'process.env': Object.keys(process.env).reduce((o, k) => {
+      o[k] = JSON.stringify(process.env[k]);
+      return o;
+    }, {})})]}
+
+    ,{devServer: {port: parseInt(process.env.PORT)}}
 )
 
 module.exports = stripMetadata(config)
