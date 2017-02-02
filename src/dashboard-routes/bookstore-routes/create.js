@@ -22,7 +22,7 @@ export class CreateBookDashboard {
     };
     console.log(this.newBook);
   }
-  types=["Book", "PDF", "Webpage"];
+  types=["Book", "PDF", "Webpage", "Audiobook"];
   newBook = null;
   CSVFilePath="";
   fileList="";
