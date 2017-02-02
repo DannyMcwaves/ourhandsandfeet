@@ -18,16 +18,16 @@ export class Bookshelf {
     this.httpClient.fetch(this.fetchURL + '/book/getall')
         .then(response => response.json())
         .then(data => {
-          console.log("Books:");
-          console.log(data);
+          //console.log("Books:");
+          //console.log(data);
           this.books=data;
         });
 
   }
 
-  getBook(bookname){
-
-  }
+  // getBook(bookname){
+  //
+  // }
 
   activate(){
     this.getBooks();
