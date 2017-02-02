@@ -12,7 +12,7 @@ import * as Bluebird from 'bluebird';
 Bluebird.config({ warnings: false });
 
 export async function configure(aurelia) {
-  load().then(() => {
+  load({file: '.env'}).then(() => {
     aurelia.use
     .standardConfiguration()
     .developmentLogging();
