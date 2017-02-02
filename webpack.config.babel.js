@@ -45,7 +45,6 @@ const coreBundles = {
     'bluebird',
     'aurelia-polymer',
     'aurelia-auth',
-    'aurelia-environment',
     'au-table'
     //'aurelia-files'
   ],
@@ -76,7 +75,6 @@ const coreBundles = {
     'aurelia-templating-resources',
     'aurelia-polymer',
     'aurelia-auth',
-    'aurelia-environment',
     'au-table'
     // 'aurelia-files'
   ]

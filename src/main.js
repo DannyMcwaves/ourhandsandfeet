@@ -4,7 +4,7 @@ import 'font-awesome/css/font-awesome.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap';
 import config from '../authConfig';
-import {load} from 'aurelia-environment';
+//import {load} from 'aurelia-environment';
 //var ap = require('aurelia-polymer');
 // comment out if you don't want a Promise polyfill (remove also from webpack.common.js)
 
@@ -20,7 +20,6 @@ export async function configure(aurelia) {
     aurelia.use.plugin('aurelia-auth', (baseConfig)=>{
       baseConfig.configure(config);
     });
-    aurelia.use.plugin('aurelia-environment');
     aurelia.use.plugin('au-table');
     //aurelia.use.plugin('aurelia-files');
     // Uncomment the line below to enable animation.
