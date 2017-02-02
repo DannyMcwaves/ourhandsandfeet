@@ -12,7 +12,7 @@ import * as Bluebird from 'bluebird';
 Bluebird.config({ warnings: false });
 
 export async function configure(aurelia) {
-  load({file: '.env'}).then(() => {
+  //load().then(() => {
     aurelia.use
     .standardConfiguration()
     .developmentLogging();
@@ -29,9 +29,10 @@ export async function configure(aurelia) {
     // Anyone wanting to use HTMLImports to load views, will need to install the following plugin.
     // aurelia.use.plugin('aurelia-html-import-template-loader')
 
-    aurelia.start().then(() => aurelia.setRoot());
-
-  });
+    //aurelia.start().then(() => aurelia.setRoot());
+await aurelia.start();
+aurelia.setRoot('app');
+  //});
   // if you would like your website to work offline (Service Worker),
   // install and enable the @easy-webpack/config-offline package in webpack.config.js and uncomment the following code:
   /*

@@ -17,7 +17,7 @@ export class Dashboard {
     this.router = router;
     if (process.env.NODE_ENV === 'production') {
       this.fetchURL = 'http://ourhandsandfeetbackend.herokuapp.com';
-    } else {this.fetchURL = window.env.LocalBackendUrl; }
+    } else {this.fetchURL = 'http://localhost:7000'}
 
       }
   //
