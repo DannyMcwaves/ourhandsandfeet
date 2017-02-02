@@ -4,7 +4,7 @@
       "plugins": [
         "istanbul", // TODO: include only when testing
         "transform-decorators-legacy",
-        "transform-class-properties"
+        "transform-class-properties",
       ],
       "presets": [
         [
@@ -62,7 +62,7 @@
               "node": 7
             },
             "loose": true,
-            "modules": "commonjs"
+            "modules": "commonjs",
                     }
         ]
       ]
