@@ -62,14 +62,7 @@ export class App {
     this.authenticated = this.auth.isAuthenticated();
     if (this.authenticated) {
       const uid = this.getTokens().sub;
-      //console.log("In get user - uid:"+uid);
-      // this.httpClient.fetch('http://localhost:7000/user/'+uid)
-      //   .then(response => response.json())
-      //   .then(data => {
-      //     console.log('app.getUser()');
-      //       console.log(data);
-      //       return data;
-      //});
+
     } else {
       return "";
     }

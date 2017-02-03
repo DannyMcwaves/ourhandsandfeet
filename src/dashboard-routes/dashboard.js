@@ -15,9 +15,6 @@ export class Dashboard {
     this.auth = auth;
     this.httpClient = httpClient;
     this.router = router;
-    if (process.env.NODE_ENV === 'production') {
-      this.fetchURL = 'http://ourhandsandfeetbackend.herokuapp.com';
-    } else {this.fetchURL = 'http://localhost:7000'}
 
       }
   //
@@ -43,7 +40,7 @@ export class Dashboard {
     this.authenticated = this.auth.isAuthenticated();
       var uid = this.auth.getTokenPayload().sub;
       //this.httpClient.fetch(process.env.BackendUrl+'/user/'+uid)
-    this.httpClient.fetch(this.fetchURL + '/user/' + uid)
+    this.httpClient.fetch(process.env.BackendUrl + '/user/' + uid)
         .then(response => response.json())
         .then(data => {
           console.log('dashboard.getUser()');
@@ -76,7 +73,7 @@ export class Dashboard {
     console.log(tempUserType);
     this.user.userType=this.types[this.user.userType-1];
     console.log(this.user.userType);
-    this.httpClient.fetch(this.fetchURL + "/user/"+uid, {
+    this.httpClient.fetch(process.env.BackendUrl + "/user/"+uid, {
       method:"put",
       body:json(this.user)
     })
