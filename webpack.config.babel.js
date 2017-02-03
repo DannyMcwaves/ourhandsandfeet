@@ -143,7 +143,7 @@ let config = generateConfig(
   ENV === 'production' ?
     uglify({debug: false, mangle: { except: ['cb', '__webpack_require__'] }}) : {}
 
-    ,{plugins: [new webpack.EnvironmentPlugin(['NODE_ENV', 'IP', 'PORT', 'BackendUrl'])]}
+    ,{plugins: [new webpack.EnvironmentPlugin(['NODE_ENV', 'PORT', 'BackendUrl'])]}
     ,{plugins: [new webpack.DefinePlugin({'process.env': Object.keys(process.env).reduce((o, k) => {
       o[k] = JSON.stringify(process.env[k]);
       return o;
