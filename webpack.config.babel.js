@@ -133,12 +133,17 @@ let config = generateConfig(
 
   ...(ENV === 'production' || ENV === 'development' ? [
     commonChunksOptimize({appChunkName: 'app', firstChunk: 'aurelia-bootstrap'}),
-    copyFiles({patterns: [{ from: 'favicon.ico', to: 'favicon.ico' },
-    { from: '.env', to: './'}]})
+    copyFiles({patterns: [{ from: 'favicon.ico', to: 'favicon.ico' }
+    ]})
   ] : [
     /* ENV === 'test' */
     generateCoverage({ options: { 'force-sourcemap': true, esModules: true }})
   ]),
+
+  ENV === 'development' || ENV === 'test' ? [
+    copyFiles({patterns: [
+    { from: '.env', to: './'}]})
+  ]:
 
   ENV === 'production' ?
     uglify({debug: false, mangle: { except: ['cb', '__webpack_require__'] }}) : {}
