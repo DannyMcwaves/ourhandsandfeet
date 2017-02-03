@@ -7,9 +7,6 @@ import {HttpClient, json} from 'aurelia-fetch-client';
 export class Bookshelf {
   constructor(httpClient){
     this.httpClient = httpClient;
-    if (process.env.NODE_ENV === 'production') {
-      this.fetchURL = 'http://ourhandsandfeetbackend.herokuapp.com';
-    } else {this.fetchURL = 'http://localhost:7000'; }
   }
 
   //books=[];

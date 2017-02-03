@@ -5,9 +5,7 @@ import {HttpClient, json} from 'aurelia-fetch-client';
 export class CreateBookDashboard {
   constructor(httpClient){
     this.httpClient = httpClient;
-    if (process.env.NODE_ENV === 'production') {
-      this.fetchURL = 'http://ourhandsandfeetbackend.herokuapp.com';
-    } else {this.fetchURL = 'http://localhost:7000'; }
+
     this.newBook = {
       "title":"",
       "type":"",
@@ -34,7 +32,7 @@ export class CreateBookDashboard {
     }else{
       this.newBook.type="None chosen";
     }
-    this.httpClient.fetch(this.fetchURL + "/book/", {
+    this.httpClient.fetch(process.env.BackendUrl + "/book/", {
       method:"post",
       body:json(this.newBook)
     })
@@ -47,7 +45,6 @@ export class CreateBookDashboard {
 
   createBooksFromCSV(){
 const httpClient = this.httpClient;
-const fetchURL = this.fetchURL;
 
     if(CSVFilePath.files!=""){
       var jsonObj;
@@ -79,7 +76,7 @@ const fetchURL = this.fetchURL;
         console.log('about to make lotta books' + JSON.stringify(jsonObject));
         var jstring = JSON.stringify(jsonObject);
         var jsonobj = JSON.parse(jstring);
-      httpClient.fetch(fetchURL + "/book/", {
+      httpClient.fetch(process.env.BackendUrl + "/book/", {
         method:"post",
         body:json(jsonobj)
       })
