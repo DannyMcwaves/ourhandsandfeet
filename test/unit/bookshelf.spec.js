@@ -16,9 +16,13 @@ describe('the bookshelf module', () => {
   var http = new HttpStub();
   http.itemStub = itemStubs;
   var bookshelf1 = new Bookshelf(http);
+
   it('gets all books', () => {
+
     bookshelf1.activate();
     //expect(bookshelf1.books).toBe(itemStubs);
     expect(bookshelf1.books).not.toBe(itemFake);
+  });
+
   });
 });

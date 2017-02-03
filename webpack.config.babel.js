@@ -45,8 +45,8 @@ const coreBundles = {
     'bluebird',
     'aurelia-polymer',
     'aurelia-auth',
-    'au-table'
-    //'aurelia-files'
+    'au-table',
+    'aurelia-environment'
   ],
   // these will be included in the 'aurelia' bundle (except for the above bootstrap packages)
   aurelia: [
@@ -75,7 +75,8 @@ const coreBundles = {
     'aurelia-templating-resources',
     'aurelia-polymer',
     'aurelia-auth',
-    'au-table'
+    'au-table',
+    'aurelia-environment'
     // 'aurelia-files'
   ]
 }
@@ -142,7 +143,7 @@ let config = generateConfig(
   ENV === 'production' ?
     uglify({debug: false, mangle: { except: ['cb', '__webpack_require__'] }}) : {}
 
-    ,{plugins: [new webpack.EnvironmentPlugin(['NODE_ENV', 'IP', 'PORT', 'LocalBackendUrl', 'HostedBackendUrl'])]}
+    ,{plugins: [new webpack.EnvironmentPlugin(['NODE_ENV', 'IP', 'PORT', 'BackendUrl'])]}
     ,{plugins: [new webpack.DefinePlugin({'process.env': Object.keys(process.env).reduce((o, k) => {
       o[k] = JSON.stringify(process.env[k]);
       return o;

@@ -15,7 +15,7 @@ export class Bookshelf {
   //books=[];
   books=null;
   getBooks(){
-    this.httpClient.fetch(this.fetchURL + '/book/getall')
+    this.httpClient.fetch(process.env.BackendUrl + '/book/getall')
         .then(response => response.json())
         .then(data => {
           //console.log("Books:");
