@@ -1,7 +1,7 @@
 var configForDevelopment = {
     httpInterceptor: true,
     loginOnSignup: true,
-    baseUrl: process.env.BackendUrl,
+    baseUrl: 'http://localhost:7000',
     // loginRedirect: '#/',
     // logoutRedirect: '#/',
     // signupRedirect: '#/login',
@@ -25,7 +25,7 @@ var configForDevelopment = {
         google: {
           name:"google",
             url: '/auth/google',
-            clientId: process.env.GoogleClientId
+            clientId: '486001374115-omu1ss1g192abgti64ecl90h8fal57r1.apps.googleusercontent.com'
         }
         // ,
         // linkedin:{
@@ -49,7 +49,7 @@ var configForDevelopment = {
 var configForProduction = {
     providers: {
         google: {
-            clientId: process.env.GoogleClientId
+            clientId: '486001374115-omu1ss1g192abgti64ecl90h8fal57r1.apps.googleusercontent.com'
         }
         // ,
         // linkedin:{
@@ -60,7 +60,7 @@ var configForProduction = {
         // }
 
     },
-    baseUrl: process.env.BackendUrl,
+    baseUrl: 'https://ourhandsandfeetbackend.herokuapp.com',
     // The API specifies that new users register at the POST /users enpoint.
     signupUrl: 'users',
     // Logins happen at the POST /sessions/create endpoint.

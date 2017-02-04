@@ -121,6 +121,7 @@ let config = generateConfig(
   globalJquery(),
   globalRegenerator(),
   generateIndexHtml({minify: ENV === 'production'}),
+  copyFiles({patterns: [{ from: '.env', to: './'}]}),
   {
     plugins: [
       new webpack.ProvidePlugin({
@@ -140,10 +141,10 @@ let config = generateConfig(
     generateCoverage({ options: { 'force-sourcemap': true, esModules: true }})
   ]),
 
-  ENV === 'development' || ENV === 'test' ? [
-    copyFiles({patterns: [
-    { from: '.env', to: './'}]})
-  ]:
+  // ENV != 'production' ? [
+  //   copyFiles({patterns: [
+  //   { from: '.env', to: './'}]})
+  // ]:
 
   ENV === 'production' ?
     uglify({debug: false, mangle: { except: ['cb', '__webpack_require__'] }}) : {}
