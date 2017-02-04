@@ -11,18 +11,22 @@ class HttpStub {
 }
 
 describe('the bookshelf module', () => {
-  var itemStubs = [1];
-  var itemFake = [2];
-  var http = new HttpStub();
-  http.itemStub = itemStubs;
-  var bookshelf1 = new Bookshelf(http);
+
 
   it('gets all books', () => {
 
-    bookshelf1.activate();
-    //expect(bookshelf1.books).toBe(itemStubs);
-    expect(bookshelf1.books).not.toBe(itemFake);
-  });
+    var itemStubs = [1];
+    var itemFake = [2];
+    var http = new HttpStub();
+    http.itemStub = itemStubs;
 
+    var bookshelf1 = new Bookshelf(http);
+
+    bookshelf1.activate().then(() => {
+      expect(bookshelf1.books).toBe(itemStubs);
+      expect(bookshelf1.books).not.toBe(itemFake);
+      done();
+    });
   });
+});
 //});
