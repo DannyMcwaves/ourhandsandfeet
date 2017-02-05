@@ -8,8 +8,6 @@ const fetch = !self.fetch ? System.import('isomorphic-fetch') : Promise.resolve(
 
 @inject(HttpClient)
 export class Bookshelf {
-  books = [];
-
   constructor(HttpClient){
     this.httpClient = HttpClient;
   }

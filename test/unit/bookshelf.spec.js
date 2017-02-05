@@ -29,4 +29,4 @@ describe('the bookshelf module', () => {
     });
   });
 });
-//});
+
