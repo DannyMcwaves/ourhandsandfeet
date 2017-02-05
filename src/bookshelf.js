@@ -24,14 +24,6 @@ export class Bookshelf {
     });
 
     const res = await this.httpClient.fetch('/book/getall');
-    this.books =  res.json();
-
-    // this.httpClient.fetch()
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         //console.log("Books:");
-    //         console.log(data);
-    //         this.books = data;
-    //     });
+    this.books =  await res.json();
   }
 }
