@@ -4,28 +4,27 @@ import {HttpClient, json} from 'aurelia-fetch-client';
 //import { bindable } from 'aurelia-framework';
 
 const fetch = !self.fetch ? System.import('isomorphic-fetch') : Promise.resolve(self.fetch);
-const booksUrl = process.env.BackendUrl + '/book/getall';
+//const booksUrl = process.env.BackendUrl + '/book/getall';
 
 @inject(HttpClient)
 export class Bookshelf {
   books = [];
 
-  constructor(getHttpClient){
-    this.getHttpClient = getHttpClient;
+  constructor(HttpClient){
+    this.httpClient = HttpClient;
   }
 
   async activate(){
     await fetch;
-    const http = this.http = this.getHttpClient();
 
-    http.configure(config => {
+    this.httpClient.configure(config => {
       config
         .useStandardConfiguration()
-        .withBaseUrl(booksUrl);
+        .withBaseUrl(process.env.BackendUrl);
     });
 
-    const respose = await http.fetch();
-    this.books = await response.json();
+    const respose = await this.httpClient.fetch('/book/getall');
+    this.books =  response.json();
 
     // this.httpClient.fetch()
     //     .then(response => response.json())
