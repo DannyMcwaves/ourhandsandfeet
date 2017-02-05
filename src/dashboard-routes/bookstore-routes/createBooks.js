@@ -26,21 +26,20 @@ export class CreateBookDashboard {
   fileList="";
 
   createBook(){
-    console.log(this.newBook);
+    //console.log(this.newBook);
     if(this.newBook.type != 0){
       this.newBook.type=this.types[this.newBook.type-1];
     }else{
       this.newBook.type="None chosen";
     }
-    this.httpClient.fetch(process.env.BackendUrl + "/book/", {
+
+    return this.httpClient.fetch(process.env.BackendUrl + "/book/", {
       method:"post",
       body:json(this.newBook)
     })
     .then(response=>response.json())
-    .then(data=>{
-      console.log("Posted data");
-      console.log(data);
-    });
+    .then(savedRecord => record = savedRecord);
+
   }
 
   createBooksFromCSV(){
