@@ -23,8 +23,8 @@ export class Bookshelf {
         .withBaseUrl(process.env.BackendUrl);
     });
 
-    const respose = await this.httpClient.fetch('/book/getall');
-    this.books =  response.json();
+    const res = await this.httpClient.fetch('/book/getall');
+    this.books =  res.json();
 
     // this.httpClient.fetch()
     //     .then(response => response.json())
