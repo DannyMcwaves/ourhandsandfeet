@@ -17,38 +17,11 @@ export class App {
     this.httpClient = httpClient;
     this.user = this.getUser();
   }
-
-
   email='';
   password='';
   authenticated = false;
-  token="";
-  //user=null;
-  // login(){
-  //       return this.auth.login(this.email, this.password)
-  //       .then(response=>{
-  //           console.log("success logged " + response);
-  //       })
-  //       .catch(err=>{
-  //           console.log("login failure");
-  //       });
-  //   };
+  token='';
 
-  // authenticate(name){
-  //   console.log(name);
-  //   console.log(this.auth.isAuthenticated());
-  //   //console.log(this.getTokens());
-  //       return this.auth.authenticate(name, false, null)
-  //       .then((response)=>{
-  //           console.log("auth response " + response);
-  //           console.log(response);
-  //           this.auth.setToken(response);
-  //           this.authenticated = this.auth.isAuthenticated();
-  //
-  //           //this.getUser();
-  //           //this.getTokens();
-  //       });
-  //   }
 
   logout(){
     this.auth.setToken('');
@@ -62,30 +35,15 @@ export class App {
     this.authenticated = this.auth.isAuthenticated();
     if (this.authenticated) {
       const uid = this.getTokens().sub;
-
     } else {
-      return "";
+      return '';
     }
   }
-  // finalizeUser(){
-  //   this.user
-  //   .then(response => response.json())
-  //     .then(data => {
-  //         //console.log(data);
-  //         this.user = data;
-  //     })
-  // }
+
   getTokens(){
     return this.auth.getTokenPayload();
   }
-  activate(){
-    console.log(this.auth.isAuthenticated());
-    //this.authenticated = this.auth.isAuthenticated();
-    // if(this.authenticated){
-    //   this.getUser();
-    //   //console.log(this.getTokens());
-    // }
-    //this.finalizeUser();
+  activate() {
     this.appRouterConfig.configure();
     this.configHttpClient();
     //this.getUser();
@@ -104,17 +62,5 @@ export class App {
       .withInterceptor(this.auth.tokenInterceptor);
     });
   }
-
-  // configureRouter(config, router) {
-  //   config.title = 'Our Hands and Feet';
-  //   config.addPipelineStep('authorize', AuthorizeStep);
-  //   config.map([
-  //     { route: ['', 'home'], name: 'home',      moduleId: './home',      nav: true, title: 'About' },
-  //     { route: 'services',         name: 'services',        moduleId: './services',        nav: true, title: 'News' },
-  //     // { route: 'jobs',  name: 'jobs', moduleId: './jobs', nav: true, title: 'Jobs' }
-  //   ]);
-  //
-  //   this.router = router;
-  // }
 
 }
