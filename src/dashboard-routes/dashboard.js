@@ -16,54 +16,54 @@ export class Dashboard {
     this.httpClient = httpClient;
     this.router = router;
 
-      }
+  }
   //
   authenticated=false;
   //user={};
   first_time_info = false;
-  types=["Charity", "Volunteer", "Store Manager"];
+  types=["Charity", "Volunteer", "Library"];
   // types=[];
   // types["Charity"]="Charity";
   // types["Volunteer"]="Volunteer";
   getUser(){
-  //{
-  //   console.log('dashboard.getUser()');
-  //   console.log(this.app.user);
-  //
-  //   if(this.app.user !== undefined ){
-  //     console.log('User already exists!');
-  //     console.log(this.app.user);
-  //     return;
-  //   }
+    //{
+    //   console.log('dashboard.getUser()');
+    //   console.log(this.app.user);
+    //
+    //   if(this.app.user !== undefined ){
+    //     console.log('User already exists!');
+    //     console.log(this.app.user);
+    //     return;
+    //   }
     // console.log(this.auth);
     // return this.auth.getMe().then((response)=>{console.log("get me:" + response);return response;});
     this.authenticated = this.auth.isAuthenticated();
-      var uid = this.auth.getTokenPayload().sub;
-      //this.httpClient.fetch(process.env.BackendUrl+'/user/'+uid)
+    var uid = this.auth.getTokenPayload().sub;
+    //this.httpClient.fetch(process.env.BackendUrl+'/user/'+uid)
     this.httpClient.fetch(process.env.BackendUrl + '/user/' + uid)
-        .then(response => response.json())
-        .then(data => {
-          console.log('dashboard.getUser()');
-          console.log(this);
-            this.user = data;
-            console.log("foo"+this.user);
-            this.first_time_info = this.configured();
-            if(this.user.userType == "Charity"){
-              this.user.userType = 1;
-              this.router.navigate("charity");
-            }else if(this.user.userType == "Volunteer"){
-              this.user.userType = 2;
-              this.router.navigate("volunteer");
-            }else if(this.user.userType == "Store Manager"){
-              this.user.userType =3;
-              this.router.navigate("store");
-            }
-            console.log("Dashboard user data");
-            console.log(this.user);
-            console.log("First time info:");
-            console.log(this.first_time_info);
+    .then(response => response.json())
+    .then(data => {
+      console.log('dashboard.getUser()');
+      console.log(this);
+      this.user = data;
+      console.log("foo"+this.user);
+      this.first_time_info = this.configured();
+      if(this.user.userType == "Charity"){
+        this.user.userType = 1;
+        this.router.navigate("charity");
+      }else if(this.user.userType == "Volunteer"){
+        this.user.userType = 2;
+        this.router.navigate("volunteer");
+      }else if(this.user.userType == "Store Manager"){
+        this.user.userType =3;
+        this.router.navigate("library");
+      }
+      console.log("Dashboard user data");
+      console.log(this.user);
+      console.log("First time info:");
+      console.log(this.first_time_info);
 
-        });
+    });
   }
 
   updateUser(){
@@ -87,14 +87,14 @@ export class Dashboard {
 
   configured(){
     var return_val = false;
-      if(!("userType" in this.user)){
-        console.log("Not valid configured user");
-      }else{
-        console.log("Valid configured user");
-        return_val = true;
-      }
-      return return_val;
+    if(!("userType" in this.user)){
+      console.log("Not valid configured user");
+    }else{
+      console.log("Valid configured user");
+      return_val = true;
     }
+    return return_val;
+  }
 
 
   activate(){
@@ -102,7 +102,7 @@ export class Dashboard {
     this.getUser();
     //this.first_time_info = this.configured();
   }
-//function getName
+  //function getName
 
-//function updateUser
+  //function updateUser
 }
