@@ -54,7 +54,7 @@ th, td {
   position: absolute;
   left: 0;
   right: 0;
-  top: 0px;
+  top: 0;
   bottom: 0;
   overflow-x: hidden;
   overflow-y: auto;
@@ -76,7 +76,7 @@ section {
   margin: 0 20px;
 }
 
-.navbar-nav li.loader {
+.navbar-nav .loader {
   margin: 12px 24px 0 6px;
 }
 
@@ -207,7 +207,7 @@ section.au-enter-active {
   color:white;
   position: relative;
   min-height: 50px;
-  margin-bottom: 0px;
+  margin-bottom: 0;
   border: 1px solid transparent;
 }
 .navbar-custom a{
