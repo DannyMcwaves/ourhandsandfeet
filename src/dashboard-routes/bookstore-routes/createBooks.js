@@ -1,90 +1,80 @@
 import {inject} from 'aurelia-framework';
 import {HttpClient, json} from 'aurelia-fetch-client';
+import {Router} from 'aurelia-router';
 
-@inject(HttpClient)
+@inject(HttpClient, Router)
 export class CreateBookDashboard {
-  constructor(httpClient){
+  constructor(httpClient, router){
     this.httpClient = httpClient;
-
+    this.router = router;
     this.newBook = {
-      "title":"",
-      "type":"",
-      "author":"",
-      "numberPages":0,
-      "dateOfPub":0,
-      "url":"",
-      "isbn":"",
-      "siteLocation":"",
-      "numberOfCopies":0,
-      "comments":""
+      'title': '',
+      'type': 'book',
+      'author': '',
+      'numberPages': 0,
+      'dateOfPub': 0,
+      'url': '',
+      'isbn': '',
+      'siteLocation': '',
+      'numberOfCopies': 0,
+      'comments': ''
     };
-    console.log(this.newBook);
   }
-  types=["Book", "PDF", "Webpage", "Audiobook"];
+  types = ['book', 'pdf', 'webpage', 'audiobook', 'gdoc'];
   newBook = null;
-  CSVFilePath="";
-  fileList="";
-
+  CSVFilePath = '';
+  fileList = '';
+  
   createBook(){
-    //console.log(this.newBook);
-    if(this.newBook.type != 0){
-      this.newBook.type=this.types[this.newBook.type-1];
-    }else{
-      this.newBook.type="None chosen";
+    if (this.newBook.type !== 0){
+      this.newBook.type = this.types[this.newBook.type - 1];
+    } else {
+      this.newBook.type = 'book';
     }
-
-    return this.httpClient.fetch(process.env.BackendUrl + "/book/", {
-      method:"post",
-      body:json(this.newBook)
+    
+    this.httpClient.fetch(process.env.BackendUrl + '/book/', {
+      method: 'post',
+      body: json(this.newBook)
     })
     .then(response=>response.json())
-    .then(savedRecord => record = savedRecord);
-
+    //.then(savedRecord => record = savedRecord)
+    .then(data=>{
+      this.router.navigate('/bookshelf');
+    });
   }
-
+  
   createBooksFromCSV(){
-const httpClient = this.httpClient;
-
-    if(CSVFilePath.files!=""){
-      var jsonObj;
-      //TODO: Parse all csv files
-
-      function loaded (evt) {
-        var fileString = evt.target.result;
-        console.log (fileString);
-        const csvjson = require('csvjson');
-        jsonObj = csvjson.toObject(fileString);
-        console.log ('json created ' + JSON.stringify(jsonObj));
-        makeLotaBooks(jsonObj);
-
+    let jsonObj;
+    const httpClient = this.httpClient;
+    const router = this.router;
+    function loaded (evt) {
+      const fileString = evt.target.result;
+      const csvjson = require('csvjson');
+      jsonObj = csvjson.toObject(fileString);
+      makeLotaBooks(jsonObj);
+    }
+    function errorHandler(evt) {
+      if (evt.target.error.name === 'NotReadableError') {
+        alert('The file could not be read');
       }
-
-      function errorHandler(evt) {
-        if(evt.target.error.name == "NotReadableError") {
-          alert('The file could not be read');
-        }
-      }
-// TODO: add check for browser support of FileReader
-      var reader = new FileReader();
-      reader.readAsText(CSVFilePath.files[0]);
-      reader.onload = loaded;
-      reader.onerror = errorHandler;
-
-      //var jsonString =
-      function makeLotaBooks (jsonObject) {
-        console.log('about to make lotta books' + JSON.stringify(jsonObject));
-        var jstring = JSON.stringify(jsonObject);
-        var jsonobj = JSON.parse(jstring);
-      httpClient.fetch(process.env.BackendUrl + "/book/", {
-        method:"post",
-        body:json(jsonobj)
+    }
+    function makeLotaBooks (jsonObject) {
+      httpClient.fetch(process.env.BackendUrl + '/book/', {
+        method: 'post',
+        body: json(jsonObject)
       })
       .then(response=>response.json())
       .then(data=>{
-        console.log("Posted data");
-        console.log(data);
+        router.navigate('/bookshelf');
       });
     }
+    if (CSVFilePath.files !== ''){
+      // TODO: Parse all csv files
+      // TODO: add check for browser support of FileReader
+      let reader = new FileReader();
+      reader.readAsText(CSVFilePath.files[0]);
+      reader.onload = loaded;
+      reader.onerror = errorHandler;
+    }
   }
-}
 }
