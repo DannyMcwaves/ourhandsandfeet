@@ -22,7 +22,7 @@ export class CreateBookDashboard {
   }
   types = ['book', 'pdf', 'webpage', 'audiobook', 'gdoc'];
   newBook = null;
-  CSVFilePath = {files: ''};
+  CSVFilePath = {files: ['']};
   fileList = '';
   
   createBook(){
@@ -68,7 +68,7 @@ export class CreateBookDashboard {
         router.navigate('/bookshelf');
       });
     }
-    if (CSVFilePath.files !== ''){
+    if (CSVFilePath.files[0] !== ''){
       // TODO: Parse all csv files
       // TODO: add check for browser support of FileReader
       let reader = new FileReader();
