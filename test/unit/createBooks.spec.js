@@ -1,6 +1,7 @@
 import {CreateBookDashboard} from '../../src/dashboard-routes/bookstore-routes/createBooks';
 import {HttpClient} from 'aurelia-fetch-client';
 import './setup';
+import {Router} from 'aurelia-router';
 
 class HttpStub extends HttpClient {
   status = 500;
@@ -31,7 +32,8 @@ class HttpStub extends HttpClient {
       request.headers.set('Content-Type', request.body.type);
     }
     
-    let promise = Promise.resolve().then( () => {
+    let promise = Promise.resolve()
+    .then( () => {
       if (request.headers.get('Content-Type') === 'application/json' && request.method !== 'GET') {
         return request.json().then(object => {
           object[this.returnKey] = this.returnValue;
@@ -48,10 +50,18 @@ class HttpStub extends HttpClient {
   }
 }
 
+class RouterStub extends Router {
+  
+  navigate(destination) {
+    return this.router.destination = destination;
+    // return new Promise((resolve)=>{
+    //   resolve({json: ()=>response});
+    // });
+  }
+}
+
 describe('the createBook module', () => {
-  let http = new HttpStub(); //we'll get to this later
-  let sut;
-  sut = new CreateBookDashboard(http); //We're using DI for our HttpClient
+  let sut = new CreateBookDashboard( new HttpStub(), new RouterStub() ); //We're using DI for our HttpClient
   
   beforeEach((done) => {
     sut.httpClient.status = 200; //we'll check for errors later
