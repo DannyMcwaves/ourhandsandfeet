@@ -13,7 +13,7 @@ class HttpStub extends HttpClient {
   
   fetch(input, init) {
     let request;
-    let response;
+    //let response;
     let responseInit = {};
     responseInit.headers = new Headers();
     
@@ -72,22 +72,22 @@ describe('the createBook module', () => {
     done();
   });
   
-  it('should save a new book from the form data', () => {
+  it('should post a new book from the form data', () => {
     sut.newBook = {'title': 'testTitle', 'type': 'pdf'};
     sut.createBook();
-    //expect(record).toEqual({"title":"testTitle","id":"1","type":"pdf", date: '6/24/1984'})
+    //expect(this.Res.status).toEqual(201);
     //done();
   });
   
-  it('should save a new book from the form data as type equals book if a type is not defined', () => {
+  it('should post a new book from the form data as type equals book if a type is not defined', () => {
     sut.newBook = {'title': 'howdy', 'type': 0};
     sut.createBook();
     //expect(record).toEqual({"title":"testTitle","id":"1","type":"pdf", date: '6/24/1984'})
     //done();
   });
   
-  it('should convert from csv and save that array of books', () => {
-    //sut.CSVFilePath.files = 'books.csv';
+  it('should convert from csv and then post that array of books', () => {
+    //sut.CSVFilePath =
     //sut.createBooksFromCSV();
   });
   // it('displays an modal to the user when a record cannot be saved', (done) => {

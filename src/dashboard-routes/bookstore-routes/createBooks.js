@@ -22,7 +22,7 @@ export class CreateBookDashboard {
   }
   types = ['book', 'pdf', 'webpage', 'audiobook', 'gdoc'];
   newBook = null;
-  CSVFilePath = '';
+  CSVFilePath = {files: ''};
   fileList = '';
   
   createBook(){
