@@ -38,10 +38,6 @@ class AuthStub {
   }
 }
 
-
-
-
-
 describe('the Login module', () => {
   var sut;
   var app1;

@@ -36,7 +36,7 @@ export class CreateBookDashboard {
       method: 'post',
       body: json(this.newBook)
     })
-    .then(response=>response.json())
+    //.then(response=>response.json())
     //.then(savedRecord => record = savedRecord)
     .then(data=>{
       this.router.navigate('/bookshelf');
