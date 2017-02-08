@@ -23,5 +23,5 @@ When working on unit tests, use the command <b>npm run test:debug</b><br>
 This will run the tests in continuous mode and launch a Chrome browser with Karma debugging enabled.
 
 Since we are running some alpha and beta node packages, there will be times when the developer will need to reinstall all dependencies.
-We have found that is can be necessary to delete the entire Node_Modules folder and then clean the cache. Run this command:<br>
-<b>rm -rf node_modules && npm cache clean</b><br>Then <b>npm install</b>
+We have found that is can be necessary to delete the entire Node_Modules folder and then clean the cache.<br>
+<b>npm run cleaninstall</b>
