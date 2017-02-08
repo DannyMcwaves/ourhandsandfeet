@@ -136,7 +136,7 @@ let config = generateConfig(
     ]})
   ] : [
     /* ENV === 'test' */
-    generateCoverage({ options: { 'force-sourcemap': true, esModules: true }})
+    // generateCoverage({ options: { 'force-sourcemap': true, esModules: true }})
   ]),
 
   // ENV != 'production' ? [
