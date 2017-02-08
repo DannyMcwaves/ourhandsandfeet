@@ -32,20 +32,20 @@ class HttpStub extends HttpClient {
       request.headers.set('Content-Type', request.body.type);
     }
     
-    let promise = Promise.resolve()
-    .then( () => {
-      if (request.headers.get('Content-Type') === 'application/json' && request.method !== 'GET') {
-        return request.json().then(object => {
-          object[this.returnKey] = this.returnValue;
-          let data = new Blob([JSON.stringify(this.object)]);
-          response = new Response(data, responseInit);
-          return this.status >= 200 && this.status < 300 ? Promise.resolve(response) : Promise.reject(response);
-        });
-      }
-      let data = new Blob([JSON.stringify(this.object)]);
-      response = new Response(data, responseInit);
-      return this.status >= 200 && this.status < 300 ? Promise.resolve(response) : Promise.reject(response);
-    });
+    let promise = Promise.resolve();
+    // .then( () => {
+    //   if (request.headers.get('Content-Type') === 'application/json' && request.method !== 'GET') {
+    //     return request.json().then(object => {
+    //       object[this.returnKey] = this.returnValue;
+    //       let data = new Blob([JSON.stringify(this.object)]);
+    //       response = new Response(data, responseInit);
+    //       return this.status >= 200 && this.status < 300 ? Promise.resolve(response) : Promise.reject(response);
+    //     });
+    //   }
+    //   let data = new Blob([JSON.stringify(this.object)]);
+    //   response = new Response(data, responseInit);
+    //   return this.status >= 200 && this.status < 300 ? Promise.resolve(response) : Promise.reject(response);
+    // });
     return promise;
   }
 }
