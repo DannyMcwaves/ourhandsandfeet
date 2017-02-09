@@ -119,7 +119,7 @@ let config = generateConfig(
   globalJquery(),
   globalRegenerator(),
   generateIndexHtml({minify: ENV === 'production'}),
-  copyFiles({patterns: [{ from: '.env', to: './'}]}),
+  // copyFiles({patterns: [{ from: '.env', to: './'}]}),
   {
     plugins: [
       new webpack.ProvidePlugin({
