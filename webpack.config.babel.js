@@ -44,8 +44,7 @@ const coreBundles = {
     'bluebird',
     'aurelia-polymer',
     'aurelia-auth',
-    'au-table',
-    'aurelia-environment'
+    'au-table'
   ],
   // these will be included in the 'aurelia' bundle (except for the above bootstrap packages)
   aurelia: [
@@ -74,8 +73,7 @@ const coreBundles = {
     'aurelia-templating-resources',
     'aurelia-polymer',
     'aurelia-auth',
-    'au-table',
-    'aurelia-environment'
+    'au-table'
     // 'aurelia-files'
   ]
 };
@@ -136,7 +134,7 @@ let config = generateConfig(
     ]})
   ] : [
     /* ENV === 'test' */
-    generateCoverage({ options: { 'force-sourcemap': true, esModules: true }})
+    // generateCoverage({ options: { 'force-sourcemap': true, esModules: true }})
   ]),
 
   // ENV != 'production' ? [
