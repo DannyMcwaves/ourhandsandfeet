@@ -20,7 +20,7 @@ import generateIndexHtml from '@easy-webpack/config-generate-index-html';
 import commonChunksOptimize from '@easy-webpack/config-common-chunks-simple';
 import copyFiles from '@easy-webpack/config-copy-files';
 import uglify from '@easy-webpack/config-uglify';
-import generateCoverage from '@easy-webpack/config-test-coverage-istanbul';
+//import generateCoverage from '@easy-webpack/config-test-coverage-istanbul';
 import webpack from 'webpack';
 import dotenv from 'dotenv';
 dotenv.config({path: '.env'});
@@ -52,6 +52,7 @@ const coreBundles = {
     'aurelia-binding',
     'aurelia-dependency-injection',
     'aurelia-event-aggregator',
+    //'aurelia-files/dist/amd',
     'aurelia-framework',
     'aurelia-history',
     'aurelia-history-browser',
