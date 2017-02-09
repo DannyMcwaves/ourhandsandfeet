@@ -77,7 +77,6 @@
         "aurelia-auth/auth-filter",
         "au-table/dist/amd",
         "au-table/dist/amd/au-table-pagination",
-        "aurelia-environment"
       ],
       "includeDependencies": [
         "!http-server",
@@ -107,7 +106,6 @@
         "!aurelia-polymer",
         "!aurelia-protractor-plugin",
         "!aurelia-tools",
-        "!aurelia-environment",
         "!babel-eslint",
         "!babel-plugin-istanbul",
         "!babel-plugin-transform-class-properties",
@@ -140,7 +138,6 @@
     "au-table": "^0.1.12",
     "aurelia-auth": "^3.0.5",
     "aurelia-bootstrapper-webpack": "^1.1.0",
-    "aurelia-environment": "^0.1.7",
     "aurelia-event-aggregator": "^1.0.1",
     "aurelia-fetch-client": "^1.1.0",
     "aurelia-framework": "^1.0.8",
