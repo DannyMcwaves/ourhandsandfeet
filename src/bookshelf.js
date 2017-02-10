@@ -11,16 +11,16 @@ export class Bookshelf {
   constructor(httpClient){
     this.httpClient = httpClient;
   }
-  
+
   async activate(){
     await fetch;
-    
+
     this.httpClient.configure(config => {
       config
       .useStandardConfiguration()
       .withBaseUrl(process.env.BackendUrl);
     });
-    
+
     const res = await this.httpClient.fetch('/book/getall');
     this.books =  await res.json();
   }

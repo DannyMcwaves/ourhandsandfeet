@@ -2,8 +2,11 @@ import {CreateBookDashboard} from '../../src/dashboard-routes/bookstore-routes/c
 import {HttpClient} from 'aurelia-fetch-client';
 import './setup';
 import {Router} from 'aurelia-router';
-import {csv as csvFixture} from './createBooks.spec.fixtures';
+import csvFixture from './createBooks.spec.fixtures';
+let csv = require("csvjson");
 
+
+/*
 class HttpStub extends HttpClient {
   status = 500;
   statusText;
@@ -11,19 +14,19 @@ class HttpStub extends HttpClient {
   returnKey;
   returnValue;
   responseHeaders = [];
-  
+
   fetch(input, init) {
     let request;
     //let response;
     let responseInit = {};
     responseInit.headers = new Headers();
-    
+
     for (let name in this.responseHeaders || {}) {
       responseInit.headers.set(name, this.responseHeaders[name]);
     }
-    
+
     responseInit.status = this.status || 200;
-    
+
     if (Request.prototype.isPrototypeOf(input)) {
       request = input;
     } else {
@@ -32,7 +35,7 @@ class HttpStub extends HttpClient {
     if (request.body && Blob.prototype.isPrototypeOf(request.body) && request.body.type) {
       request.headers.set('Content-Type', request.body.type);
     }
-    
+
     let promise = Promise.resolve();
     // .then( () => {
     //   if (request.headers.get('Content-Type') === 'application/json' && request.method !== 'GET') {
@@ -52,7 +55,7 @@ class HttpStub extends HttpClient {
 }
 
 class RouterStub extends Router {
-  
+
   navigate(destination) {
     return this.router.destination = destination;
     // return new Promise((resolve)=>{
@@ -60,10 +63,89 @@ class RouterStub extends Router {
     // });
   }
 }
+*/
+
+
+class HttpMock {
+    status = 500;
+    header = {accept: "application/json", url: "", method: ""}
+    response = ""
+    fetch(data, object) {
+        // data should be the path when calling the fecth method.
+        // see the log to ensure the methods are being called.
+        if (data) {
+            this.header.url = data;
+            if (object.method === "GET") {
+                this.header.method = object.method
+                this.status = 200
+                return Promise.resolve({
+                    Headers: this.header,
+                    status: this.status,
+                    data: object.body
+                })
+            }  else {
+                this.header.method = object.method
+                this.status = 200
+                return Promise.resolve({
+                    Headers: this.header,
+                    status: this.status,
+                    data: object.body
+                })
+            }
+            return Promise.resolve({
+                Headers: this.header,
+                status: this.status,
+                data: response
+            })
+        }
+        return Promise.resolve({
+            Headers: this.header,
+            status: this.status,
+            data: "PLEASE SPECIFY A URL"
+        });
+    }
+}
+
+class RouterMock {
+    navigate(route) {
+        // for testing purposes, let us check if route is really returned.
+        // or even called at all.
+        return route;
+    }
+}
 
 describe('the createBook module', () => {
-  let sut, httpStub, routerStub, fileReaderStub;
-  
+    let bookdashboard, http, router;
+    beforeEach(() => {
+        http = new HttpMock(),
+        router = new RouterMock(),
+        bookdashboard = new CreateBookDashboard(http, router);
+        // add the new book csv from the fixtures object and use it as main data.
+        bookdashboard.CSVFilePath = {files: [csvFixture.string]};
+    })
+    it ("should parse the csv.fixtures into object", done => {
+        let object = csv.toObject(bookdashboard.CSVFilePath.files[0]);
+        expect(object instanceof Array).toBeTruthy();
+        done();
+    })
+
+    it("should confirm 200 http status after createBooksFromCSV is run", done => {
+        bookdashboard.createBooksFromCSV();
+        // wait a few seconds after the main fucntion is called to confirm a change in https status.
+        setTimeout(function () {
+            expect(http.status).toEqual(200);
+            done();
+        }, 5);
+        // console.log(http.status);
+    })
+
+    it("should confirm 200 https status after createBook is run", done => {
+        bookdashboard.createBook();
+        expect(http.status).toBe(200);
+        done();
+    })
+
+  /*
   beforeEach(() => {
     httpStub = new HttpStub();
     routerStub = new RouterStub();
@@ -75,21 +157,21 @@ describe('the createBook module', () => {
     sut.httpClient.returnValue = '6/24/1984'; //value returned from PUT/CREATE/POST
     sut.httpClient.responseHeaders = {accept: 'json'};
   });
-  
+
   xit('should post a new book from the form data', () => {
     sut.newBook = {'title': 'testTitle', 'type': 'pdf'};
     sut.createBook();
     //expect(this.Res.status).toEqual(201);
     //done();
   });
-  
+
   xit('should post a new book from the form data as type equals book if a type is not defined', () => {
     sut.newBook = {'title': 'howdy', 'type': 0};
     sut.createBook();
     //expect(record).toEqual({"title":"testTitle","id":"1","type":"pdf", date: '6/24/1984'})
     //done();
   });
-  
+
   it('should convert from csv and then post that array of books', (done) => {
     // fileReaderStub.readAsText = () => {};
     // sut.CSVFilePath = { files: [csvFixture.string] };
@@ -106,7 +188,7 @@ describe('the createBook module', () => {
     // };
     // fileReaderStub.onload({ target: { result: csvFixture.string } });
   });
-  
+
   // it('displays an modal to the user when a record cannot be saved', (done) => {
   //   sut.http.status = 400
   //   sut.http.statusText = "Record Not Found"
@@ -119,4 +201,6 @@ describe('the createBook module', () => {
   //     done()
   //   })
   // })
+  */
+
 });
