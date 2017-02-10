@@ -1,13 +1,14 @@
 import {inject} from 'aurelia-framework';
 import {HttpClient, json} from 'aurelia-fetch-client';
 import {Router} from 'aurelia-router';
+const csvjson = require('csvjson');
 
-@inject(HttpClient, Router, FileReader)
+
+@inject(HttpClient, Router)
 export class CreateBookDashboard {
-  constructor(httpClient, router, reader){
+  constructor(httpClient, router){
     this.httpClient = httpClient;
     this.router = router;
-    this.reader = reader;
     this.newBook = {
       'title': '',
       'type': 'book',
@@ -21,8 +22,8 @@ export class CreateBookDashboard {
       'comments': ''
     };
   }
+
   types = ['book', 'pdf', 'webpage', 'audiobook', 'gdoc'];
-  newBook = null;
   CSVFilePath = {files: ['']};
   fileList = '';
 
@@ -37,44 +38,54 @@ export class CreateBookDashboard {
       method: 'post',
       body: json(this.newBook)
     })
-    //.then(response=>response.json())
-    //.then(savedRecord => record = savedRecord)
     .then(data=>{
       this.router.navigate('/bookshelf');
-    });
+    }, undefined);
   }
 
   createBooksFromCSV(){
     let jsonObj;
     const httpClient = this.httpClient;
     const router = this.router;
+
+    // FILE READER is loaded.
+    // evt.target has a result property signifying the data to be returned.
+    // convert that string of data to object.
+    //and then send a json format of that data backend.
     function loaded (evt) {
       const fileString = evt.target.result;
-      const csvjson = require('csvjson');
+      // csvjson.toObject takes the csv and then returns an object.
       jsonObj = csvjson.toObject(fileString);
       makeLotaBooks(jsonObj);
     }
+
+    // FILE READER THROWS AN ERROR
+    //event.target raises and error
+    // if so, handle the error thrown.
     function errorHandler(evt) {
       if (evt.target.error.name === 'NotReadableError') {
         alert('The file could not be read');
       }
     }
+
+    // this function posts the book to the BackendUrl.
+    // expects a response and when there is a response, it navigates to the bookshelf.
     function makeLotaBooks (jsonObject) {
       httpClient.fetch(process.env.BackendUrl + '/book/', {
         method: 'post',
         body: json(jsonObject)
       })
-      .then(response=>response.json())
       .then(data=>{
         router.navigate('/bookshelf');
-      });
+      }, undefined);
     }
     if (this.CSVFilePath.files[0] !== ''){
       // TODO: Parse all csv files
       // TODO: add check for browser support of FileReader
-      this.reader.onload = loaded;
-      this.reader.onerror = errorHandler;
-      this.reader.readAsText(this.CSVFilePath.files[0]);
+      let reader = new FileReader();
+      reader.readAsText(new Blob(this.CSVFilePath.files));
+      reader.onload = loaded;
+      reader.onerror = errorHandler;
     }
   }
 }
