@@ -23,7 +23,7 @@ class HttpMock {
                   status: this.status,
                   data: object.body
                 });
-            }
+            } else{
                 this.header.method = object.method
                 this.status = 200
                 return Promise.resolve({
@@ -31,7 +31,7 @@ class HttpMock {
                     status: this.status,
                     data: object.body
                 })
-
+            }
           return Promise.resolve({
               Headers: this.header,
               status: this.status,
