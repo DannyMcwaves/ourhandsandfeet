@@ -1,31 +1,46 @@
 import {Dashboard} from '../../src/dashboard-routes/dashboard';
 import {Container} from "aurelia-dependency-injection";
+import {json} from "aurelia-fetch-client";
 import {StageComponent} from 'aurelia-testing';
 import {bootstrap} from 'aurelia-bootstrapper';
 
 class HttpMock {
     // this one catches the ajax and then resolves a custom json data.
     // real api calls will have more methods.
-    fetch() {
-        return Promise.resolve('{"name": "John Fitzgerald", "age": 20}')
+    user = {"name": "John Fitzgerald", "age": 20, userType: "Charity"};
+    status = 500;
+    headers = {accept: "application/json", method: "", url:""}
+    fetch(url, obj) {
+        this.headers.url = url;
+        this.headers.method = obj ? obj.method : "GET";
+        if (obj && obj.method === "put") {
+            this.user = obj.body;
+        }
+        this.status = 200;
+        return Promise.resolve({
+            Headers: this.headers,
+            json: () => Promise.resolve(this.user)
+        })
     }
 }
 
 class AuthServiceMock {
     // basic auth functions.
+    authenticated = false;
+
     isAuthenticated() {
-        this.authenticated = true;
         return this.authenticated;
     }
     authenticate() {
-        this.authenticate = true;
+        this.authenticated = true;
         return Promise.resolve("user is authenticated");
     }
     setToken(token) {
         this.token = token;
+        this.authenticate();
     }
     getTokenPayload() {
-        return Promise.resolve(this.token)
+        return {sub: this.token}
     }
 }
 
@@ -42,9 +57,13 @@ describe ("the Dashboard Module", () => {
     let dashboard;
 
     describe("Dashboard DI", () => {
+        let auth, http,
+            token = "mhioj23yr675843ho12yv9852vbbjeywouitryhrcyqo7t89vu";
         beforeEach(() => {
-            dashboard = new Dashboard(new AuthServiceMock, new HttpMock, null, new RouterMock);
-            spyOn(new HttpMock(), "fetch");
+            auth = new AuthServiceMock(),
+            http = new HttpMock();
+            dashboard = new Dashboard(auth, http, null, new RouterMock);
+            auth.setToken(token);
         })
 
         it("should authenticate and return feedback", done =>{
@@ -64,13 +83,35 @@ describe ("the Dashboard Module", () => {
         it("should fetch some json data after api call", done => {
             dashboard.httpClient.fetch("/some/data").then(data => {
                 expect(data).toBeDefined(); // check if the data is defined.
-                expect(typeof data).toBe("string"); // check if the data is string
-                expect(typeof JSON.parse(data)).toBe("object"); // try to parse and confirm it return json.
             }, o => {
                 // else catch the reject.
                 expect(o).toBeUndefined();
             })
             done();
+        })
+
+        it("should expect change in http status after getUser call", done => {
+            dashboard.getUser();
+            expect(http.status).toBe(200);
+            done();
+        })
+
+        // dashboard.activate functions exactly as get user. tests not necessary.
+        it ("should confirm 200 http status after updateUser call", done => {
+            dashboard.getUser();
+            setTimeout(function () {
+                dashboard.updateUser();
+                expect(http.status).toBe(200);
+                done();
+            }, 5);
+        })
+
+        it("should return false for configured", done => {
+            dashboard.getUser();
+            setTimeout(function () {
+                expect(dashboard.configured()).toBeFalsy();
+                done();
+            }, 5);
         })
 
         it("should confirm route by returning the currently navigated route", done => {
