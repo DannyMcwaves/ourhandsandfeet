@@ -55,7 +55,7 @@ export class CreateBookDashboard {
       makeLotaBooks(jsonObj);
     }
     function errorHandler(evt) {
-      if (evt.target.error.name === 'NotReadableError') {
+      if (evt.type === 'error') {
         alert('The file could not be read');
       }
     }
