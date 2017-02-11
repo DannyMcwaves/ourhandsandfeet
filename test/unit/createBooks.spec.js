@@ -76,6 +76,13 @@ describe('the createBook module', () => {
       done();
     });
 
+    it ("should log a new book type when book is undefined", done => {
+        bookdashboard.newBook.type = 0;
+        bookdashboard.createBook();
+        expect(http.status).toBe(200);
+        done();
+    })
+
     // trying another option for testing the createBooksFromCSV();
     it("should confirm a http status change", done => {
         window.CSVFilePath = {files: [new Blob([csvFixture.string])] };
@@ -85,6 +92,23 @@ describe('the createBook module', () => {
         bookdashboard.createBooksFromCSV();
         // if dashbook.createBooksFromCSV is called, it should called the makeLotaBooks that
         // places a http call and HttpMock will respond to it and also change the status.
+        setTimeout(function () {
+            expect(http.status).toBe(200);
+        }, 10);
+        done();
+    })
+
+    it("should raise a file reader error", done => {
+
+        window.CSVFilePath = {files: [new Blob()] };
+        let reader = new FileReader(),
+            http = new HttpMock(),
+            error = new Event("error"),
+            bookdashboard = new CreateBookDashboard(http, router, reader);
+        bookdashboard.createBooksFromCSV();
+        // if dashbook.createBooksFromCSV is called, it should called the makeLotaBooks that
+        // places a http call and HttpMock will respond to it and also change the status.
+        reader.dispatchEvent(error);
         setTimeout(function () {
             expect(http.status).toBe(200);
         }, 10);
