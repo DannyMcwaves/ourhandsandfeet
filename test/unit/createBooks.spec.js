@@ -55,6 +55,7 @@ class RouterMock {
 
 describe('the createBook module', () => {
   let bookdashboard, http, router, fileReaderStub;
+  global.CSVFilePath = { files: [csvFixture.string] };
   beforeEach(() => {
       http = new HttpMock(),
         router = new RouterMock(),
@@ -75,9 +76,21 @@ describe('the createBook module', () => {
       done();
     });
 
+    // trying another option for testing the createBooksFromCSV();
+    it("should confirm a http status change", done => {
+        window.CSVFilePath = {files: [new Blob([csvFixture.string])] };
+        let reader = new FileReader(),
+            http = new HttpMock();
+            bookdashboard = new CreateBookDashboard(http, router, reader);
+        bookdashboard.createBooksFromCSV();
+        setTimeout(function () {
+            console.log(http.status);
+        }, 10);
+        done();
+    })
+
   it('should convert from csv and then post that array of books', (done) => {
     fileReaderStub.readAsText = () => {};
-    global.CSVFilePath = { files: [csvFixture.string] };
     bookdashboard.createBooksFromCSV();
     bookdashboard.httpClient.fetch = (url, {body: blob}) => {
       const reader = new FileReader();
