@@ -22,13 +22,13 @@ class HttpMock {
                   status: this.status,
                   data: object.body
                 });
-            } else{
+            } else {
                 this.header.method = object.method
                 this.status = 200
                 return Promise.resolve({
                     Headers: this.header,
                     status: this.status,
-                    data: object.body
+                    json: () => Promise.resolve(object.body)
                 })
             }
           return Promise.resolve({
@@ -83,8 +83,10 @@ describe('the createBook module', () => {
             http = new HttpMock();
             bookdashboard = new CreateBookDashboard(http, router, reader);
         bookdashboard.createBooksFromCSV();
+        // if dashbook.createBooksFromCSV is called, it should called the makeLotaBooks that
+        // places a http call and HttpMock will respond to it and also change the status.
         setTimeout(function () {
-            console.log(http.status);
+            expect(http.status).toBe(200);
         }, 10);
         done();
     })
