@@ -2,8 +2,8 @@ import {CreateBookDashboard} from '../../src/dashboard-routes/bookstore-routes/c
 import {HttpClient} from 'aurelia-fetch-client';
 import './setup';
 import {Router} from 'aurelia-router';
-import csvFixture from './createBooks.spec.fixtures';
-let csv = require("csvjson");
+import {csvFixture} from './createBooks.spec.fixtures';
+import csvjson from 'csvjson';
 
 
 /*
@@ -67,15 +67,23 @@ class RouterStub extends Router {
 
 
 class HttpMock {
-    status = 500;
-    header = {accept: "application/json", url: "", method: ""}
-    response = ""
-    fetch(data, object) {
+  status = 500;
+  header = {accept: 'application/json', url: '', method: ''}
+  response = ''
+  fetch(data, object) {
         // data should be the path when calling the fecth method.
         // see the log to ensure the methods are being called.
-        if (data) {
-            this.header.url = data;
-            if (object.method === "GET") {
+      if (data) {
+          this.header.url = data;
+          if (object.method === 'GET') {
+              this.header.method = object.method;
+              this.status = 200;
+              return Promise.resolve({
+                  Headers: this.header,
+                  status: this.status,
+                  data: object.body
+                });
+            }  
                 this.header.method = object.method
                 this.status = 200
                 return Promise.resolve({
@@ -83,51 +91,44 @@ class HttpMock {
                     status: this.status,
                     data: object.body
                 })
-            }  else {
-                this.header.method = object.method
-                this.status = 200
-                return Promise.resolve({
-                    Headers: this.header,
-                    status: this.status,
-                    data: object.body
-                })
-            }
-            return Promise.resolve({
-                Headers: this.header,
-                status: this.status,
-                data: response
-            })
+            
+          return Promise.resolve({
+              Headers: this.header,
+              status: this.status,
+              data: response
+            });
         }
-        return Promise.resolve({
-            Headers: this.header,
-            status: this.status,
-            data: "PLEASE SPECIFY A URL"
+      return Promise.resolve({
+          Headers: this.header,
+          status: this.status,
+          data: 'PLEASE SPECIFY A URL'
         });
     }
 }
 
 class RouterMock {
-    navigate(route) {
+  navigate(route) {
         // for testing purposes, let us check if route is really returned.
         // or even called at all.
-        return route;
+      return route;
     }
 }
 
 describe('the createBook module', () => {
-    let bookdashboard, http, router;
-    beforeEach(() => {
-        http = new HttpMock(),
+  let bookdashboard, http, router, fileReaderStub;
+  beforeEach(() => {
+      http = new HttpMock(),
         router = new RouterMock(),
-        bookdashboard = new CreateBookDashboard(http, router);
+        fileReaderStub = {},
+        bookdashboard = new CreateBookDashboard(http, router, fileReaderStub);
         // add the new book csv from the fixtures object and use it as main data.
-        bookdashboard.CSVFilePath = {files: [csvFixture.string]};
-    })
-    it ("should parse the csv.fixtures into object", done => {
-        let object = csv.toObject(bookdashboard.CSVFilePath.files[0]);
-        expect(object instanceof Array).toBeTruthy();
-        done();
-    })
+      bookdashboard.CSVFilePath = {files: [csvFixture.string]};
+    });
+  it('should parse the csv.fixtures into object', done => {
+      let object = csvjson.toObject(bookdashboard.CSVFilePath.files[0]);
+      expect(object instanceof Array).toBeTruthy();
+      done();
+    });
 
     // it("should confirm 200 http status after createBooksFromCSV is run", done => {
     //     bookdashboard.createBooksFromCSV();
@@ -139,11 +140,11 @@ describe('the createBook module', () => {
     //     // console.log(http.status);
     // })
 
-    it("should confirm 200 https status after createBook is run", done => {
-        bookdashboard.createBook();
-        expect(http.status).toBe(200);
-        done();
-    })
+  it('should confirm 200 https status after createBook is run', done => {
+      bookdashboard.createBook();
+      expect(http.status).toBe(200);
+      done();
+    });
 
   /*
   beforeEach(() => {
@@ -172,22 +173,26 @@ describe('the createBook module', () => {
     //done();
   });
 
+*/
+
   it('should convert from csv and then post that array of books', (done) => {
-    // fileReaderStub.readAsText = () => {};
-    // sut.CSVFilePath = { files: [csvFixture.string] };
-    // sut.createBooksFromCSV();
-    // sut.httpClient.fetch = (url, {body: blob}) => {
-    //   const reader = new FileReader();
-    //   reader.onload =  () => {
-    //     const data = new TextDecoder('utf8').decode(reader.result);
-    //     expect(JSON.parse(data)).toEqual(csvFixture.json);
-    done();
-    //   };
-    //   reader.readAsArrayBuffer(blob);
-    //   return new Promise(()=>{}); // never resolved
-    // };
-    // fileReaderStub.onload({ target: { result: csvFixture.string } });
+    fileReaderStub.readAsText = () => {};
+    global.CSVFilePath = { files: [csvFixture.string] };
+    bookdashboard.createBooksFromCSV();
+    bookdashboard.httpClient.fetch = (url, {body: blob}) => {
+      const reader = new FileReader();
+      reader.onload =  () => {
+        const data = new TextDecoder('utf8').decode(reader.result);
+        expect(JSON.parse(data)).toEqual(csvFixture.json);
+        done();
+      };
+      reader.readAsArrayBuffer(blob);
+      return new Promise(()=>{}); // don't resolve
+    };
+    fileReaderStub.onload({ target: { result: csvFixture.string } });
   });
+
+/*
 
   // it('displays an modal to the user when a record cannot be saved', (done) => {
   //   sut.http.status = 400
@@ -202,5 +207,4 @@ describe('the createBook module', () => {
   //   })
   // })
   */
-
 });
