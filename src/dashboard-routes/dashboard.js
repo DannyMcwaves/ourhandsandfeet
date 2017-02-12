@@ -13,11 +13,11 @@ export class Dashboard {
     this.httpClient = httpClient;
     this.router = router;
   }
-  
+
   authenticated=false;
   firstTimeInfo = false;
   types=['Charity', 'Volunteer'];
-  
+
   getUser(){
     this.authenticated = this.auth.isAuthenticated();
     let uid = this.auth.getTokenPayload().sub;
@@ -35,7 +35,7 @@ export class Dashboard {
       }
     });
   }
-  
+
   updateUser(){
     let uid = this.auth.getTokenPayload().sub;
     let tempUserType = this.user.userType;
@@ -50,7 +50,7 @@ export class Dashboard {
       this.getUser();
     });
   }
-  
+
   configured(){
     let returnVal = false;
     if (!('userType' in this.user)){
@@ -59,7 +59,7 @@ export class Dashboard {
     }
     return returnVal;
   }
-  
+
   activate() {
     this.getUser();
   }

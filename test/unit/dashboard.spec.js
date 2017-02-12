@@ -7,7 +7,9 @@ import {bootstrap} from 'aurelia-bootstrapper';
 class HttpMock {
     // this one catches the ajax and then resolves a custom json data.
     // real api calls will have more methods.
-    user = {"name": "John Fitzgerald", "age": 20, userType: "Charity"};
+    constructor(data) {
+        this.user = data || {name: "John Fitzgerald", age: 20, userType: "Charity"};
+    }
     status = 500;
     headers = {accept: "application/json", method: "", url:""}
     fetch(url, obj) {
@@ -96,7 +98,6 @@ describe ("the Dashboard Module", () => {
             done();
         })
 
-        // dashboard.activate functions exactly as get user. tests not necessary.
         it ("should confirm 200 http status after updateUser call", done => {
             dashboard.getUser();
             setTimeout(function () {
@@ -112,6 +113,18 @@ describe ("the Dashboard Module", () => {
                 expect(dashboard.configured()).toBeFalsy();
                 done();
             }, 5);
+        })
+
+        it("should expect change in http status after activate call", done => {
+            http = new HttpMock({name: "Iddris Elba", age: 22, userType: "Volunteer"});
+            auth = new AuthServiceMock();
+            dashboard = new Dashboard(auth, http, null, new RouterMock);
+            auth.setToken(token);
+            dashboard.activate();
+            setTimeout(function () {
+                expect(http.status).toBe(200);
+                done();
+            }, 10);
         })
 
         it("should confirm route by returning the currently navigated route", done => {
