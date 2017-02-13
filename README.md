@@ -28,3 +28,6 @@ We have found that is can be necessary to delete the entire Node_Modules folder 
 
 Before you push new code to GitHub, be sure to run this script:<br>
 <b>npm run installtest</b>
+<br><br>
+<a href="https://www.browserstack.com"><img src="https://d3but80xmlhqzj.cloudfront.net/production/images/static/header/header-logo.svg" alt="BrowserStack" width="200px"/></a>
+<br>We are using BrowserStack to test compatibility with Safari, and we thank them for supporting open-source projects.
