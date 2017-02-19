@@ -2,12 +2,20 @@
 import {AuthService} from 'aurelia-auth';
 import {inject} from 'aurelia-framework';
 import{App} from "./app";
-@inject(AuthService, App )
+import{Router} from 'aurelia-router';
+
+@inject(AuthService, App, Router)
 export class Login {
-  constructor(auth, app){
-    this.auth = auth;
-    this.app = app;
-  };
+
+  constructor(AuthService, App, Router){
+    this.auth = AuthService;
+    this.app = App;
+    this.router = Router;
+  }
+
+  attached() {
+    document.getElementById('app-title').innerHTML = this.router.currentInstruction.config.title;
+  }
 
   authenticate(name){
     let ret = this.auth.authenticate(name, false, null)
