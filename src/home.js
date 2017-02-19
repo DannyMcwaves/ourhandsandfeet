@@ -1,6 +1,18 @@
 //import {computedFrom} from 'aurelia-framework';
+import {Router} from 'aurelia-router';
+import {inject} from 'aurelia-framework';
 
+@inject(Router)
 export class Home {
+
+    constructor(Router) {
+        this.router = Router;
+    }
+
+    attached() {
+        document.getElementById('app-title').innerHTML = this.router.currentInstruction.config.title;
+    }
+
   // heading = 'Welcome to the Aurelia Navigation App!';
   // firstName = 'John';
   // lastName = 'Doe';
