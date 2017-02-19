@@ -10,7 +10,7 @@ export class Home {
     }
 
     attached() {
-        document.getElementById('app-title').innerHTML = this.router.currentInstruction.config.title;
+        document.title = this.router.currentInstruction.config.title;
     }
 
   // heading = 'Welcome to the Aurelia Navigation App!';
