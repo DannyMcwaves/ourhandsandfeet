@@ -14,7 +14,7 @@ export class Login {
   }
 
   attached() {
-    document.getElementById('app-title').innerHTML = this.router.currentInstruction.config.title;
+    document.title = this.router.currentInstruction.config.title;
   }
 
   authenticate(name){
