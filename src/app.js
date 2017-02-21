@@ -31,7 +31,6 @@ export class App {
   }
 
   getUser(){
-    // console.log(this.auth);
     // return this.auth.getMe().then((response)=>{console.log("get me:" + response);return response;});
     this.authenticated = this.auth.isAuthenticated();
     if (this.authenticated) {

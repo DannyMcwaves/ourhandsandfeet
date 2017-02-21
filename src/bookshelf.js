@@ -4,7 +4,6 @@ import {Router} from 'aurelia-router';
 //import { bindable } from 'aurelia-framework';
 
 const fetch = !self.fetch ? System.import('isomorphic-fetch') : Promise.resolve(self.fetch);
-//const booksUrl = process.env.BackendUrl + '/book/getall';
 
 @inject(HttpClient, Router)
 export class Bookshelf {
