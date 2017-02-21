@@ -9,9 +9,9 @@ const fetch = !self.fetch ? System.import('isomorphic-fetch') : Promise.resolve(
 @inject(HttpClient, Router)
 export class Bookshelf {
 
-  constructor(HttpClient, Router){
-    this.httpClient = HttpClient;
-    this.router = Router;
+  constructor(httpClient, router){
+    this.httpClient = httpClient;
+    this.router = router;
   }
 
   async activate(){
@@ -27,7 +27,7 @@ export class Bookshelf {
     this.books =  await res.json();
   }
 
-  attached() {
-    document.title = this.router.currentInstruction.config.title;
-  }
+  // attached() {
+  //   document.title = this.router.currentInstruction.config.title;
+  // }
 }
