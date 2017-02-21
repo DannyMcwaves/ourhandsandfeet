@@ -5,21 +5,21 @@ import {inject} from 'aurelia-framework';
 
 @inject(Router)
 export class News {
-
-    constructor(Router) {
-        this.router = Router;
-    }
-
-    attached() {
-        document.title = this.router.currentInstruction.config.title;
-    }
-
-
+  
+  constructor(router) {
+    this.router = router;
+  }
+  
+  // attached() {
+  //     document.title = this.router.currentInstruction.config.title;
+  // }
+  
+  
   // heading = 'Welcome to the Aurelia Navigation App!';
   // firstName = 'John';
   // lastName = 'Doe';
   // previousValue = this.fullName;
-
+  
   //Getters can't be directly observed, so they must be dirty checked.
   //However, if you tell Aurelia the dependencies, it no longer needs to dirty check the property.
   //To optimize by declaring the properties that this getter is computed from, uncomment the line below

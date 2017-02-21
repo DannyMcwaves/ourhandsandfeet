@@ -22,19 +22,13 @@ class HttpMock {
           status: this.status,
           data: object.body
         });
-      }  else {
-        this.header.method = object.method
-        this.status = 200
-        return Promise.resolve({
-          Headers: this.header,
-          status: this.status,
-          json: () => Promise.resolve(object.body)
-        });
       }
+      this.header.method = object.method;
+      this.status = 200;
       return Promise.resolve({
         Headers: this.header,
         status: this.status,
-        data: response
+        json: () => Promise.resolve(object.body)
       });
     }
     return Promise.resolve({
@@ -54,12 +48,15 @@ class RouterMock {
 }
 
 describe('the createBook module', () => {
-  let bookdashboard, http, router, fileReaderStub;
+  let bookdashboard;
+  let http;
+  let router;
+  let fileReaderStub;
   global.CSVFilePath = { files: [csvFixture.string] };
   beforeEach(() => {
-    http = new HttpMock(),
-    router = new RouterMock(),
-    fileReaderStub = {},
+    http = new HttpMock();
+    router = new RouterMock();
+    fileReaderStub = {};
     bookdashboard = new CreateBookDashboard(http, router, fileReaderStub);
     // add the new book csv from the fixtures object and use it as main data.
     bookdashboard.CSVFilePath = {files: [csvFixture.string]};
@@ -76,44 +73,43 @@ describe('the createBook module', () => {
     done();
   });
   
-  it ("should log a new book type when book is undefined", done => {
+  it('should log a new book type when book is undefined', done => {
     bookdashboard.newBook.type = 0;
     bookdashboard.createBook();
     expect(http.status).toBe(200);
     done();
-  })
+  });
   
   // trying another option for testing the createBooksFromCSV();
-  it("should confirm a http status change", done => {
+  it('should confirm a http status change', done => {
     window.CSVFilePath = {files: [new Blob([csvFixture.string])] };
-    let reader = new FileReader(),
+    let reader = new FileReader();
     http = new HttpMock();
     bookdashboard = new CreateBookDashboard(http, router, reader);
     bookdashboard.createBooksFromCSV();
     // if dashbook.createBooksFromCSV is called, it should called the makeLotaBooks that
     // places a http call and HttpMock will respond to it and also change the status.
-    setTimeout(function () {
+    setTimeout(function() {
       expect(http.status).toBe(200);
     }, 10);
     done();
-  })
+  });
   
-  it("should raise a file reader error", done => {
-    
+  it('should raise a file reader error', done => {
     window.CSVFilePath = {files: [new Blob()] };
-    let reader = new FileReader(),
-    http = new HttpMock(),
-    error = new Event("error"),
+    let reader = new FileReader();
+    http = new HttpMock();
+    let error = new Event('error');
     bookdashboard = new CreateBookDashboard(http, router, reader);
     bookdashboard.createBooksFromCSV();
     // if dashbook.createBooksFromCSV is called, it should called the makeLotaBooks that
     // places a http call and HttpMock will respond to it and also change the status.
     reader.dispatchEvent(error);
-    setTimeout(function () {
+    setTimeout(function() {
       expect(http.status).toBe(200);
     }, 10);
     done();
-  })
+  });
   
   it('should convert from csv and then post that array of books', (done) => {
     fileReaderStub.readAsText = () => {};
@@ -130,5 +126,4 @@ describe('the createBook module', () => {
     };
     fileReaderStub.onload({ target: { result: csvFixture.string } });
   });
-  
 });
