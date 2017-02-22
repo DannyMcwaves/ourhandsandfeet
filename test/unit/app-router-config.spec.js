@@ -16,7 +16,7 @@ class RouterStub {
     this.routes = routes;
   }
 
-  addPipelineStep(param1, param2){
+  addPipelineStep(param1, param2) {
     //do nothing
   }
 }
@@ -55,7 +55,7 @@ describe('the app.router.config module', () => {
   });
 
   it('should have a dashboard route', () => {
-    expect(sut.router.routes).toContain({ route: 'dashboard', name: 'dashboard-router', moduleId: './dashboard-router', nav: false, title: 'Dashboard', auth:true });
+    expect(sut.router.routes).toContain({ route: 'dashboard', name: 'dashboard-router', moduleId: './dashboard-router', nav: false, title: 'Dashboard', auth: true });
   });
 
   // it('should have a login route', () => {
