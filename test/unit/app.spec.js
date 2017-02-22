@@ -7,7 +7,6 @@ class AuthStub {
     this.token = token;
   }
   logout(data) {
-    //Logout
     var response = 'user logged out';
     return new Promise((resolve)=>{
       resolve({json: ()=>response});
