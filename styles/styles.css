@@ -8,6 +8,18 @@ form {
   margin-top: 0;
 }
 
+#content {
+  left: auto;
+  width: 1000px;
+  margin: auto;
+}
+
+.paper-drawer-panel {
+  left: auto;
+  width: 1000px;
+  margin: auto;
+}
+
 table {
   margin: auto;
 }
