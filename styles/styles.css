@@ -36,6 +36,12 @@ td {
   text-align: left;
 }
 
+.home-slideshow {
+  width: 100% !important;
+  height: 0 !important;
+  padding-bottom: 32%;
+}
+
 .splash {
   text-align: center;
   margin: 10% 0 0;
