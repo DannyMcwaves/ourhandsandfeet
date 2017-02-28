@@ -1,10 +1,10 @@
 {
   "name": "ourhandsandfeet",
-  "description": "A starter kit for building a standard navigation-style app with Aurelia and webpack.",
+  "description": "Navigation-style app with Aurelia and webpack.",
   "main": "\"\"",
   "authors": [
-    "[object Object]",
-    "[object Object]"
+    "HandlersAndKickers",
+    "JoshuaVSherman"
   ],
   "license": "\"\"",
   "keywords": [
@@ -16,6 +16,7 @@
     "**/.*",
     "node_modules",
     "bower_components",
+    "coverage",
     "test",
     "tests"
   ],

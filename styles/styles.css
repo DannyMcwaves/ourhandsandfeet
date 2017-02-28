@@ -8,6 +8,18 @@ form {
   margin-top: 0;
 }
 
+#content {
+  left: auto;
+  width: 1000px;
+  margin: auto;
+}
+
+/* .paper-drawer-panel {
+  left: auto;
+  width: 1000px;
+  margin: auto;
+} */
+
 table {
   margin: auto;
 }
@@ -22,6 +34,12 @@ td {
   border: 1px solid #777;
   padding: 8px;
   text-align: left;
+}
+
+.home-slideshow {
+  width: 100% !important;
+  height: 0 !important;
+  padding-bottom: 32%;
 }
 
 .splash {
@@ -225,8 +243,7 @@ section.au-enter-active {
 }
 
 .material-content {
-  padding-bottom: 10px;
-  /*padding-top: 5px;*/
+  padding-bottom: 10px;/* padding-top: 5px; */
 }
 
 .material-content-faq {

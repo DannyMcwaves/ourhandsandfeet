@@ -5,7 +5,7 @@
   "main": "dist/main.js",
   "productName": "ourhandsandfeet",
   "engines": {
-    "node": "7.5.0",
+    "node": "7.6.0",
     "npm": "4.1.2"
   },
   "scripts": {
@@ -26,9 +26,7 @@
     "clean": "npm cache clean && del-cli node_modules \"coverage/*\" dist",
     "clean:dist": "del-cli dist",
     "preclean:install": "npm run clean",
-    "clean:install": "npm install",
     "preclean:start": "npm run clean",
-    "clean:start": "npm start",
     "watch": "npm run watch:dev",
     "watch:dev": "npm run build:dev -- --watch",
     "watch:dev:hmr": "npm run watch:dev -- --hot",
@@ -174,7 +172,7 @@
     "del-cli": "^0.2.1",
     "dotenv": "^4.0.0",
     "font-awesome": "^4.7.0",
-    "http-server": "^0.9.0",
+    "http-server": "linuxbozo/http-server",
     "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.1.1",
     "vulcanize": "^1.15.3",
@@ -191,6 +189,7 @@
     "jasmine": "^2.5.3",
     "jasmine-core": "^2.5.2",
     "karma": "^1.4.0",
+    "html-hint": "^0.2.4",
     "karma-chrome-launcher": "^2.0.0",
     "karma-coverage": "^1.1.1",
     "karma-jasmine": "^1.1.0",

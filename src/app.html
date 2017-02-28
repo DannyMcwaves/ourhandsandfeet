@@ -1,5 +1,6 @@
 <template>
   <div class="page-host">
+  <!-- <div id="content"> -->
     <paper-drawer-panel right-drawer>
       <paper-header-panel drawer>
         <paper-material class="material-header" elevation="0">
@@ -17,11 +18,11 @@
             </a>
           </paper-item>
           <paper-item if.bind="authenticated">
-            <a href="#/dashboard">Dashboard</a></paper-item>
+            <a paper-drawer-toggle style="display:block" href="#/dashboard">Dashboard</a></paper-item>
             <paper-item if.bind="!authenticated">
-              <a href="#/login">Login</a></paper-item>
+              <a paper-drawer-toggle style="display:block" href="#/login">Login</a></paper-item>
               <paper-item if.bind="authenticated">
-                <a click.delegate="logout()">
+                <a paper-drawer-toggle style="display:block" click.delegate="logout()">
                   Logout
                 </a>
               </paper-item>
@@ -46,4 +47,5 @@
         </paper-drawer-panel>
         <nav-bar router.bind="router"></nav-bar>
       </div>
+	  <!-- </div> -->
     </template>
