@@ -29,4 +29,9 @@ export class Login {
     }, undefined);
     return ret;
   }
+
+  myfunction() {
+    alert("this should rather work then.");
+  }
+
 }
