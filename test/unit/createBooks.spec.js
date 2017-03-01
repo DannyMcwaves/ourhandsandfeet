@@ -1,4 +1,4 @@
-import {CreateBookDashboard} from '../../src/dashboard-routes/bookstore-routes/createBooks';
+import {CreateBookDashboard} from '../../src/dashboard-routes/developer-routes/create-books';
 import {HttpClient} from 'aurelia-fetch-client';
 import './setup';
 import {Router} from 'aurelia-router';
