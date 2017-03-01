@@ -30,8 +30,4 @@ export class Login {
     return ret;
   }
 
-  myfunction() {
-    alert("this should rather work then.");
-  }
-
 }
