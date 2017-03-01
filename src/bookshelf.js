@@ -3,7 +3,7 @@ import {HttpClient} from 'aurelia-fetch-client';
 import {Router} from 'aurelia-router';
 //import { bindable } from 'aurelia-framework';
 
-const fetch = !self.fetch ? System.import('isomorphic-fetch') : Promise.resolve(self.fetch);
+//const fetch = !self.fetch ? System.import('isomorphic-fetch') : Promise.resolve(self.fetch);
 
 @inject(HttpClient, Router)
 export class Bookshelf {
