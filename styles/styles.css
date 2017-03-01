@@ -24,6 +24,10 @@ table {
     margin: auto;
 }
 
+a {
+  text-decoration: underline;
+}
+
 tbody tr:nth-child(odd) {
     background-color: #d8ecf3;
 }
