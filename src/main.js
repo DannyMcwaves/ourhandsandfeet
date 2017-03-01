@@ -14,7 +14,8 @@ export async function configure(aurelia) {
   if (process.env.NODE_ENV !== 'production'){
     aurelia.use
     .standardConfiguration()
-    .developmentLogging();
+    .developmentLogging()
+    .feature('components');
     aurelia.use.plugin('aurelia-polymer');
     aurelia.use.plugin('aurelia-auth', (baseConfig)=>{
       baseConfig.configure(config);
