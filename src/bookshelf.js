@@ -26,7 +26,8 @@ export class Bookshelf {
     this.books =  await res.json();
   }
 
-  // attached() {
-  //   document.title = this.router.currentInstruction.config.title;
-  // }
+  attached() {
+    this.title = this.router.currentInstruction.config.title;
+  }
+  
 }
