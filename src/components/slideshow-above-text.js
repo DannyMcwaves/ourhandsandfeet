@@ -1,5 +1,5 @@
 import {Router} from 'aurelia-router'
-import {inject} from 'aurelia-framework'
+import {inject, bindable} from 'aurelia-framework'
 
 @inject(Router)
 export class SlideshowAboveText {
