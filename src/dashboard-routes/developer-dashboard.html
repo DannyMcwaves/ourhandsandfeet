@@ -1,0 +1,38 @@
+<template>
+  <div class="page-content">
+    <h2 class="material-content-h2" style="margin-bottom: 10px;">Our ${title}</h2>
+    <paper-material elevation="0">
+      <div class="search-table-outer">
+        <table aurelia-table="data.bind: books; display-data.bind: $displayData" class="bookshelf">
+          <thead>
+            <tr>
+              <th aut-sort="key: title; default: asc">Title</th>
+              <th>Type</th>
+              <th>Author</th>
+              <!-- <th>Pages</th>
+              <th>Year</th>
+              <th>Site</th>
+              <th>Copies</th> -->
+              <!-- <th>Access</th> -->
+              <th>Comments</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr repeat.for="book of $displayData">
+              <td><a style="text-decoration: underline;" show.bind="book.url" href="${book.url}">
+                ${book.title}</a><span if.bind="!book.url">${book.title}</span></td>
+                <td>${book.type}</td>
+                <td>${book.author}</td>
+                <!-- <td>${book.numberPages}</td>
+                <td>${book.dateOfPub}</td>
+                <td>${book.siteLocation}</td>
+                <td>${book.numberOfCopies}</td> -->
+                <!-- <td>${book.access}</td> -->
+                <td>${book.comments}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </paper-material>
+    </div>
+  </template>
