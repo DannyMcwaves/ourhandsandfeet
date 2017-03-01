@@ -42,9 +42,10 @@ export async function configure(aurelia) {
       baseConfig.configure(config);
     });
     document.addEventListener('WebComponentsReady', function() {
-      aurelia.start();
-      aurelia.setRoot('app');
+      aurelia.start().then(() => aurelia.setRoot('app'));
     });
+    // aurelia.start().then(() => aurelia.setRoot("app"));
+    // aurelia.setRoot('app');
   }
   // if you would like your website to work offline (Service Worker),
   // install and enable the @easy-webpack/config-offline package in webpack.config.js and uncomment the following code:
