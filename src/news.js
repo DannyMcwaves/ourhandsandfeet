@@ -10,9 +10,9 @@ export class News {
     this.router = router;
   }
   
-  attached() {
-      this.title = this.router.currentInstruction.config.title;
-  }
+  // attached() {
+  //     document.title = this.router.currentInstruction.config.title;
+  // }
   
   
   // heading = 'Welcome to the Aurelia Navigation App!';

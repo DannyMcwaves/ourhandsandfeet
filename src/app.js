@@ -7,7 +7,6 @@ import {AuthService} from 'aurelia-auth';
 import {AuthorizeStep} from 'aurelia-router';
 import {HttpClient} from 'aurelia-fetch-client';
 System.import('isomorphic-fetch');
-
 @inject(Router, FetchConfig, AuthService, AppRouterConfig, HttpClient)
 export class App {
   constructor(router, fetchConfig, auth, appRouterConfig, httpClient){
