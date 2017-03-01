@@ -5,18 +5,10 @@ import {inject} from 'aurelia-framework';
 @inject(Router)
 export class Home {
   
-  constructor(Router) {
-    this.router = Router;
+  constructor(router) {
+    this.router = router;
   }
-
-  get width() {
-    return document.documentElement.clientWidth;
-  }
-
-  get widescreen() {
-    return this.width > 1200
-  }
-
+  
   // attached() {
   //     document.title = this.router.currentInstruction.config.title;
   // }
