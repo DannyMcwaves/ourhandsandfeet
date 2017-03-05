@@ -6,7 +6,7 @@ dependencies:
     - npm install -g npm@next
     - npm install -g bower
     - npm install
-    - bower install
+    - npm install --only=dev
 general:
   artifacts:
     - ./coverage
