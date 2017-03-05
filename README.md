@@ -1,5 +1,5 @@
 # ourhandsandfeet
-[![CircleCI](https://circleci.com/gh/UltimatePromotions/ourhandsandfeet.svg?style=svg)](https://circleci.com/gh/UltimatePromotions/ourhandsandfeet)
+[![CircleCI](https://circleci.com/gh/WebJamApps/ourhandsandfeet.svg?style=svg)](https://circleci.com/gh/WebJamApps/ourhandsandfeet)
 
 ## Helping Charities find volunteers
 

@@ -47,7 +47,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/UltimatePromotions/ourhandsandfeet.git"
+    "url": "git+ssh://git@github.com/WebJamApps/ourhandsandfeet.git"
   },
   "keywords": [
     "aurelia",
