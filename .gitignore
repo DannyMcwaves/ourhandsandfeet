@@ -48,7 +48,7 @@ dist
 test/coverage
 
 coverage
-
+.idea/
 yarn.lock
 
 .bowerrc
