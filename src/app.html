@@ -28,12 +28,14 @@
                 <span class="fa fa-sign-in"></span>
                 &nbsp;Login
               </a></paper-item>
-              <paper-item if.bind="authenticated">
+              <!-- <paper-item if.bind="authenticated">
                 <a paper-drawer-toggle style="display:block; color:#0275d8" click.delegate="logout()" class="navlink">
                   <span class="fa fa-sign-out"></span>
                   &nbsp;Logout
                 </a>
-              </paper-item>
+              </paper-item> --><paper-item>
+              <button if.bind="authenticated" click.delegate="logout()" class="material-content-button">Logout</button>
+            </paper-item>
             </div>
           </paper-header-panel>
           <paper-header-panel main class="main-panel">

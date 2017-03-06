@@ -13,9 +13,9 @@ export class Login {
     this.router = router;
   }
   
-  // attached() {
-  //   document.title = this.router.currentInstruction.config.title;
-  // }
+  attached() {
+    this.title = this.router.currentInstruction.config.title;
+  }
   
   authenticate(name){
     let ret = this.auth.authenticate(name, false, null);
