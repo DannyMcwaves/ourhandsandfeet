@@ -5,8 +5,9 @@ dependencies:
   override:
     - npm install -g npm@next
     - npm install -g bower
-    - npm install
-    - npm install --only=dev
+    - npm install -g yarn
+    - yarn install
+    - yarn install --only=dev
 general:
   artifacts:
     - ./coverage
