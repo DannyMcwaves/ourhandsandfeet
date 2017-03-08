@@ -2,6 +2,7 @@ let configForDevelopment = {
   httpInterceptor: true,
   loginOnSignup: true,
   baseUrl: process.env.BackendUrl,
+  //these are the defaults
   // loginRedirect: '#/',
   // logoutRedirect: '#/',
   // signupRedirect: '#/login',
