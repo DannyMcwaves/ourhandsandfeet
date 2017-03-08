@@ -21,12 +21,16 @@
     "tests"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.2.0",
-    "iron-elements": "polymerelements/iron-elements#^1.0.10",
-    "paper-elements": "polymerelements/paper-elements#^1.0.7",
-    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.20",
-    "polymer-slideshow": "^3.1.0",
+    "polymer": "Polymer/polymer#1.2.0",
+    "iron-elements": "polymerelements/iron-elements#1.0.10",
+    "paper-elements": "polymerelements/paper-elements#1.0.7",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#0.7.20",
+    "polymer-slideshow": "3.1.0",
     "iron-grid": "*",
-    "app-layout": "^0.10.7"
+    "app-layout": "0.10.7"
+  },
+  "resolutions": {
+    "polymer": "1.2.0",
+    "webcomponentsjs": "0.7.20"
   }
 }
