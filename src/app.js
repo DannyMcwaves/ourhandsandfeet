@@ -1,5 +1,5 @@
 // import 'bootstrap';
-import {inject} from 'aurelia-framework';
+import {inject, bindable} from 'aurelia-framework';
 import {Router} from 'aurelia-router';
 import {AppRouterConfig} from './app.router.config';
 import {FetchConfig} from 'aurelia-auth';
@@ -17,18 +17,48 @@ export class App {
     this.httpClient = httpClient;
     this.user = this.getUser();
   }
+  @bindable
+  drawerWidth = '175px';
+  
+  @bindable
+  fullmenu = true;
+  
   email='';
   password='';
   authenticated = false;
   token='';
-
-
+  
+  get widescreen(){
+    let iswidescreen = false;
+    let currentscreenwidth = document.documentElement.clientWidth;
+    if (currentscreenwidth > 766){
+      iswidescreen = true;
+    }
+    // else {
+    //   iswidescreen = false;
+    // }
+    return iswidescreen;
+  }
+  
+  togglemenu(){
+    if (this.fullmenu) {
+      this.fullmenu = false;
+      this.drawerWidth = '50px';
+      // this.leftMargin = '55px';
+      // if (this.screenWidth > 766)
+    } else {
+      this.fullmenu = true;
+      this.drawerWidth = '175px';
+      // this.leftMargin = '165px';
+    }
+  }
+  
   logout(){
     this.auth.setToken('');
     this.authenticated = false;
     this.auth.logout('#/');
   }
-
+  
   getUser(){
     // return this.auth.getMe().then((response)=>{console.log("get me:" + response);return response;});
     this.authenticated = this.auth.isAuthenticated();
@@ -44,7 +74,7 @@ export class App {
       return '';
     }
   }
-
+  
   getTokens(){
     return this.auth.getTokenPayload();
   }
@@ -53,7 +83,7 @@ export class App {
     this.configHttpClient();
     //this.getUser();
   }
-
+  
   configHttpClient(){
     this.httpClient.configure(httpConfig => {
       httpConfig
@@ -67,5 +97,5 @@ export class App {
       .withInterceptor(this.auth.tokenInterceptor);
     });
   }
-
+  
 }
