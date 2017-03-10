@@ -5,14 +5,14 @@
   "main": "dist/main.js",
   "productName": "ourhandsandfeet",
   "engines": {
-    "node": "7.7.1",
+    "node": "7.6.0",
     "npm": "4.1.2"
   },
   "scripts": {
     "pretest": "del-cli \"coverage/*\"",
     "installtest": "yarn install && npm test",
     "cleaninstall": "rm -rf bower_components && rm -rf node_modules && npm i -g yarn && yarn cache clean && yarn install",
-    "postinstall": "bower install && npm run build:prod",
+    "postinstall": "yarn global add bower && bower install && npm run build:prod",
     "test": "cross-env BABEL_ENV=node NODE_ENV=test ./node_modules/karma/bin/karma start test/karma.conf.js",
     "test:debug": "npm test -- --single-run=false --auto-watch=true --debug",
     "test:bs": "cd coverage && browser-sync start --server -f ./**/*.html",
@@ -166,7 +166,6 @@
     "babel-register": "6.22.0",
     "bluebird": "3.4.7",
     "bootstrap": "4.0.0-alpha.6",
-    "bower": "1.8.0",
     "cross-env": "3.1.4",
     "csvjson": "4.0.2",
     "del-cli": "0.2.1",
@@ -175,7 +174,7 @@
     "http-server": "linuxbozo/http-server",
     "isomorphic-fetch": "2.2.1",
     "jquery": "3.1.1",
-    "vulcanize": "1.15.3",
+    "vulcanize": "^1.15.3",
     "aurelia-bootstrapper": "2.0.1",
     "aurelia-testing": "1.0.0-beta.2.0.1",
     "webpack": "2.2.0"
