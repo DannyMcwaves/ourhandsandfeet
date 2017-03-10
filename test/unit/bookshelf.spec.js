@@ -1,4 +1,4 @@
-import {Bookshelf} from '../../src/bookshelf';
+import {Bookshelf} from '../../src/dashboard-routes/developer-routes/bookshelf';
 const Counter = require('assertions-counter');
 class HttpStub {
   fetch(fn) {

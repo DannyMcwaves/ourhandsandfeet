@@ -16,7 +16,6 @@ export class AppRouterConfig{
       config.map([
         { route: ['', 'home'], name: 'home', moduleId: './home', nav: true, title: 'About', settings: 'fa fa-home' },
         { route: 'news', name: 'news', moduleId: './news', nav: true, title: 'News', settings: 'fa fa-file-text-o' },
-        { route: 'bookshelf', name: 'bookshelf', moduleId: './bookshelf', nav: true, title: 'Bookshelf', settings: 'fa fa-book'},
         { route: 'login', name: 'login', moduleId: './login', nav: false, title: 'Login', settings: 'fa fa-sign-in'},
         { route: 'dashboard', name: 'dashboard-router', moduleId: './dashboard-router', nav: false, title: 'Dashboard', auth: true, settings: 'fa fa-tachometer'}
       ]);
