@@ -1,8 +1,5 @@
 import {Dashboard} from '../../src/dashboard-routes/dashboard';
-import {Container} from 'aurelia-dependency-injection';
-import {json} from 'aurelia-fetch-client';
 import {StageComponent} from 'aurelia-testing';
-import {bootstrap} from 'aurelia-bootstrapper';
 const Counter = require('assertions-counter');
 
 class HttpStub {
@@ -131,7 +128,7 @@ describe('the Dashboard Module', () => {
         done();
       }, 10);
     });
-
+    
     it('should expect change in http status after Developer activate call', done => {
       http = new HttpMock({name: 'John Fitzgerald', userType: 'Developer'});
       auth = new AuthServiceMock();
@@ -169,25 +166,6 @@ describe('the Dashboard Module', () => {
         })());
       });
     });
-    // it('should return false for configured', done => {
-    //   dashboard.getUser();
-    //   setTimeout(function() {
-    //     expect(dashboard.configured()).toBeFalsy();
-    //     done();
-    //   }, 5);
-    // });
-    
-    // it('should expect change in http status after activate call', done => {
-    //   http = new HttpMock({name: 'Iddris Elba', age: 22, userType: 'Volunteer'});
-    //   auth = new AuthServiceMock();
-    //   dashboard = new Dashboard(auth, http, null, new RouterMock);
-    //   auth.setToken(token);
-    //   dashboard.activate();
-    //   setTimeout(function() {
-    //     expect(http.status).toBe(200);
-    //     done();
-    //   }, 10);
-    // });
     
     it('should confirm route by returning the currently navigated route', done => {
       expect(dashboard.router.navigate(dashboard.types[0])).toBe('Charity');
@@ -204,11 +182,6 @@ describe('the Dashboard Module', () => {
       .boundTo({user: {name: 'John Fitzgerald'}});
     });
     it('staging the dashboard', done => {
-      // let strap = dashboard.create(bootstrap)
-      // custom element incorporated. must be pure elements.
-      // dashboard.create(bootstrap).then(() => {
-      // console.log(document);
-      // }).catch(e => { console.log(e.toString()); } )
       done();
     });
   });
