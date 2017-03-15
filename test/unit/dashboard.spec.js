@@ -108,25 +108,25 @@ describe('the Dashboard Module', () => {
       }, 5);
     });
     
-    it('should return false for configured', done => {
-      dashboard.getUser();
-      setTimeout(function() {
-        expect(dashboard.configured()).toBeFalsy();
-        done();
-      }, 5);
-    });
+    // it('should return false for configured', done => {
+    //   dashboard.getUser();
+    //   setTimeout(function() {
+    //     expect(dashboard.configured()).toBeFalsy();
+    //     done();
+    //   }, 5);
+    // });
     
-    it('should expect change in http status after activate call', done => {
-      http = new HttpMock({name: 'Iddris Elba', age: 22, userType: 'Volunteer'});
-      auth = new AuthServiceMock();
-      dashboard = new Dashboard(auth, http, null, new RouterMock);
-      auth.setToken(token);
-      dashboard.activate();
-      setTimeout(function() {
-        expect(http.status).toBe(200);
-        done();
-      }, 10);
-    });
+    // it('should expect change in http status after activate call', done => {
+    //   http = new HttpMock({name: 'Iddris Elba', age: 22, userType: 'Volunteer'});
+    //   auth = new AuthServiceMock();
+    //   dashboard = new Dashboard(auth, http, null, new RouterMock);
+    //   auth.setToken(token);
+    //   dashboard.activate();
+    //   setTimeout(function() {
+    //     expect(http.status).toBe(200);
+    //     done();
+    //   }, 10);
+    // });
     
     it('should confirm route by returning the currently navigated route', done => {
       expect(dashboard.router.navigate(dashboard.types[0])).toBe('Charity');

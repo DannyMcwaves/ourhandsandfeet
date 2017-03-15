@@ -6,15 +6,15 @@ describe('The Polymer module', () => {
     xhr = new XMLHttpRequest();
   });
   
-  it('Should load webcomponents-lite.js', () => {
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState === XMLHttpRequest.DONE) {
-        expect(xhr.status).toBe(200);
-      }
-    };
-    xhr.open('GET', 'http://localhost:9000/bower_components/webcomponentsjs/webcomponents-lite.js');
-    xhr.send();
-  });
+  // it('Should load webcomponents-lite.js', () => {
+  //   xhr.onreadystatechange = function() {
+  //     if (xhr.readyState === XMLHttpRequest.DONE) {
+  //       expect(xhr.status).toBe(200);
+  //     }
+  //   };
+  //   xhr.open('GET', 'http://localhost:9000/bower_components/webcomponentsjs/webcomponents-lite.js');
+  //   xhr.send();
+  // });
   
   it('Should load all the components in includes.html', () => {
     let components = [];
