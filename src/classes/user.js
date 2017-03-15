@@ -4,7 +4,7 @@ inject(HttpClient);
 export class User {
   constructor(httpClient){
     this.httpClient = httpClient;
-    console.log(httpClient);
+    //console.log(httpClient);
   }
   storedUser=null;
   authenticated=false;

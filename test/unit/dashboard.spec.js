@@ -1,6 +1,6 @@
 import {Dashboard} from '../../src/dashboard-routes/dashboard';
-import {Container} from "aurelia-dependency-injection";
-import {json} from "aurelia-fetch-client";
+import {Container} from 'aurelia-dependency-injection';
+import {json} from 'aurelia-fetch-client';
 import {StageComponent} from 'aurelia-testing';
 import {bootstrap} from 'aurelia-bootstrapper';
 
