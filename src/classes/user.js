@@ -1,16 +1,10 @@
 import {inject} from 'aurelia-framework';
-import {App} from '../app';
-import {AuthService} from 'aurelia-auth';
 import {HttpClient, json} from 'aurelia-fetch-client';
-inject(App, HttpClient, AuthService);
+inject(HttpClient);
 export class User {
-  constructor(app, httpClient, authService){
-    this.app = app;
+  constructor(httpClient){
     this.httpClient = httpClient;
-    this.auth = authService;
-    console.log(app);
     console.log(httpClient);
-    console.log(authService);
   }
   storedUser=null;
   authenticated=false;
@@ -24,25 +18,36 @@ export class User {
     }
     return returnVal;
   }
+  async activate(){
+    await fetch;
+    this.httpClient.configure(config => {
+      config
+      .useStandardConfiguration()
+      .withBaseUrl(process.env.BackendUrl);
+    });
+    // storedUser = this.getUser();
+    // return storedUser;
+  }
   
-  getUser(){
+  getUser(uid){
     if (this.storedUser !== null){
+      //TODO: Test to see if this is supposed to be this.storedUser
       return Promise.resolve(this.stored_user);
     }
-    this.authenticated = this.auth.isAuthenticated();
-    if (this.authenticated){
-      let uid = this.auth.getTokenPayload().sub;
-      this.httpClient.fetch(process.env.BackendUrl + '/user/' + uid)
-      .then(response => response.json())
-      .then(data => {
-        this.usestored_user = data;
-        this.firstTimeInfo = this.configured();
-        if (this.stored_user.userType === 'Charity'){
-          this.stored_user.userType = 1;
-        } else if (this.stored_user.userType === 'Volunteer'){
-          this.stored_user.userType = 2;
-        }
-      });
+    this.httpClient.fetch('/user/' + uid)
+    .then(response => response.json())
+    .then(data => {
+      this.storedUser = data;
+    });
+    return storedUser;
+  }
+  getUser(){
+    if (this.storedUser){
+      return storedUser;
     }
+    throw 'User does not exist';
+  }
+  clearUser(){
+    storedUser = null;
   }
 }
