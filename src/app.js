@@ -4,7 +4,8 @@ import {Router} from 'aurelia-router';
 import {AppRouterConfig} from './app.router.config';
 import {FetchConfig} from 'aurelia-auth';
 import {AuthService} from 'aurelia-auth';
-import {AuthorizeStep} from 'aurelia-router';
+//import {User} from './classes/user';
+//import {AuthorizeStep} from 'aurelia-router';
 import {HttpClient} from 'aurelia-fetch-client';
 System.import('isomorphic-fetch');
 @inject(Router, FetchConfig, AuthService, AppRouterConfig, HttpClient)
@@ -31,12 +32,10 @@ export class App {
   get widescreen(){
     let iswidescreen = false;
     let currentscreenwidth = document.documentElement.clientWidth;
+    /* istanbul ignore else */
     if (currentscreenwidth > 766){
       iswidescreen = true;
     }
-    // else {
-    //   iswidescreen = false;
-    // }
     return iswidescreen;
   }
   

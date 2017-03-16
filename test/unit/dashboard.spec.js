@@ -1,17 +1,33 @@
 import {Dashboard} from '../../src/dashboard-routes/dashboard';
-import {Container} from "aurelia-dependency-injection";
-import {json} from "aurelia-fetch-client";
 import {StageComponent} from 'aurelia-testing';
-import {bootstrap} from 'aurelia-bootstrapper';
+const Counter = require('assertions-counter');
+
+class HttpStub {
+  fetch(fn) {
+    var response = this.itemStub;
+    this.__fetchCallback = fn;
+    return new Promise((resolve) => {
+      resolve({ json: () => response });
+    });
+  }
+  configure(fn) {
+    this.__configureCallback = fn;
+    return this.__configureReturns;
+  }
+}
 
 class HttpMock {
   // this one catches the ajax and then resolves a custom json data.
   // real api calls will have more methods.
   constructor(data) {
-    this.user = data || {name: 'John Fitzgerald', age: 20, userType: 'Charity'};
+    this.user = data || {name: 'John Fitzgerald', userType: 'Charity'};
   }
   status = 500;
   headers = {accept: 'application/json', method: '', url: ''}
+  configure(fn) {
+    this.__configureCallback = fn;
+    return this.__configureReturns;
+  }
   fetch(url, obj) {
     this.headers.url = url;
     this.headers.method = obj ? obj.method : 'GET';
@@ -57,6 +73,7 @@ class RouterMock {
 
 describe('the Dashboard Module', () => {
   let dashboard;
+  let dashboard2;
   
   describe('Dashboard DI', () => {
     let auth;
@@ -66,6 +83,7 @@ describe('the Dashboard Module', () => {
       auth = new AuthServiceMock();
       http = new HttpMock();
       dashboard = new Dashboard(auth, http, null, new RouterMock);
+      dashboard2 = new Dashboard(auth, new HttpStub, null, new RouterMock);
       auth.setToken(token);
     });
     
@@ -99,6 +117,30 @@ describe('the Dashboard Module', () => {
       done();
     });
     
+    it('should expect change in http status after Volunteer activate call', done => {
+      http = new HttpMock({name: 'Iddris Elba', userType: 'Volunteer'});
+      auth = new AuthServiceMock();
+      dashboard = new Dashboard(auth, http, null, new RouterMock);
+      auth.setToken(token);
+      dashboard.activate();
+      setTimeout(function() {
+        expect(http.status).toBe(200);
+        done();
+      }, 10);
+    });
+    
+    it('should expect change in http status after Developer activate call', done => {
+      http = new HttpMock({name: 'John Fitzgerald', userType: 'Developer'});
+      auth = new AuthServiceMock();
+      dashboard = new Dashboard(auth, http, null, new RouterMock);
+      auth.setToken(token);
+      dashboard.activate();
+      setTimeout(function() {
+        expect(http.status).toBe(200);
+        done();
+      }, 10);
+    });
+    
     it('should confirm 200 http status after updateUser call', done => {
       dashboard.getUser();
       setTimeout(function() {
@@ -108,24 +150,21 @@ describe('the Dashboard Module', () => {
       }, 5);
     });
     
-    it('should return false for configured', done => {
-      dashboard.getUser();
-      setTimeout(function() {
-        expect(dashboard.configured()).toBeFalsy();
-        done();
-      }, 5);
-    });
-    
-    it('should expect change in http status after activate call', done => {
-      http = new HttpMock({name: 'Iddris Elba', age: 22, userType: 'Volunteer'});
-      auth = new AuthServiceMock();
-      dashboard = new Dashboard(auth, http, null, new RouterMock);
-      auth.setToken(token);
-      dashboard.activate();
-      setTimeout(function() {
-        expect(http.status).toBe(200);
-        done();
-      }, 10);
+    it('tests configHttpClient', (done) => {
+      const { add: ok } = new Counter(2, done);
+      dashboard2.activate().then(() => {
+        dashboard2.httpClient.__configureCallback(new(class {
+          withBaseUrl(opts) {
+            expect(opts).toBe(process.env.BackendUrl);
+            ok();
+            return this;
+          }
+          useStandardConfiguration() {
+            ok();
+            return this;
+          }
+        })());
+      });
     });
     
     it('should confirm route by returning the currently navigated route', done => {
@@ -143,11 +182,6 @@ describe('the Dashboard Module', () => {
       .boundTo({user: {name: 'John Fitzgerald'}});
     });
     it('staging the dashboard', done => {
-      // let strap = dashboard.create(bootstrap)
-      // custom element incorporated. must be pure elements.
-      // dashboard.create(bootstrap).then(() => {
-      // console.log(document);
-      // }).catch(e => { console.log(e.toString()); } )
       done();
     });
   });
