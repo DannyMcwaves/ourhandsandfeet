@@ -311,7 +311,8 @@ section.au-enter-active {
 
 .material-header-h3-call {
   color: white;
-  font-size: 22pt;
+  font-size: 18pt;
+  padding: 4px;
 }
 
 .material-header-h4 {

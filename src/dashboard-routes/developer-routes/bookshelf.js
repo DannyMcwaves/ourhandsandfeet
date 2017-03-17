@@ -7,27 +7,43 @@ import {Router} from 'aurelia-router';
 
 @inject(HttpClient, Router)
 export class Bookshelf {
-
+  
   constructor(httpClient, router){
     this.httpClient = httpClient;
     this.router = router;
   }
-
+  mediaTypes = [];
+  
   async activate(){
     await fetch;
-
+    
     this.httpClient.configure(config => {
       config
       .useStandardConfiguration()
       .withBaseUrl(process.env.BackendUrl);
     });
-
+    
     const res = await this.httpClient.fetch('/book/getall');
     this.books =  await res.json();
+    this.populateTypes();
   }
-
+  
   attached() {
     this.title = this.router.currentInstruction.config.title;
   }
+  filters = [
+    {value: '', keys: ['title', 'type', 'author', 'comments']},
+    {value: '', keys: ['type']}
+  ];
   
+  populateTypes(){
+    this.mediaTypes.push('');
+    for (let next of this.books){
+      let nextType = next.type;
+      /* istanbul ignore else */
+      if (this.mediaTypes.indexOf(nextType) === -1){
+        this.mediaTypes.push(nextType);
+      }
+    }
+  }
 }

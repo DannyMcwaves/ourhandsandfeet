@@ -46,9 +46,12 @@ dist
 /release
 
 test/coverage
-
 coverage
+<<<<<<< HEAD
 .idea/
 yarn.lock
+=======
+>>>>>>> 8036e38687933fe86c5639d0b524a5c11f91b1c0
 
 .bowerrc
+.idea

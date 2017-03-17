@@ -8,9 +8,9 @@ This is the front end for the ourhandsandfeet.org web app. Here are the steps to
 Clone this repository into a directory of your choice from the terminal using "git clone [url of this repository]
 Install and use the version of nodejs currently listing in our package.json<br>
 Create a <b>.env</b> file at the project root and request the contents from <b>@JoshuaVSherman</b>.<br>You will not be able to build without this file, so there is no need to try installing anything until you have this in place.<br>
-From the same directory, run <b>npm install</b><br>
+From the same directory, run <b>npm run cleaninstall</b><br>
 
-Run <b>npm start</b>
+Run <b>npm start</b> to start the development server.<br>
 Install the <b>Aurelia Inspector</b> Chrome extension to allow debugging of the font end code.
 
 Now, open your browser and go to <b>localhost:9000</b>

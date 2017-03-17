@@ -1,10 +1,11 @@
 // import 'bootstrap';
-import {inject} from 'aurelia-framework';
+import {inject, bindable} from 'aurelia-framework';
 import {Router} from 'aurelia-router';
 import {AppRouterConfig} from './app.router.config';
 import {FetchConfig} from 'aurelia-auth';
 import {AuthService} from 'aurelia-auth';
-import {AuthorizeStep} from 'aurelia-router';
+//import {User} from './classes/user';
+//import {AuthorizeStep} from 'aurelia-router';
 import {HttpClient} from 'aurelia-fetch-client';
 System.import('isomorphic-fetch');
 @inject(Router, FetchConfig, AuthService, AppRouterConfig, HttpClient)
@@ -17,28 +18,62 @@ export class App {
     this.httpClient = httpClient;
     this.user = this.getUser();
   }
+  @bindable
+  drawerWidth = '175px';
+  
+  @bindable
+  fullmenu = true;
+  
   email='';
   password='';
   authenticated = false;
   token='';
-
-
+  
+  get widescreen(){
+    let iswidescreen = false;
+    let currentscreenwidth = document.documentElement.clientWidth;
+    /* istanbul ignore else */
+    if (currentscreenwidth > 766){
+      iswidescreen = true;
+    }
+    return iswidescreen;
+  }
+  
+  togglemenu(){
+    if (this.fullmenu) {
+      this.fullmenu = false;
+      this.drawerWidth = '50px';
+      // this.leftMargin = '55px';
+      // if (this.screenWidth > 766)
+    } else {
+      this.fullmenu = true;
+      this.drawerWidth = '175px';
+      // this.leftMargin = '165px';
+    }
+  }
+  
   logout(){
     this.auth.setToken('');
     this.authenticated = false;
     this.auth.logout('#/');
   }
-
+  
   getUser(){
     // return this.auth.getMe().then((response)=>{console.log("get me:" + response);return response;});
     this.authenticated = this.auth.isAuthenticated();
     if (this.authenticated) {
       const uid = this.getTokens().sub;
+      this.httpClient.fetch(process.env.BackendUrl + '/user/' + uid)
+      .then(response => response.json())
+      .then(data => {
+        //'this' means app?
+        this.user = data;
+      });
     } else {
       return '';
     }
   }
-
+  
   getTokens(){
     return this.auth.getTokenPayload();
   }
@@ -47,7 +82,7 @@ export class App {
     this.configHttpClient();
     //this.getUser();
   }
-
+  
   configHttpClient(){
     this.httpClient.configure(httpConfig => {
       httpConfig
@@ -61,5 +96,5 @@ export class App {
       .withInterceptor(this.auth.tokenInterceptor);
     });
   }
-
+  
 }

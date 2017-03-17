@@ -1,12 +1,10 @@
 machine:
   node:
-    version: 7.7.1
+    version: 7.7.3
 dependencies:
   override:
-    - npm install -g npm@next
-    - npm install -g bower
-    - npm install
-    - npm install --only=dev
+    - npm install -g yarn
+    - yarn install
 general:
   artifacts:
     - ./coverage
