@@ -43,7 +43,7 @@ td {
 .home-slideshow {
   width: 100% !important;
   height: 0 !important;
-  padding-bottom: 32%;
+  padding-bottom: 50%;
 }
 
 .splash {
@@ -352,4 +352,13 @@ section.au-enter-active {
 
 .aut-desc::after {
   content: "\f161";
+}
+
+.question {
+  margin-bottom: 0;
+}
+
+.answer {
+  margin-bottom: 1em;
+  font-style: italic;
 }
