@@ -20,11 +20,13 @@ export class Dashboard {
   
   async activate(){
     await fetch;
-    this.httpClient.configure(config => {
-      config
-      .useStandardConfiguration()
-      .withBaseUrl(process.env.BackendUrl);
-    });
+    if (process.env.NODE_ENV !== 'production'){
+      this.httpClient.configure(config => {
+        config
+        .useStandardConfiguration()
+        .withBaseUrl(process.env.BackendUrl);
+      });
+    }
     this.getUser();
   }
   
