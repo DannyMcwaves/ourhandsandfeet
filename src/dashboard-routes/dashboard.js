@@ -19,14 +19,18 @@ export class Dashboard {
   types=['Charity', 'Volunteer'];
   
   async activate(){
-    await fetch;
+    let backend = '';
     if (process.env.NODE_ENV !== 'production'){
-      this.httpClient.configure(config => {
-        config
-        .useStandardConfiguration()
-        .withBaseUrl(process.env.BackendUrl);
-      });
+      backend = process.env.BackendUrl;
     }
+    await fetch;
+    //if (process.env.NODE_ENV !== 'production'){
+    this.httpClient.configure(config => {
+      config
+      .useStandardConfiguration()
+      .withBaseUrl(backend);
+    });
+    //}
     this.getUser();
   }
   
