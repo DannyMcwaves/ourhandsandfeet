@@ -58,7 +58,7 @@ export class Dashboard {
     let uid = this.auth.getTokenPayload().sub;
     //let tempUserType = this.user.userType;
     this.user.userType = this.types[this.user.userType - 1];
-    this.httpClient.fetch(process.env.BackendUrl + '/user/' + uid, {
+    this.httpClient.fetch('/user/' + uid, {
       method: 'put',
       body: json(this.user)
     })
