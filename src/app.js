@@ -63,7 +63,11 @@ export class App {
     this.authenticated = this.auth.isAuthenticated();
     if (this.authenticated) {
       const uid = this.getTokens().sub;
-      this.httpClient.fetch(process.env.BackendUrl + '/user/' + uid)
+      let backend = '';
+      if (process.env.NODE_ENV !== 'production'){
+        backend = process.end.BackendUrl;
+      }
+      this.httpClient.fetch(backend + '/user/' + uid)
       .then(response => response.json())
       .then(data => {
         //'this' means app?
