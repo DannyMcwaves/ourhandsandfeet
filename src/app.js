@@ -65,7 +65,7 @@ export class App {
       const uid = this.getTokens().sub;
       let backend = '';
       if (process.env.NODE_ENV !== 'production'){
-        backend = process.end.BackendUrl;
+        backend = process.env.BackendUrl;
       }
       this.httpClient.fetch(backend + '/user/' + uid)
       .then(response => response.json())
