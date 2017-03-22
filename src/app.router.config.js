@@ -1,7 +1,6 @@
 import {AuthorizeStep} from 'aurelia-auth';
 import {inject} from 'aurelia-framework';
 import {Router} from 'aurelia-router';
-import {UserAccess} from './classes/UserAccess';
 
 @inject(Router)
 export class AppRouterConfig{
@@ -12,7 +11,6 @@ export class AppRouterConfig{
     let theAppRouterConfig = function(config){
       config.title = 'Our Hands and Feet';
       config.addPipelineStep('authorize', AuthorizeStep);//Is the actually Authorization. Prevents users from certain sites when not authorized.
-      config.addPipelineStep('authorize', UserAccess); //'authorize' is the name of a pipeline slot-name. 'authorize'  happens before a routing is complete
       config.map([
         { route: ['', 'home'], name: 'home', moduleId: './home', nav: true, title: 'About', settings: 'fa fa-home' },
         { route: 'news', name: 'news', moduleId: './news', nav: true, title: 'News', settings: 'fa fa-file-text-o' },

@@ -4,19 +4,20 @@ import {Router} from 'aurelia-router';
 import {AppRouterConfig} from './app.router.config';
 import {FetchConfig} from 'aurelia-auth';
 import {AuthService} from 'aurelia-auth';
+import {AppState} from './classes/AppState.js';
 //import {User} from './classes/user';
 //import {AuthorizeStep} from 'aurelia-router';
 import {HttpClient} from 'aurelia-fetch-client';
 System.import('isomorphic-fetch');
-@inject(Router, FetchConfig, AuthService, AppRouterConfig, HttpClient)
+@inject(Router, FetchConfig, AuthService, AppRouterConfig, HttpClient, AppState)
 export class App {
-  constructor(router, fetchConfig, auth, appRouterConfig, httpClient){
+  constructor(router, fetchConfig, auth, appRouterConfig, httpClient, appState){
     this.router = router;
     this.appRouterConfig = appRouterConfig;
     this.fetchConfig = fetchConfig;
     this.auth = auth;
     this.httpClient = httpClient;
-    this.user = this.getUser();
+    this.appState = appState;
   }
   @bindable
   drawerWidth = '175px';
@@ -56,26 +57,6 @@ export class App {
     this.auth.setToken('');
     this.authenticated = false;
     this.auth.logout('#/');
-  }
-  
-  getUser(){
-    // return this.auth.getMe().then((response)=>{console.log("get me:" + response);return response;});
-    this.authenticated = this.auth.isAuthenticated();
-    if (this.authenticated) {
-      const uid = this.getTokens().sub;
-      let backend = '';
-      if (process.env.NODE_ENV !== 'production'){
-        backend = process.env.BackendUrl;
-      }
-      this.httpClient.fetch(backend + '/user/' + uid)
-      .then(response => response.json())
-      .then(data => {
-        //'this' means app?
-        this.user = data;
-      });
-    } else {
-      return '';
-    }
   }
   
   getTokens(){

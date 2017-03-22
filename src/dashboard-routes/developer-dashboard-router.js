@@ -1,4 +1,5 @@
 export class DeveloperRouter {
+
   heading = 'Developer Dashboard';
 
   configureRouter(config, router) {
