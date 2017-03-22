@@ -1,12 +1,19 @@
-import {Redirect, NavigationInstruction, RouterConfiguration, Next} from 'aurelia-router';
-// import {App} from '../app';
+import {inject} from 'aurelia-framework';
+import {AppState} from '../classes/AppState.js';
+
+@inject(AppState)
 export class UserAccess {
+  constructor(appState){
+    this.appState = appState;
+  }
   
   run(navigationInstruction, next){
     //TODO: Get type of user from shared state
+    let user = this.appState.getUser();
     
     //TODO: Determine the route destination. Probably get it from NavigationInstruction? 
     //if (navigationInstruction.getAllInstructions().some(i => {}))
+    navigationInstruction.fragment = '/dashboard/volunteer';
     console.log(navigationInstruction); //Testing to try to get navigationInstruction. Set a breakpoint here!
     // const endPoint
     const userType = 'placeholder';
@@ -17,8 +24,8 @@ export class UserAccess {
     //   //If it does, we cancel our original destination, and send it to the new userType specific one
     //   return next.cancel(new Redirect(userRouteAccess[userType].destination[endpoint]));
     // } else {
-      //If the destination is not mapped, cancel the navigationInstruction
-      return next();
+    //If the destination is not mapped, cancel the navigationInstruction
+    return next();
     // }
     //It should probably not reach here
     // throw new Error('userAccess is leaking');
@@ -27,21 +34,21 @@ export class UserAccess {
 }
 
 const userRouteAccess = {
-  "charity":{
-    "allowedRoutes": [
-      "charity"
+  'charity': {
+    'allowedRoutes': [
+      'charity'
     ],
-    "restrictedRoutes": [],
-    "destination": {
-      "dashboard": "charityDashboard"
+    'restrictedRoutes': [],
+    'destination': {
+      'dashboard': 'charityDashboard'
     }
   },
-  "volunteer":{
-    "allowedRoutes": [],
-    "restrictedRoutes": []
+  'volunteer': {
+    'allowedRoutes': [],
+    'restrictedRoutes': []
   },
-  "developer": {
-    "allowedRoutes": [],
-    "restrictedRoutes": []
+  'developer': {
+    'allowedRoutes': [],
+    'restrictedRoutes': []
   }
-}
+};
