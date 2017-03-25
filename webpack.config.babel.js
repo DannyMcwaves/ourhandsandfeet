@@ -74,7 +74,7 @@ const coreBundles = {
     'aurelia-templating-resources',
     'aurelia-polymer',
     'aurelia-auth',
-    'au-table'
+    // 'au-table'
     // 'aurelia-files'
   ]
 };
