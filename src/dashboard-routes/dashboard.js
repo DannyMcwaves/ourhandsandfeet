@@ -44,14 +44,20 @@ export class Dashboard {
     .then(data => {
       let user = data;
       this.appState.setUser(user);
+      console.log("In get user");
+      console.log(this.appState.getUser());
       //this.firstTimeInfo = this.configured();
       if (user.userType === 'Charity'){
         //this.user.userType = 1;
+        this.appState.setRoles(["charity", "developer"]);
         this.router.navigate('charity');
       } else if (user.userType === 'Volunteer'){
         //this.user.userType = 2;
+        this.appState.setRoles(["volunteer"]);
         this.router.navigate('volunteer');
       } else if (user.userType === 'Developer'){
+        
+        this.appState.setRoles(["developers"]);
         this.router.navigate('developer');
       }
     });
