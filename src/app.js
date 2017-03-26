@@ -65,6 +65,12 @@ export class App {
   activate() {
     this.appRouterConfig.configure();
     this.configHttpClient();
+    if(this.auth.isAuthenticated()){
+      this.authenticated = true;
+      this.appState.setAuth(true);
+        this.appState.setRoles(["dashboard"]);
+      
+    }
     //this.getUser();
   }
   
