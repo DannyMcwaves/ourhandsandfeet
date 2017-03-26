@@ -6,49 +6,35 @@ export class UserAccess {
   constructor(appState){
     this.appState = appState;
   }
-  
-  run(navigationInstruction, next){
-    //TODO: Get type of user from shared state
-    let user = this.appState.getUser();
-    
-    //TODO: Determine the route destination. Probably get it from NavigationInstruction? 
-    //if (navigationInstruction.getAllInstructions().some(i => {}))
-    navigationInstruction.fragment = '/dashboard/volunteer';
-    console.log(navigationInstruction); //Testing to try to get navigationInstruction. Set a breakpoint here!
-    // const endPoint
-    const userType = 'placeholder';
-    const endpoint = 'foo';
-    
-    //This might break, but we just need a method to test if this endpoint value exists
-    // if (userRouteAccess[userType].destination[endpoint]){
-    //   //If it does, we cancel our original destination, and send it to the new userType specific one
-    //   return next.cancel(new Redirect(userRouteAccess[userType].destination[endpoint]));
-    // } else {
-    //If the destination is not mapped, cancel the navigationInstruction
-    return next();
-    // }
-    //It should probably not reach here
-    // throw new Error('userAccess is leaking');
-    // return next();
-  }
-}
 
-const userRouteAccess = {
-  'charity': {
-    'allowedRoutes': [
-      'charity'
-    ],
-    'restrictedRoutes': [],
-    'destination': {
-      'dashboard': 'charityDashboard'
+  run(routingContext, next) {
+    console.log('Hey, I am trying to stop peoples');
+    const currentUser = this.appState.getUser();
+    console.log(currentUser);
+
+    console.log(routingContext.config);
+
+    // if we need to authenticate / authorize, verify the logged in users roles here.
+    if(routingContext.config.auth && routingContext.config.roles){
+      console.log('I am authing and have roles');
+      for (var i = 0; i < routingContext.config.roles.length; i++) {
+
+        // in this case the user is only in one role at a time.
+        if(currentUser.userType.toLowerCase() === routingContext.config.roles[i].toLowerCase())
+        {
+          console.log('YAY! authorized.');
+          return next();
+        }
+      }
+
+      //log.warning('not authorized');
+      console.log('I should be rejecting access by the time I get here');
+      return next.cancel();
     }
-  },
-  'volunteer': {
-    'allowedRoutes': [],
-    'restrictedRoutes': []
-  },
-  'developer': {
-    'allowedRoutes': [],
-    'restrictedRoutes': []
+
+    console.log('I did not get auth nor roles, so everybody is all good');
+    routingContext.getAllInstructions();
+    return next();
   }
-};
+
+}
