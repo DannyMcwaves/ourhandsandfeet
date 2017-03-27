@@ -1,6 +1,6 @@
-
 const Counter = require('assertions-counter');
 import {App} from '../../src/app';
+import {AppState} from '../../src/classes/AppState.js';
 
 class AuthStub {
   setToken(token) {
@@ -79,7 +79,7 @@ describe('the App module', () => {
   let app1;
   //var app2;
   beforeEach(() => {
-    app1 = new App(null, null, new AuthStub(), new RouterStub(), new HttpStub());
+    app1 = new App(null, null, new AuthStub, new RouterStub, new HttpStub, new AppState);
     app1.auth.setToken('No token');
     //app2 = new App(null, null, new AuthStub2(), new RouterStub(), new HttpStub());
   });
