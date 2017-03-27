@@ -1,17 +1,16 @@
 import {DashboardRouter} from '../../src/dashboard-router';
 import {Router} from 'aurelia-router';
 
-// class DashboardRouterStub extends DashboardRouter {
-//   config={};
-// }
-
 class ConfigStub {
   map(array1) {
     return array1;
   }
+  fallbackRoute(route) {
+    this.route = route;
+  }
 }
 
-class RouterStub {
+class RouterStub extends Router {
   configure(handler) {
     handler(this);
   }
@@ -22,6 +21,10 @@ class RouterStub {
 
   addPipelineStep(param1, param2) {
     //do nothing
+  }
+  
+  fallbackRoute(route) {
+    this.route = route;
   }
 }
 

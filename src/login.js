@@ -1,4 +1,3 @@
-
 import {AuthService} from 'aurelia-auth';
 import {inject} from 'aurelia-framework';
 import {App} from './app';
@@ -7,7 +6,6 @@ import {AppState} from './classes/AppState.js';
 
 @inject(AuthService, App, Router, AppState)
 export class Login {
-  
   constructor(authService, app, router, appState){
     this.auth = authService;
     this.app = app;
@@ -20,7 +18,7 @@ export class Login {
   }
   
   authenticate(name){
-    console.log("in auth");
+    console.log('in auth');
     let ret = this.auth.authenticate(name, false, null);
     //TODO listen for google to repsond if not already logged in
     //https://developers.google.com/identity/sign-in/web/listeners
@@ -30,11 +28,10 @@ export class Login {
       this.auth.setToken(data.token);
       this.app.authenticated = this.auth.isAuthenticated();
       this.appState.setAuth(true);
-      this.appState.setRoles(["dashboard"]);
-      console.log("In login authenticate");
+      this.appState.setRoles(['dashboard']);
+      console.log('In login authenticate');
       console.log(this.appState.getRoles());
     }, undefined);
     return ret;
   }
-
 }
