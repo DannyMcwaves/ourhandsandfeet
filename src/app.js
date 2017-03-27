@@ -5,7 +5,6 @@ import {AppRouterConfig} from './app.router.config';
 import {FetchConfig} from 'aurelia-auth';
 import {AuthService} from 'aurelia-auth';
 import {AppState} from './classes/AppState.js';
-//import {User} from './classes/user';
 //import {AuthorizeStep} from 'aurelia-router';
 import {HttpClient} from 'aurelia-fetch-client';
 System.import('isomorphic-fetch');
@@ -65,11 +64,10 @@ export class App {
   activate() {
     this.appRouterConfig.configure();
     this.configHttpClient();
-    if(this.auth.isAuthenticated()){
+    if (this.auth.isAuthenticated()){
       this.authenticated = true;
       this.appState.setAuth(true);
-        this.appState.setRoles(["dashboard"]);
-      
+      this.appState.setRoles(['dashboard']);
     }
     //this.getUser();
   }
