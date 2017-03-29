@@ -8,3 +8,12 @@ dependencies:
 general:
   artifacts:
     - ./coverage
+deployment:
+  master:
+    branch: master
+    commands:
+      - curl -v -X POST https://circleci.com/api/v1/project/WebJamApps/OurHandsAndFeetBackend/tree/master?circle-token=$TRIGGER_TOKEN
+  dev:
+    branch: dev
+    commands:
+      - curl -v -X POST https://circleci.com/api/v1/project/WebJamApps/OurHandsAndFeetBackend/tree/dev?circle-token=$TRIGGER_TOKEN
