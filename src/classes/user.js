@@ -20,11 +20,13 @@ export class User {
   }
   async activate(){
     await fetch;
-    this.httpClient.configure(config => {
-      config
-      .useStandardConfiguration()
-      .withBaseUrl(process.env.BackendUrl);
-    });
+    if (process.env.NODE_ENV !== 'production'){
+      this.httpClient.configure(config => {
+        config
+        .useStandardConfiguration()
+        .withBaseUrl(process.env.BackendUrl);
+      });
+    }
     // storedUser = this.getUser();
     // return storedUser;
   }

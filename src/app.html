@@ -2,39 +2,39 @@
   <div class="page-host">
     <!-- <div id="content"> -->
     <paper-drawer-panel right-drawer drawer-width.bind="drawerWidth">
-      <paper-header-panel drawer style="background-color: #f2d76d">
+      <paper-header-panel drawer style="background-color: #c09580">
         <paper-material class="material-header" elevation="0">
           <a style="display:block;color:white" href="tel:5404948035">
-            <h3 if.bind="fullmenu" class="material-header-h3-call" 
+            <h3 if.bind="fullmenu" class="material-header-h3-call"
             style="text-align:center; margin-right:250px; padding-top:30px; padding-bottom: 68px;">
             Call
             <br>540-494-8035
           </h3>
         </a>
       </paper-material>
-      <div style="background-color: #f2d76d">
-        <paper-item if.bind="widescreen" style="background-color: #f2d76d">
+      <div style="background-color: #c09580">
+        <paper-item if.bind="widescreen" style="background-color: #c09580">
           <i class="fa fa-bars pull-left fa-1x" click.delegate="togglemenu()"></i>
         </paper-item>
-        <paper-item repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}" style="background-color: #f2d76d">
+        <paper-item repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}" style="background-color: #c09580">
           <a paper-drawer-toggle style="display:block" href.bind="row.href" class="navlink">
             <span class="${row.settings}"></span>
             <span if.bind="fullmenu">&nbsp;${row.title}</span>
           </a>
         </paper-item>
-        <paper-item if.bind="authenticated" style="background-color: #f2d76d">
+        <paper-item if.bind="authenticated" style="background-color: #c09580">
           <a paper-drawer-toggle style="display:block" href="#/dashboard" class="navlink">
             <span class="fa fa-tachometer"></span>
             <span if.bind="fullmenu">&nbsp;Dashboard</span>
           </a>
         </paper-item>
-        <paper-item if.bind="!authenticated" style="background-color: #f2d76d">
+        <paper-item if.bind="!authenticated" style="background-color: #c09580">
           <a paper-drawer-toggle style="display:block" href="#/login" class="navlink">
             <span class="fa fa-sign-in"></span>
             <span if.bind="fullmenu">&nbsp;Login</span>
           </a>
         </paper-item>
-        <paper-item if.bind="authenticated" style="background-color: #f2d76d">
+        <paper-item if.bind="authenticated" style="background-color: #c09580">
           <a paper-drawer-toggle style="display:block; color:#0275d8" click.delegate="logout()" class="navlink">
             <span class="fa fa-sign-out"></span>
           </a>
@@ -47,11 +47,11 @@
     </paper-header-panel>
     <paper-header-panel main class="main-panel">
       <paper-material class="material-header" elevation="0">
-        <paper-card alt="Charity Logo" image="../styles/imgs/charitylogo.png" style="margin-top:10px;background-color: #496067;width:110px">
+        <paper-card alt="Charity Logo" image="../styles/imgs/charitylogo.png" style="margin-top:10px;background-color: #565656;width:110px">
         </paper-card>
-        <paper-card  style="background-color:#496067;top:-15px;left:5px;text-align:center;">
+        <paper-card  style="background-color:#565656;top:-17px;left:5px;text-align:center;">
           <h3 class="material-header-h3-call">Our<br>Hands and<br>Feet</h3>
-          
+
           <!-- <h3 style="color:white" repeat.for="row of router.navigation" class="${row.isActive ? '' : 'hidden'}">
           <a  paper-drawer-toggle style="display:block;color:white" href.bind="row.href">
           ${row.title}

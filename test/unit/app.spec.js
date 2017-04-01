@@ -1,6 +1,6 @@
-
 const Counter = require('assertions-counter');
 import {App} from '../../src/app';
+import {AppState} from '../../src/classes/AppState.js';
 
 class AuthStub {
   setToken(token) {
@@ -29,34 +29,35 @@ class AuthStub {
     return this.authenticated;
   }
 }
-class AuthStub2 {
-  setToken(token) {
-    this.token = token;
-  }
-  logout(data) {
-    //Logout
-    var response = 'user logged out';
-    return new Promise((resolve)=>{
-      resolve({json: ()=>response});
-    });
-  }
-  getMe() {
-    var response = 'This is user data';
-    return new Promise((resolve)=>{
-      resolve({json: ()=>response});
-    });
-  }
-  getTokenPayload() {
-    var response = this.token;
-    return new Promise((resolve)=>{
-      resolve({json: ()=>response});
-    });
-  }
-  isAuthenticated() {
-    this.authenticated = false;
-    return this.authenticated;
-  }
-}
+
+// class AuthStub2 {
+//   setToken(token) {
+//     this.token = token;
+//   }
+//   logout(data) {
+//     //Logout
+//     var response = 'user logged out';
+//     return new Promise((resolve)=>{
+//       resolve({json: ()=>response});
+//     });
+//   }
+//   getMe() {
+//     var response = 'This is user data';
+//     return new Promise((resolve)=>{
+//       resolve({json: ()=>response});
+//     });
+//   }
+//   getTokenPayload() {
+//     var response = this.token;
+//     return new Promise((resolve)=>{
+//       resolve({json: ()=>response});
+//     });
+//   }
+//   isAuthenticated() {
+//     this.authenticated = false;
+//     return this.authenticated;
+//   }
+// }
 
 class RouterStub {
   configure() {
@@ -75,17 +76,17 @@ class HttpStub {
 }
 
 describe('the App module', () => {
-  var app1;
-  var app2;
+  let app1;
+  //var app2;
   beforeEach(() => {
-    app1 = new App(null, null, new AuthStub(), new RouterStub(), new HttpStub());
+    app1 = new App(null, null, new AuthStub, new RouterStub, new HttpStub, new AppState);
     app1.auth.setToken('No token');
-    app2 = new App(null, null, new AuthStub2(), new RouterStub(), new HttpStub());
+    //app2 = new App(null, null, new AuthStub2(), new RouterStub(), new HttpStub());
   });
-  it('should set user id as undefined from getUser function when not authenticated', ()=> {
-    app2.getUser();
-    expect(app2.uid).toBe(undefined);
-  });
+  // it('should set user id as undefined from getUser function when not authenticated', ()=> {
+  //   app2.getUser();
+  //   expect(app2.uid).toBe(undefined);
+  // });
   
   it('tests configHttpClient', (done) => {
     const { add: ok } = new Counter(2, done);

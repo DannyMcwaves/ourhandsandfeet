@@ -1,47 +1,43 @@
-import {Redirect, NavigationInstruction, RouterConfiguration, Next} from 'aurelia-router';
-// import {App} from '../app';
-export class UserAccess {
-  
-  run(navigationInstruction, next){
-    //TODO: Get type of user from shared state
-    
-    //TODO: Determine the route destination. Probably get it from NavigationInstruction? 
-    //if (navigationInstruction.getAllInstructions().some(i => {}))
-    console.log(navigationInstruction); //Testing to try to get navigationInstruction. Set a breakpoint here!
-    // const endPoint
-    const userType = 'placeholder';
-    const endpoint = 'foo';
-    
-    //This might break, but we just need a method to test if this endpoint value exists
-    // if (userRouteAccess[userType].destination[endpoint]){
-    //   //If it does, we cancel our original destination, and send it to the new userType specific one
-    //   return next.cancel(new Redirect(userRouteAccess[userType].destination[endpoint]));
-    // } else {
-      //If the destination is not mapped, cancel the navigationInstruction
-      return next();
-    // }
-    //It should probably not reach here
-    // throw new Error('userAccess is leaking');
-    // return next();
-  }
-}
+import {inject} from 'aurelia-framework';
+import {AppState} from '../classes/AppState.js';
 
-const userRouteAccess = {
-  "charity":{
-    "allowedRoutes": [
-      "charity"
-    ],
-    "restrictedRoutes": [],
-    "destination": {
-      "dashboard": "charityDashboard"
-    }
-  },
-  "volunteer":{
-    "allowedRoutes": [],
-    "restrictedRoutes": []
-  },
-  "developer": {
-    "allowedRoutes": [],
-    "restrictedRoutes": []
+@inject(AppState)
+export class UserAccess {
+  constructor(appState){
+    this.appState = appState;
   }
+  
+  run(routingContext, next) {
+    console.log('Hey, I am trying to stop peoples');
+    const currentUser = this.appState.getUser();
+    console.log(currentUser);
+    console.log(routingContext);
+    console.log(this.appState.getRoles());
+    if (routingContext.config.auth && routingContext.fragment === '/dashboard' && this.appState.getAuth()){
+      return next();
+    }
+    // if we need to authenticate / authorize, verify the logged in users roles here.
+    if (routingContext.config.auth && this.appState.getRoles().length > 0){
+      console.log('I am authing and have roles');
+      const tempRoles = this.appState.getRoles();
+      for (let i = 0; i < tempRoles.length; i++) {
+        // in this case the user is only in one role at a time.
+        if (routingContext.params.childRoute === tempRoles[i].toLowerCase()){
+          console.log('YAY! authorized.');
+          return next();
+        }
+      }
+      
+      //log.warning('not authorized');
+      console.log('I should be rejecting access by the time I get here');
+      return next.cancel();
+    } else if (routingContext.config.auth){
+      return next.cancel();
+    }
+    
+    console.log('I did not get auth nor roles, so everybody is all good');
+    routingContext.getAllInstructions();
+    return next();
+  }
+  
 }

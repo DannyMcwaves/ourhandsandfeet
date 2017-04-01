@@ -15,14 +15,18 @@ export class Bookshelf {
   mediaTypes = [];
   
   async activate(){
+    let backend = '';
+    if (process.env.NODE_ENV !== 'production'){
+      backend = process.env.BackendUrl;
+    }
     await fetch;
-    
+    //if (process.env.NODE_ENV !== 'production'){
     this.httpClient.configure(config => {
       config
       .useStandardConfiguration()
-      .withBaseUrl(process.env.BackendUrl);
+      .withBaseUrl(backend);
     });
-    
+    //}
     const res = await this.httpClient.fetch('/book/getall');
     this.books =  await res.json();
     this.populateTypes();

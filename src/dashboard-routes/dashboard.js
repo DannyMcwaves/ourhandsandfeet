@@ -4,27 +4,35 @@ import {App} from '../app';
 import {Router} from 'aurelia-router';
 import {AuthService} from 'aurelia-auth';
 import {HttpClient, json} from 'aurelia-fetch-client';
+import {AppState} from '../classes/AppState.js';
 
-@inject(AuthService, HttpClient, App, Router)
+@inject(AuthService, HttpClient, App, Router, AppState)
 export class Dashboard {
-  constructor(auth, httpClient, app, router){
+  constructor(auth, httpClient, app, router, appState){
     this.app = app;
     this.auth = auth;
     this.httpClient = httpClient;
     this.router = router;
+    this.appState = appState;
   }
   
   //authenticated=false;
   //firstTimeInfo = false;
-  types=['Charity', 'Volunteer'];
+  types=['Charity', 'Volunteer', 'Developer'];
   
   async activate(){
+    let backend = '';
+    if (process.env.NODE_ENV !== 'production'){
+      backend = process.env.BackendUrl;
+    }
     await fetch;
+    //if (process.env.NODE_ENV !== 'production'){
     this.httpClient.configure(config => {
       config
       .useStandardConfiguration()
-      .withBaseUrl(process.env.BackendUrl);
+      .withBaseUrl(backend);
     });
+    //}
     this.getUser();
   }
   
@@ -34,15 +42,21 @@ export class Dashboard {
     this.httpClient.fetch('/user/' + uid)
     .then(response => response.json())
     .then(data => {
-      this.user = data;
+      let user = data;
+      this.appState.setUser(user);
+      console.log('In get user');
+      console.log(this.appState.getUser());
       //this.firstTimeInfo = this.configured();
-      if (this.user.userType === 'Charity'){
+      if (user.userType === 'Charity'){
         //this.user.userType = 1;
+        this.appState.setRoles(['charity', 'developer']);
         this.router.navigate('charity');
-      } else if (this.user.userType === 'Volunteer'){
+      } else if (user.userType === 'Volunteer'){
         //this.user.userType = 2;
+        this.appState.setRoles(['volunteer']);
         this.router.navigate('volunteer');
-      } else if (this.user.userType === 'Developer'){
+      } else if (user.userType === 'Developer'){
+        this.appState.setRoles(['developers']);
         this.router.navigate('developer');
       }
     });
@@ -51,10 +65,11 @@ export class Dashboard {
   updateUser(){
     let uid = this.auth.getTokenPayload().sub;
     //let tempUserType = this.user.userType;
-    this.user.userType = this.types[this.user.userType - 1];
-    this.httpClient.fetch(process.env.BackendUrl + '/user/' + uid, {
+    let user = this.appState.getUser();
+    user.userType = this.types[this.user.userType - 1];
+    this.httpClient.fetch('/user/' + uid, {
       method: 'put',
-      body: json(this.user)
+      body: json(user)
     })
     .then(response=>response.json())
     .then(data=> {
